@@ -55,12 +55,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.35</version>
+            <version>1.7.36</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.35</version>
+            <version>1.7.36</version>
         </dependency>
     </dependencies>
 
@@ -93,7 +93,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>nl.slindenau.openmusicscrobbler.cli.ConsoleClient</mainClass>
+                            <mainClass>nl.slindenau.openmusicscrobbler.Application</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>./dependency/</classpathPrefix>
                             <addBuildEnvironmentEntries>false</addBuildEnvironmentEntries>

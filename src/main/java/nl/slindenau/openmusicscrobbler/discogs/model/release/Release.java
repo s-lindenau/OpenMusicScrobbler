@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.release;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Release extends DiscogsApiResponse {
     public int id;
     public String status;
