@@ -1,0 +1,199 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 1,
+    "per_page": 50,
+    "items": 3,
+    "urls": {}
+  },
+  "releases": [
+    {
+      "id": 4353213,
+      "instance_id": 101925329,
+      "date_added": "2014-05-10T14:29:35-07:00",
+      "rating": 5,
+      "basic_information": {
+        "id": 4353213,
+        "master_id": 0,
+        "master_url": null,
+        "resource_url": "https://api.discogs.com/releases/4353213",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Stres D.A. / Depresija / III. Kategorija",
+        "year": 2013,
+        "formats": [
+          {
+            "name": "Vinyl",
+            "qty": "1",
+            "descriptions": [
+              "LP",
+              "Compilation",
+              "Limited Edition"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Rest In Punk",
+            "catno": "002",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 372048,
+            "resource_url": "https://api.discogs.com/labels/372048"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Stres Dr\u017eavnega Aparata",
+            "anv": "Stres D.A.",
+            "join": "/",
+            "role": "",
+            "tracks": "",
+            "id": 1178831,
+            "resource_url": "https://api.discogs.com/artists/1178831"
+          },
+          {
+            "name": "Depresija",
+            "anv": "",
+            "join": "/",
+            "role": "",
+            "tracks": "",
+            "id": 2065779,
+            "resource_url": "https://api.discogs.com/artists/2065779"
+          },
+          {
+            "name": "III. Kategorija",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1372026,
+            "resource_url": "https://api.discogs.com/artists/1372026"
+          }
+        ],
+        "genres": [
+          "Rock"
+        ],
+        "styles": [
+          "Hardcore",
+          "Punk"
+        ]
+      }
+    },
+    {
+      "id": 5656914,
+      "instance_id": 101925331,
+      "date_added": "2014-05-10T14:27:39-07:00",
+      "rating": 5,
+      "basic_information": {
+        "id": 5656914,
+        "master_id": 0,
+        "master_url": null,
+        "resource_url": "https://api.discogs.com/releases/5656914",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Nije Po Jus-u",
+        "year": 2014,
+        "formats": [
+          {
+            "name": "Vinyl",
+            "qty": "1",
+            "descriptions": [
+              "LP"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Rest In Punk",
+            "catno": "004",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 372048,
+            "resource_url": "https://api.discogs.com/labels/372048"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Problemi",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 850647,
+            "resource_url": "https://api.discogs.com/artists/850647"
+          }
+        ],
+        "genres": [
+          "Rock"
+        ],
+        "styles": [
+          "Punk"
+        ]
+      }
+    },
+    {
+      "id": 5656805,
+      "instance_id": 101925330,
+      "date_added": "2014-05-10T14:27:07-07:00",
+      "rating": 5,
+      "basic_information": {
+        "id": 5656805,
+        "master_id": 734645,
+        "master_url": "https://api.discogs.com/masters/734645",
+        "resource_url": "https://api.discogs.com/releases/5656805",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Od Danas Do Sutra / Zaklenjena Vrata",
+        "year": 2014,
+        "formats": [
+          {
+            "name": "Vinyl",
+            "qty": "1",
+            "descriptions": [
+              "LP",
+              "Compilation"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Rest In Punk",
+            "catno": "005",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 372048,
+            "resource_url": "https://api.discogs.com/labels/372048"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Distress (3)",
+            "anv": "",
+            "join": "/",
+            "role": "",
+            "tracks": "",
+            "id": 1083512,
+            "resource_url": "https://api.discogs.com/artists/1083512"
+          },
+          {
+            "name": "Odpadki Civilizacije",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1083496,
+            "resource_url": "https://api.discogs.com/artists/1083496"
+          }
+        ],
+        "genres": [
+          "Rock"
+        ],
+        "styles": [
+          "Hardcore",
+          "Punk"
+        ]
+      }
+    }
+  ]
+}
