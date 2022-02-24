@@ -29,31 +29,42 @@ public class DiscogsClientWrapper {
 
     public UserCollection getUserCollection(String userName) {
         String userCollection = discogsClient.collection(userName);
+        debugLog(userCollection);
         return jsonParser.parseJsonObject(userCollection, UserCollection.class);
     }
 
     public CollectionFolder getFolder(String username, String folderId) {
         String folder = discogsClient.collectionFolder(username, folderId);
+        debugLog(folder);
         return jsonParser.parseJsonObject(folder, CollectionFolder.class);
     }
 
     public CollectionReleases getReleases(String username, String folderId) {
         String collectionReleases = discogsClient.collectionReleases(username, folderId);
+        debugLog(collectionReleases);
         return jsonParser.parseJsonObject(collectionReleases, CollectionReleases.class);
     }
 
     public CollectionReleases getReleases(String username, String folderId, Pagination pagination, int pageNumber) {
         Map<String, String> pageParameters = getPageParameters(pagination, pageNumber);
         String collectionReleases = discogsClient.collectionReleases(username, folderId, pageParameters);
+        debugLog(collectionReleases);
         return jsonParser.parseJsonObject(collectionReleases, CollectionReleases.class);
     }
 
     public Release getRelease(String releaseId) {
         String release = discogsClient.release(releaseId);
+        debugLog(release);
         return jsonParser.parseJsonObject(release, Release.class);
     }
 
     private Map<String, String> getPageParameters(Pagination pagination, int pageNumber) {
         return discogsPagination.getPageParameters(pagination, pageNumber);
+    }
+
+    private void debugLog(String debugInfoText) {
+        if(discogsClient.isDebugEnabled()) {
+            System.out.println(debugInfoText);
+        }
     }
 }

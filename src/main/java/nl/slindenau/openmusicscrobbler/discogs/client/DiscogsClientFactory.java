@@ -11,7 +11,10 @@ import nl.slindenau.openmusicscrobbler.Constants;
 public class DiscogsClientFactory {
 
     public DiscogsClientWrapper getClient() {
-        return new DiscogsClientWrapper(new DiscogsClient(Constants.USER_AGENT));
+        DiscogsClient discogsClient = new DiscogsClient(Constants.USER_AGENT);
+        // todo: configuration property
+        discogsClient.setDebugEnabled(true);
+        return new DiscogsClientWrapper(discogsClient);
     }
 
 }

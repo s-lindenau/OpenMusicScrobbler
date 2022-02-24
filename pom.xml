@@ -21,11 +21,11 @@
     </properties>
 
     <dependencies>
-        <!-- Discogs API: https://github.com/ajdons/discogs4j -->
+        <!-- Discogs API: https://github.com/s-lindenau/discogs4j fork of https://github.com/ajdons/discogs4j -->
         <dependency>
-            <groupId>ajdons</groupId>
+            <groupId>com.adamdonegan</groupId>
             <artifactId>discogs4j</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
         </dependency>
         <!-- Last.fm API -->
         <dependency>
