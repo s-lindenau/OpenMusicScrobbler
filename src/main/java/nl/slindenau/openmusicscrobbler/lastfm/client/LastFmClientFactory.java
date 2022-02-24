@@ -5,6 +5,7 @@ import de.umass.lastfm.Caller;
 import de.umass.lastfm.Session;
 import nl.slindenau.openmusicscrobbler.Constants;
 import nl.slindenau.openmusicscrobbler.SystemProperties;
+import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
 /**
  * @author slindenau
@@ -33,6 +34,6 @@ public class LastFmClientFactory {
     }
 
     private void throwMissingCredentialsException() {
-        throw new RuntimeException("Could not create Last.fm session. Check authentication details!");
+        throw new OpenMusicScrobblerException("Could not create Last.fm session. Check authentication details!");
     }
 }

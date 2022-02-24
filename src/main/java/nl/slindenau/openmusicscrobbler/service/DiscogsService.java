@@ -22,14 +22,18 @@ import java.util.*;
  */
 public class DiscogsService {
     private final Map<String, ReleaseCollection> releaseCollectionCache = new HashMap<>();
+    private final Map<String, Release> releaseCache = new HashMap<>();
     private final DiscogsClientWrapper discogsClient;
+    private final MusicReleaseService musicReleaseService;
+    private int nextId = 0;
 
     public DiscogsService() {
-        this(new DiscogsClientFactory());
+        this(new DiscogsClientFactory(), new MusicReleaseService());
     }
 
-    public DiscogsService(DiscogsClientFactory discogsClientFactory) {
+    public DiscogsService(DiscogsClientFactory discogsClientFactory, MusicReleaseService musicReleaseService) {
         this.discogsClient = discogsClientFactory.getClient();
+        this.musicReleaseService = musicReleaseService;
     }
 
     public ReleaseCollection getUserCollection(String discogsUsername) {
@@ -55,26 +59,42 @@ public class DiscogsService {
 
     private void processReleases(CollectionReleases collectionReleases, Collection<MusicRelease> releasesInCollection) {
         checkError(collectionReleases);
-        collectionReleases.getReleases().stream().map(this::createRelease).forEach(releasesInCollection::add);
+        collectionReleases.getReleases().stream().map(this::findRelease).forEach(releasesInCollection::add);
     }
 
-    private MusicRelease createRelease(CollectionRelease release) {
+    private MusicRelease findRelease(CollectionRelease release) {
         int releaseId = release.getId();
         BasicInformation basicInformation = release.getBasicInformation();
         String title = basicInformation.getTitle();
         String format = basicInformation.getFormats().stream().findFirst().map(Format::getName).orElse("unknown format");
         String artist = basicInformation.getArtists().stream().findFirst().map(Artist::getName).orElse("unknown artist");
-        return new MusicRelease(releaseId, artist, title, format, Collections.emptyList());
+        return new MusicRelease(nextId++, releaseId, artist, title, format, Collections.emptyList());
+    }
+
+    public MusicRelease getRelease(ReleaseCollection userCollection, Integer releaseId) {
+        Optional<MusicRelease> release = userCollection.releases().stream().filter(musicRelease -> musicRelease.id() == releaseId).findFirst();
+        return release.map(this::getMusicReleaseTracks).orElseThrow(() -> new OpenMusicScrobblerException("Unknown release with id: " + releaseId));
+    }
+
+    private MusicRelease getMusicReleaseTracks(MusicRelease musicRelease) {
+        Release discogsRelease = getDiscogsRelease(musicRelease);
+        return musicReleaseService.createRelease(musicRelease, discogsRelease);
+    }
+
+    private Release getDiscogsRelease(MusicRelease release) {
+        String releaseId = String.valueOf(release.discogsId());
+        return releaseCache.computeIfAbsent(releaseId, this::findRelease);
+    }
+
+    private Release findRelease(String releaseId) {
+        Release release = discogsClient.getRelease(releaseId);
+        checkError(release);
+        return release;
     }
 
     private void checkError(DiscogsApiResponse discogsApiResponse) {
         if (discogsApiResponse.isError()) {
             throw new OpenMusicScrobblerException(discogsApiResponse.getErrorMessage());
         }
-    }
-
-    public Release getRelease(Integer releaseId) {
-        // todo change to model & cache
-        return discogsClient.getRelease(String.valueOf(releaseId));
     }
 }

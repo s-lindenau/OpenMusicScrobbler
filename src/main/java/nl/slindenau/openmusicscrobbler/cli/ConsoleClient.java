@@ -1,21 +1,14 @@
 package nl.slindenau.openmusicscrobbler.cli;
 
-import de.umass.lastfm.scrobble.ScrobbleResult;
 import nl.slindenau.openmusicscrobbler.SystemProperties;
-import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Artist;
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Tracklist;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
-import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
-import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientWrapper;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
+import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.LastFmService;
 
-import java.util.Date;
-import java.util.Optional;
+import java.time.Instant;
 
 /**
  * @author slindenau
@@ -65,38 +58,35 @@ public class ConsoleClient extends AbstractConsoleClient {
         printReleases(userCollection);
         printEmptyLine();
         Integer releaseId = readConsoleNumberInput("Select release ID to continue");
-        Release selectedRelease = discogsService.getRelease(releaseId);
-        if (selectedRelease.isError()) {
-            handleError(selectedRelease);
-        } else {
-            handleRelease(selectedRelease);
-        }
+        MusicRelease selectedRelease = discogsService.getRelease(userCollection, releaseId);
+        handleRelease(selectedRelease);
     }
 
-    private void handleRelease(Release release) {
-        String releaseArtist = release.artists.stream().findFirst().map(Artist::getName).orElse("unknown artist");
-        release.tracklist.stream().map(track -> decorateTrack(track, releaseArtist)).forEach(this::printLine);
+    private void handleRelease(MusicRelease release) {
+        String releaseArtist = release.artist();
+        release.getAllTracks().stream().map(track -> decorateTrack(track, releaseArtist)).forEach(this::printLine);
 
         printEmptyLine();
         printLine("Scrobble release to Last.fm?");
         boolean cancel = askCommand(CANCEL_COMMAND);
         if (!cancel) {
-            LastFmClientWrapper lastFmClient = new LastFmClientFactory().getClient();
-            scrobbleTracks(lastFmClient, release, releaseArtist);
+            scrobbleTracks(release);
             printLine("Scrobble complete!");
         }
     }
 
-    private void scrobbleTracks(LastFmClientWrapper lastFmClient, Release release, String releaseArtist) {
-        String releaseTitle = release.title;
-        Optional<Tracklist> firstTrack = release.tracklist.stream().findFirst();
-        if (firstTrack.isPresent()) {
-            Tracklist track = firstTrack.get();
-            String trackName = track.title;
-            // todo: scrobble entire release on correct date per track
-            ScrobbleResult result = lastFmClient.scrobbleTrack(releaseArtist, releaseTitle.trim(), trackName.trim(), new Date());
-            System.out.println(result);
-        }
+    private void scrobbleTracks(MusicRelease release) {
+        // todo: replace 'release' with selected part(s) to scrobble
+        Instant firstTrackScrobbleAt = getFirstTrackScrobbleDateFromCurrentTime(release);
+        lastFmService.scrobbleTracks(release, firstTrackScrobbleAt);
+    }
+
+    private Instant getFirstTrackScrobbleDateFromCurrentTime(MusicRelease release) {
+        // todo: replace with length of selected part(s) to scrobble
+        int totalPlayTime = lastFmService.getTotalPlayTimeInSeconds(release);
+        // todo: replace with user input, currently we assume we just played the release
+        Instant now = Instant.now();
+        return now.minusSeconds(totalPlayTime);
     }
 
     private void printReleases(ReleaseCollection collectionReleases) {
@@ -108,13 +98,13 @@ public class ConsoleClient extends AbstractConsoleClient {
         String title = release.title();
         String format = release.format();
         String artist = release.artist();
-        return String.format("%s: %s - %s (%s)", releaseId, artist, title, format);
+        return String.format("%02d: %s - %s (%s)", releaseId, artist, title, format);
     }
 
-    private String decorateTrack(Tracklist track, String artist) {
-        String position = track.position;
-        String title = track.title;
-        String duration = track.duration;
+    private String decorateTrack(Track track, String artist) {
+        String position = track.position();
+        String title = track.title();
+        String duration = track.duration();
         return String.format("%s: %s - %s (%s)", position, artist, title, duration);
     }
 
@@ -125,10 +115,6 @@ public class ConsoleClient extends AbstractConsoleClient {
             return usernameProperty;
         }
         return readConsoleTextInput("Discogs Username");
-    }
-
-    private void handleError(DiscogsApiResponse apiResponse) {
-        printLine("Error message: " + apiResponse.getErrorMessage());
     }
 
     private void handleException(Exception exception) {

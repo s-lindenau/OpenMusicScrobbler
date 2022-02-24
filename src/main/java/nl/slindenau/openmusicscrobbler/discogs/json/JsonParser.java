@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
+import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
 /**
  * @author slindenau
@@ -18,7 +19,7 @@ public class JsonParser {
         try {
             return jsonObjectMapper.readValue(input, modelClass);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new OpenMusicScrobblerException(e);
         }
     }
 

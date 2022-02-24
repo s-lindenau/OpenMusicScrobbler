@@ -6,7 +6,16 @@ package nl.slindenau.openmusicscrobbler.exception;
  * Licence: GPLv3
  */
 public class OpenMusicScrobblerException extends RuntimeException {
+
+    public OpenMusicScrobblerException(Throwable cause) {
+        super(cause);
+    }
+
     public OpenMusicScrobblerException(String message) {
         super(message);
+    }
+
+    public OpenMusicScrobblerException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

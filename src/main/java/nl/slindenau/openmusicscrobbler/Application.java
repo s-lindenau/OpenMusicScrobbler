@@ -14,8 +14,8 @@ public class Application {
     private static final String ENCRYPT_APPLICATION = "encrypt";
     private static final String DEFAULT_APPLICATION_TO_RUN = CONSOLE_APPLICATION;
 
-    public static void main(String[] args) {
-        String applicationToRun = getApplicationToRun(args);
+    public static void main(String[] commandLineArguments) {
+        String applicationToRun = getApplicationToRun(commandLineArguments);
         switch (applicationToRun) {
             case ENCRYPT_APPLICATION -> new EncryptPasswordClient().run();
             case CONSOLE_APPLICATION -> new ConsoleClient().run();
@@ -23,10 +23,10 @@ public class Application {
         }
     }
 
-    private static String getApplicationToRun(String[] args) {
-        if (args == null || args.length == 0) {
+    private static String getApplicationToRun(String[] commandLineArguments) {
+        if (commandLineArguments == null || commandLineArguments.length == 0) {
             return DEFAULT_APPLICATION_TO_RUN;
         }
-        return args[0];
+        return commandLineArguments[0];
     }
 }

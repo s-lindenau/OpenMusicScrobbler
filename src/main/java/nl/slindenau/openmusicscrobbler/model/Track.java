@@ -7,5 +7,5 @@ package nl.slindenau.openmusicscrobbler.model;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record Track(ReleasePart releasePart, String artist, String title, int lengthInSeconds) {
+public record Track(String position, String artist, String title, String duration, int lengthInSeconds) {
 }

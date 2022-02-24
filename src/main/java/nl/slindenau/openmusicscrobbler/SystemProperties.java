@@ -9,11 +9,20 @@ public class SystemProperties {
 
     // todo: change to settings file
 
+    private static final String DEBUG_PROPERTY = "debug";
     private static final String DISCOGS_USERNAME_PROPERTY = "discogs.username";
     private static final String LAST_FM_USERNAME_PROPERTY = "lastfm.username";
     private static final String LAST_FM_PASSWORD_PROPERTY = "lastfm.password";
     private static final String LAST_FM_API_KEY_PROPERTY = "lastfm.api.key";
     private static final String LAST_FM_API_SECRET_PROPERTY = "lastfm.api.secret";
+
+    public Boolean isDebugEnabled() {
+        return Boolean.parseBoolean(getDebugProperty());
+    }
+
+    private String getDebugProperty() {
+        return getProperty(DEBUG_PROPERTY);
+    }
 
     public String getDiscogsUsername() {
         return getProperty(DISCOGS_USERNAME_PROPERTY);

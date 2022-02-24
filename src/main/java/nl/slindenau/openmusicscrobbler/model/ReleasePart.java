@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record ReleasePart(MusicRelease release, String partIdentification, Collection<ReleasePart> subParts, Collection<Track> tracks) {
+public record ReleasePart(String partIdentification, Collection<ReleasePart> subParts, Collection<Track> tracks) {
+
     public Collection<Track> getAllTracks() {
         Collection<ReleasePart> allParts = new ArrayList<>(subParts);
         allParts.add(this);
