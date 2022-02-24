@@ -1,6 +1,5 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.release;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 
 import java.util.Date;
@@ -11,7 +10,6 @@ import java.util.List;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Release extends DiscogsApiResponse {
     public int id;
     public String status;
@@ -20,14 +18,8 @@ public class Release extends DiscogsApiResponse {
     public String uri;
     public List<Artist> artists;
     public String artists_sort;
-    public List<Label> labels;
-    // todo add model for series
-    public List<Object> series;
-    // todo add model for companies
-    public List<Object> companies;
     public List<Format> formats;
     public String data_quality;
-    public Community community;
     public int format_quantity;
     public Date date_added;
     public Date date_changed;

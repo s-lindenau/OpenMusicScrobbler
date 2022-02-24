@@ -22,7 +22,7 @@ public class DiscogsPaginationParameterFactory {
         }
         Map<String, String> parameters = new HashMap<>();
         parameters.put(Constants.DISCOGS_PARAMETER_PAGE, String.valueOf(pageNumber));
-        parameters.put(Constants.DISCOGS_PARAMETER_PAGE_SIZE, String.valueOf(pagination.getPer_page()));
+        parameters.put(Constants.DISCOGS_PARAMETER_PAGE_SIZE, String.valueOf(pagination.getItemsPerPage()));
         return parameters;
     }
 }

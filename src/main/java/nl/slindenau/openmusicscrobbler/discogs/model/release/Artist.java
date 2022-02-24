@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.release;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 
 /**
@@ -9,12 +10,14 @@ import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
  */
 public class Artist extends DiscogsApiResponse {
     public String name;
-    public String anv;
+    @JsonProperty("anv")
+    public String artistNameVariation;
     public String join;
     public String role;
     public String tracks;
     public int id;
-    public String resource_url;
+    @JsonProperty("resource_url")
+    public String resourceUrl;
 
     public String getName() {
         return name;
@@ -24,12 +27,12 @@ public class Artist extends DiscogsApiResponse {
         this.name = name;
     }
 
-    public String getAnv() {
-        return anv;
+    public String getArtistNameVariation() {
+        return artistNameVariation;
     }
 
-    public void setAnv(String anv) {
-        this.anv = anv;
+    public void setArtistNameVariation(String artistNameVariation) {
+        this.artistNameVariation = artistNameVariation;
     }
 
     public String getJoin() {
@@ -64,11 +67,11 @@ public class Artist extends DiscogsApiResponse {
         this.id = id;
     }
 
-    public String getResource_url() {
-        return resource_url;
+    public String getResourceUrl() {
+        return resourceUrl;
     }
 
-    public void setResource_url(String resource_url) {
-        this.resource_url = resource_url;
+    public void setResourceUrl(String resourceUrl) {
+        this.resourceUrl = resourceUrl;
     }
 }

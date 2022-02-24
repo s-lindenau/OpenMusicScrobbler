@@ -1,5 +1,7 @@
 package nl.slindenau.openmusicscrobbler.discogs.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author slindenau
  * https://github.com/s-lindenau
@@ -7,14 +9,11 @@ package nl.slindenau.openmusicscrobbler.discogs.model;
  */
 public class Pagination extends DiscogsApiResponse {
 
-    // todo: clean up generated JSON model classes (private fields, getters & setters for all)
-    // todo: add missing fields
-
     public int page;
     public int pages;
-    public int per_page;
+    @JsonProperty("per_page")
+    public int itemsPerPage;
     public int items;
-    public Urls urls;
 
     public int getPage() {
         return page;
@@ -32,12 +31,12 @@ public class Pagination extends DiscogsApiResponse {
         this.pages = pages;
     }
 
-    public int getPer_page() {
-        return per_page;
+    public int getItemsPerPage() {
+        return itemsPerPage;
     }
 
-    public void setPer_page(int per_page) {
-        this.per_page = per_page;
+    public void setItemsPerPage(int itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
     }
 
     public int getItems() {
@@ -46,13 +45,5 @@ public class Pagination extends DiscogsApiResponse {
 
     public void setItems(int items) {
         this.items = items;
-    }
-
-    public Urls getUrls() {
-        return urls;
-    }
-
-    public void setUrls(Urls urls) {
-        this.urls = urls;
     }
 }

@@ -60,7 +60,7 @@ public class DiscogsService {
 
     private MusicRelease createRelease(CollectionRelease release) {
         int releaseId = release.getId();
-        BasicInformation basicInformation = release.getBasic_information();
+        BasicInformation basicInformation = release.getBasicInformation();
         String title = basicInformation.getTitle();
         String format = basicInformation.getFormats().stream().findFirst().map(Format::getName).orElse("unknown format");
         String artist = basicInformation.getArtists().stream().findFirst().map(Artist::getName).orElse("unknown artist");

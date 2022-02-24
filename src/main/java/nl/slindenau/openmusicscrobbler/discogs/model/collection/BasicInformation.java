@@ -1,9 +1,9 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Artist;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Format;
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Label;
 
 import java.util.List;
 
@@ -15,15 +15,18 @@ import java.util.List;
 public class BasicInformation extends DiscogsApiResponse {
 
     public int id;
-    public int master_id;
-    public String master_url;
-    public String resource_url;
+    @JsonProperty("master_id")
+    public int masterId;
+    @JsonProperty("master_url")
+    public String masterUrl;
+    @JsonProperty("resource_url")
+    public String resourceUrl;
     public String thumb;
-    public String cover_image;
+    @JsonProperty("cover_image")
+    public String coverImage;
     public String title;
     public int year;
     public List<Format> formats;
-    public List<Label> labels;
     public List<Artist> artists;
     public List<String> genres;
     public List<String> styles;
@@ -36,28 +39,28 @@ public class BasicInformation extends DiscogsApiResponse {
         this.id = id;
     }
 
-    public int getMaster_id() {
-        return master_id;
+    public int getMasterId() {
+        return masterId;
     }
 
-    public void setMaster_id(int master_id) {
-        this.master_id = master_id;
+    public void setMasterId(int masterId) {
+        this.masterId = masterId;
     }
 
-    public String getMaster_url() {
-        return master_url;
+    public String getMasterUrl() {
+        return masterUrl;
     }
 
-    public void setMaster_url(String master_url) {
-        this.master_url = master_url;
+    public void setMasterUrl(String masterUrl) {
+        this.masterUrl = masterUrl;
     }
 
-    public String getResource_url() {
-        return resource_url;
+    public String getResourceUrl() {
+        return resourceUrl;
     }
 
-    public void setResource_url(String resource_url) {
-        this.resource_url = resource_url;
+    public void setResourceUrl(String resourceUrl) {
+        this.resourceUrl = resourceUrl;
     }
 
     public String getThumb() {
@@ -68,12 +71,12 @@ public class BasicInformation extends DiscogsApiResponse {
         this.thumb = thumb;
     }
 
-    public String getCover_image() {
-        return cover_image;
+    public String getCoverImage() {
+        return coverImage;
     }
 
-    public void setCover_image(String cover_image) {
-        this.cover_image = cover_image;
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 
     public String getTitle() {
@@ -98,14 +101,6 @@ public class BasicInformation extends DiscogsApiResponse {
 
     public void setFormats(List<Format> formats) {
         this.formats = formats;
-    }
-
-    public List<Label> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<Label> labels) {
-        this.labels = labels;
     }
 
     public List<Artist> getArtists() {

@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 
 /**
@@ -12,7 +13,8 @@ public class CollectionFolder extends DiscogsApiResponse {
     private int id;
     private String name;
     private int count;
-    private String resource_url;
+    @JsonProperty("resource_url")
+    private String resourceUrl;
 
     public int getId() {
         return id;
@@ -38,11 +40,11 @@ public class CollectionFolder extends DiscogsApiResponse {
         this.count = count;
     }
 
-    public String getResource_url() {
-        return resource_url;
+    public String getResourceUrl() {
+        return resourceUrl;
     }
 
-    public void setResource_url(String resource_url) {
-        this.resource_url = resource_url;
+    public void setResourceUrl(String resourceUrl) {
+        this.resourceUrl = resourceUrl;
     }
 }

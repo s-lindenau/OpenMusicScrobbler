@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 
 import java.util.Date;
@@ -11,10 +12,13 @@ import java.util.Date;
  */
 public class CollectionRelease extends DiscogsApiResponse {
     public int id;
-    public int instance_id;
-    public Date date_added;
+    @JsonProperty("instance_id")
+    public int instanceId;
+    @JsonProperty("date_added")
+    public Date dateAdded;
     public int rating;
-    public BasicInformation basic_information;
+    @JsonProperty("basic_information")
+    public BasicInformation basicInformation;
 
     public int getId() {
         return id;
@@ -24,20 +28,20 @@ public class CollectionRelease extends DiscogsApiResponse {
         this.id = id;
     }
 
-    public int getInstance_id() {
-        return instance_id;
+    public int getInstanceId() {
+        return instanceId;
     }
 
-    public void setInstance_id(int instance_id) {
-        this.instance_id = instance_id;
+    public void setInstanceId(int instanceId) {
+        this.instanceId = instanceId;
     }
 
-    public Date getDate_added() {
-        return date_added;
+    public Date getDateAdded() {
+        return dateAdded;
     }
 
-    public void setDate_added(Date date_added) {
-        this.date_added = date_added;
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
     public int getRating() {
@@ -48,11 +52,11 @@ public class CollectionRelease extends DiscogsApiResponse {
         this.rating = rating;
     }
 
-    public BasicInformation getBasic_information() {
-        return basic_information;
+    public BasicInformation getBasicInformation() {
+        return basicInformation;
     }
 
-    public void setBasic_information(BasicInformation basic_information) {
-        this.basic_information = basic_information;
+    public void setBasicInformation(BasicInformation basicInformation) {
+        this.basicInformation = basicInformation;
     }
 }
