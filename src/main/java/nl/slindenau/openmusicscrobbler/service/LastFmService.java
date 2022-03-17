@@ -21,6 +21,7 @@ import java.util.Date;
  * Licence: GPLv3
  */
 public class LastFmService {
+
     private final LastFmClientFactory lastFmClientFactory;
     private final SystemProperties systemProperties = new SystemProperties();
 
@@ -48,17 +49,18 @@ public class LastFmService {
 
     private void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks) {
         String releaseTitle = release.title();
-        String releaseArtist = release.artist();
         int totalPlayTimeInSeconds = getTotalPlayTimeInSeconds(tracks);
         Instant scrobbleEnd = firstTrackStartedAt.plusSeconds(totalPlayTimeInSeconds);
         checkTotalPlayTimePossible(firstTrackStartedAt, scrobbleEnd);
         int secondsSinceFirstTrack = 0;
         for (Track track : tracks) {
+            String trackArtist = track.artist();
             String trackName = track.title();
             // we scrobble once the track is completed, so add the track time before we scrobble
             secondsSinceFirstTrack += track.lengthInSeconds();
             Instant trackScrobbleAt = getTrackScrobbleAt(firstTrackStartedAt, secondsSinceFirstTrack);
-            LastFmScrobbleResult result = scrobbleTrack(releaseArtist, releaseTitle.trim(), trackName.trim(), trackScrobbleAt);
+            LastFmScrobbleResult result = scrobbleTrack(trackArtist.trim(), releaseTitle.trim(), trackName.trim(), trackScrobbleAt);
+            // todo: handle result
             System.out.println(result);
         }
     }

@@ -1,0 +1,756 @@
+{
+  "id": 1240038,
+  "status": "Accepted",
+  "year": 2000,
+  "resource_url": "https://api.discogs.com/releases/1240038",
+  "uri": "https://www.discogs.com/release/1240038-Various-The-Best-Of-Goa-Trance-2",
+  "artists": [
+    {
+      "name": "Various",
+      "anv": "",
+      "join": "",
+      "role": "",
+      "tracks": "",
+      "id": 194,
+      "resource_url": ""
+    }
+  ],
+  "artists_sort": "Various",
+  "labels": [
+    {
+      "name": "T.R.N.C.",
+      "catno": "TRN 01-3483-2",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 17442,
+      "resource_url": "https://api.discogs.com/labels/17442"
+    }
+  ],
+  "series": [
+    {
+      "name": "The Best Of Goa Trance (2)",
+      "catno": "2",
+      "entity_type": "2",
+      "entity_type_name": "Series",
+      "id": 889772,
+      "resource_url": "https://api.discogs.com/labels/889772"
+    }
+  ],
+  "companies": [],
+  "formats": [
+    {
+      "name": "CD",
+      "qty": "3",
+      "descriptions": [
+        "Compilation"
+      ]
+    }
+  ],
+  "data_quality": "Needs Vote",
+  "community": {
+    "have": 15,
+    "want": 15,
+    "rating": {
+      "count": 7,
+      "average": 3.14
+    },
+    "submitter": {
+      "username": "Chamleon",
+      "resource_url": "https://api.discogs.com/users/Chamleon"
+    },
+    "contributors": [
+      {
+        "username": "Chamleon",
+        "resource_url": "https://api.discogs.com/users/Chamleon"
+      },
+      {
+        "username": "harrowleg",
+        "resource_url": "https://api.discogs.com/users/harrowleg"
+      },
+      {
+        "username": "Joseph_S",
+        "resource_url": "https://api.discogs.com/users/Joseph_S"
+      },
+      {
+        "username": "dj_bha",
+        "resource_url": "https://api.discogs.com/users/dj_bha"
+      }
+    ],
+    "data_quality": "Needs Vote",
+    "status": "Accepted"
+  },
+  "format_quantity": 3,
+  "date_added": "2008-02-15T08:59:17-08:00",
+  "date_changed": "2019-08-04T01:34:04-07:00",
+  "num_for_sale": 1,
+  "lowest_price": 22.0,
+  "title": "The Best Of Goa Trance 2",
+  "country": "Netherlands",
+  "released": "2000",
+  "notes": "\u2117 & \u00a9 2000 TRNC / Marcus Reg.\r\nManufactured and distributed by Rams Horn / G.W. Productions B.V. Aerdenhout-Holland\r\nTRNC is a trademark of Sound Wave Productions avv\r\n\r\nPre-Mastering: I.V. Magic Underground Studio\r\nDigital Mastering: The Hit Factory Studios, Holland\r\nA product of Rams Horn Productions B.V.\r\nPublished by A.A.T. Music\r\n",
+  "released_formatted": "2000",
+  "identifiers": [
+    {
+      "type": "Barcode",
+      "value": "4184440134832"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "01 TRN 01-2466-2 CD1",
+      "description": "CD1"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "01 TRN 01-3468-2 CD 2",
+      "description": "CD2"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "01 TRN 01-3468-2 CD 3",
+      "description": "CD3"
+    },
+    {
+      "type": "Mastering SID Code",
+      "value": "IFPI L371"
+    },
+    {
+      "type": "Mould SID Code",
+      "value": "IFPI 5500"
+    },
+    {
+      "type": "Label Code",
+      "value": "LC 00593"
+    },
+    {
+      "type": "Rights Society",
+      "value": "BUMA/STEMRA"
+    }
+  ],
+  "genres": [
+    "Electronic"
+  ],
+  "styles": [
+    "Hard Trance",
+    "Acid",
+    "Goa Trance"
+  ],
+  "tracklist": [
+    {
+      "position": "1-1",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Lasertrancer",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 202760,
+          "resource_url": "https://api.discogs.com/artists/202760"
+        }
+      ],
+      "title": "Mental Flypan",
+      "duration": "5:43"
+    },
+    {
+      "position": "1-2",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Color Dox",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160555,
+          "resource_url": "https://api.discogs.com/artists/160555"
+        }
+      ],
+      "title": "Goa Booster",
+      "duration": "4:33"
+    },
+    {
+      "position": "1-3",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "DJ De Moor",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160536,
+          "resource_url": "https://api.discogs.com/artists/160536"
+        }
+      ],
+      "title": "Wonderful Silence",
+      "duration": "7:30"
+    },
+    {
+      "position": "1-4",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Gigamorphosys",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 319020,
+          "resource_url": "https://api.discogs.com/artists/319020"
+        }
+      ],
+      "title": "Way To Harmonization",
+      "duration": "4:03"
+    },
+    {
+      "position": "1-5",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Psygone (2)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 2055141,
+          "resource_url": "https://api.discogs.com/artists/2055141"
+        }
+      ],
+      "title": "Mm-Wave",
+      "duration": "7:42"
+    },
+    {
+      "position": "1-6",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Glasswhisper",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160554,
+          "resource_url": "https://api.discogs.com/artists/160554"
+        }
+      ],
+      "title": "Psychy Goa Gate",
+      "duration": "6:21"
+    },
+    {
+      "position": "1-7",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Pascal Hagen",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160561,
+          "resource_url": "https://api.discogs.com/artists/160561"
+        }
+      ],
+      "title": "L.F.O. Morphosys",
+      "duration": "6:35"
+    },
+    {
+      "position": "1-8",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Ingmar Veeck",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160540,
+          "resource_url": "https://api.discogs.com/artists/160540"
+        }
+      ],
+      "title": "Tube Spirit",
+      "duration": "4:50"
+    },
+    {
+      "position": "1-9",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "DJ Alex (4)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160559,
+          "resource_url": "https://api.discogs.com/artists/160559"
+        }
+      ],
+      "title": "Hypnotic Balance",
+      "duration": "10:52"
+    },
+    {
+      "position": "1-10",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Synchron (2)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160547,
+          "resource_url": "https://api.discogs.com/artists/160547"
+        }
+      ],
+      "title": "Future Fantasy",
+      "duration": "4:25"
+    },
+    {
+      "position": "1-11",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Alysium",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160538,
+          "resource_url": "https://api.discogs.com/artists/160538"
+        }
+      ],
+      "title": "Genius Divinity",
+      "duration": "5:02"
+    },
+    {
+      "position": "2-1",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Cyber Spy",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 708865,
+          "resource_url": "https://api.discogs.com/artists/708865"
+        }
+      ],
+      "title": "Magic Trip",
+      "duration": "6:49"
+    },
+    {
+      "position": "2-2",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Silvio Morley",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160535,
+          "resource_url": "https://api.discogs.com/artists/160535"
+        }
+      ],
+      "title": "Dual Dynamic Insertion (Psy Remix)",
+      "duration": "9:00"
+    },
+    {
+      "position": "2-3",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Ingmar Jonesy",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160556,
+          "resource_url": "https://api.discogs.com/artists/160556"
+        }
+      ],
+      "title": "Fast Psy Stuff",
+      "duration": "7:21"
+    },
+    {
+      "position": "2-4",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Scobee",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160543,
+          "resource_url": "https://api.discogs.com/artists/160543"
+        }
+      ],
+      "title": "Astral Flow",
+      "duration": "8:05"
+    },
+    {
+      "position": "2-5",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Hi Tune",
+          "anv": "Hi-Tune",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160542,
+          "resource_url": "https://api.discogs.com/artists/160542"
+        }
+      ],
+      "title": "Aural Structure",
+      "duration": "8:23"
+    },
+    {
+      "position": "2-6",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Sphyrinx",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160558,
+          "resource_url": "https://api.discogs.com/artists/160558"
+        }
+      ],
+      "title": "Dicision Of Life",
+      "duration": "4:30"
+    },
+    {
+      "position": "2-7",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "I - The Magican",
+          "anv": "I-The Magican",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 1049634,
+          "resource_url": "https://api.discogs.com/artists/1049634"
+        }
+      ],
+      "title": "Slow Ambience",
+      "duration": "7:15"
+    },
+    {
+      "position": "2-8",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Psychedelic Tranceforce",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160545,
+          "resource_url": "https://api.discogs.com/artists/160545"
+        }
+      ],
+      "title": "Tryptophan",
+      "duration": "6:39"
+    },
+    {
+      "position": "2-9",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "L.A.S.E.R. Ray",
+          "anv": "L.A.S.E.R.-Ray",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160544,
+          "resource_url": "https://api.discogs.com/artists/160544"
+        }
+      ],
+      "title": "Hard Warm Distortion",
+      "duration": "6:52"
+    },
+    {
+      "position": "2-10",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Jigsaw (7)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 491159,
+          "resource_url": "https://api.discogs.com/artists/491159"
+        }
+      ],
+      "title": "Constant Punch",
+      "duration": "6:11"
+    },
+    {
+      "position": "2-11",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Enfusia (2)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160550,
+          "resource_url": "https://api.discogs.com/artists/160550"
+        }
+      ],
+      "title": "Floating Space",
+      "duration": "7:01"
+    },
+    {
+      "position": "3-1",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Aminate Fx",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160552,
+          "resource_url": "https://api.discogs.com/artists/160552"
+        }
+      ],
+      "title": "Wisdom & Stamina",
+      "duration": "6:56"
+    },
+    {
+      "position": "3-2",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Robert McDowell",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160546,
+          "resource_url": "https://api.discogs.com/artists/160546"
+        }
+      ],
+      "title": "Cyclic Progression",
+      "duration": "8:06"
+    },
+    {
+      "position": "3-3",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Psychotic (2)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160549,
+          "resource_url": "https://api.discogs.com/artists/160549"
+        }
+      ],
+      "title": "Futuristic Timewave",
+      "duration": "6:25"
+    },
+    {
+      "position": "3-4",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "L'Ange Gabriella",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 491160,
+          "resource_url": "https://api.discogs.com/artists/491160"
+        }
+      ],
+      "title": "Sunny Slide Side",
+      "duration": "10:11"
+    },
+    {
+      "position": "3-5",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Pascal Hagen",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160561,
+          "resource_url": "https://api.discogs.com/artists/160561"
+        }
+      ],
+      "title": "Subdued Power",
+      "duration": "7:00"
+    },
+    {
+      "position": "3-6",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "No-Xs",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 1049633,
+          "resource_url": "https://api.discogs.com/artists/1049633"
+        }
+      ],
+      "title": "Mystic New System",
+      "duration": "7:20"
+    },
+    {
+      "position": "3-7",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Mark Nickelson",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 160557,
+          "resource_url": "https://api.discogs.com/artists/160557"
+        }
+      ],
+      "title": "Tribal Earth",
+      "duration": "7:35"
+    },
+    {
+      "position": "3-8",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Psycos (2)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 491157,
+          "resource_url": "https://api.discogs.com/artists/491157"
+        }
+      ],
+      "title": "Cristzlization",
+      "duration": "5:00"
+    },
+    {
+      "position": "3-9",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Xenos (2)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 491158,
+          "resource_url": "https://api.discogs.com/artists/491158"
+        }
+      ],
+      "title": "China Girl",
+      "duration": "6:27"
+    },
+    {
+      "position": "3-10",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "Tim Mark",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 596383,
+          "resource_url": "https://api.discogs.com/artists/596383"
+        }
+      ],
+      "title": "5th Re-Incarnation",
+      "duration": "6:33"
+    },
+    {
+      "position": "3-11",
+      "type_": "track",
+      "artists": [
+        {
+          "name": "SFX (8)",
+          "anv": "",
+          "join": "",
+          "role": "",
+          "tracks": "",
+          "id": 497941,
+          "resource_url": "https://api.discogs.com/artists/497941"
+        }
+      ],
+      "title": "Deep Space Consciousness",
+      "duration": "8:01"
+    }
+  ],
+  "extraartists": [
+    {
+      "name": "Ingmar Veeck",
+      "anv": "",
+      "join": "",
+      "role": "A&R, Management [Project Manager]",
+      "tracks": "",
+      "id": 160540,
+      "resource_url": "https://api.discogs.com/artists/160540"
+    }
+  ],
+  "images": [
+    {
+      "type": "primary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 514
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 467
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 598,
+      "height": 600
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 595
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 598
+    }
+  ],
+  "thumb": "",
+  "estimated_weight": 255,
+  "blocked_from_sale": false
+}

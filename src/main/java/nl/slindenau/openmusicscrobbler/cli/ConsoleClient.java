@@ -28,7 +28,6 @@ public class ConsoleClient extends AbstractConsoleClient {
         this.lastFmService = new LastFmService();
     }
 
-    // todo: clean up class
     // todo: configure logging to file
 
     public void run() {
@@ -63,8 +62,8 @@ public class ConsoleClient extends AbstractConsoleClient {
     }
 
     private void handleRelease(MusicRelease release) {
-        String releaseArtist = release.artist();
-        release.getAllTracks().stream().map(track -> decorateTrack(track, releaseArtist)).forEach(this::printLine);
+        printLine(decorateRelease(release));
+        release.getAllTracks().stream().map(this::decorateTrack).forEach(this::printLine);
 
         printEmptyLine();
         printLine("Scrobble release to Last.fm?");
@@ -101,8 +100,9 @@ public class ConsoleClient extends AbstractConsoleClient {
         return String.format("%02d: %s - %s (%s)", releaseId, artist, title, format);
     }
 
-    private String decorateTrack(Track track, String artist) {
+    private String decorateTrack(Track track) {
         String position = track.position();
+        String artist = track.artist();
         String title = track.title();
         String duration = track.duration();
         return String.format("%s: %s - %s (%s)", position, artist, title, duration);

@@ -34,8 +34,16 @@ public class MusicReleaseService {
         String title = tracklist.title;
         String duration = tracklist.duration;
         int lengthInSeconds = trackDurationService.parseTrackLength(duration);
-        // todo: correctly find track artist for Various Artists albums
-        return new Track(position, releaseArtist, title, duration, lengthInSeconds);
+        String trackArtist = getTrackArtist(tracklist, releaseArtist);
+        return new Track(position, trackArtist, title, duration, lengthInSeconds);
+    }
+
+    private String getTrackArtist(Tracklist tracklist, String releaseArtist) {
+        if (tracklist.artists == null || tracklist.artists.isEmpty()) {
+            return releaseArtist;
+        } else {
+            return tracklist.artists.stream().collect(new DiscogsArtistNameCollector());
+        }
     }
 
     private Collection<ReleasePart> createParts(Collection<Track> trackList) {

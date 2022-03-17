@@ -33,7 +33,6 @@ public class Release extends DiscogsApiResponse {
     public List<String> genres;
     public List<String> styles;
     public List<Tracklist> tracklist;
-    public List<Extraartist> extraartists;
     public List<Image> images;
     public String thumb;
     public int estimated_weight;

@@ -18,6 +18,8 @@ import java.util.Optional;
  */
 public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
 
+    private static final Boolean DEBUG = false;
+
     @Override
     protected String getUserCollectionFolderReleasesFileName() {
         return null;
@@ -50,6 +52,10 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
     protected void verifyRelease(MusicRelease release) {
         Assertions.assertEquals(getReleaseArtist(), release.artist(), "Release artist mismatch");
         Assertions.assertEquals(getReleaseTitle(), release.title(), "Release title mismatch");
+
+        if (DEBUG) {
+            release.getAllTracks().forEach(System.out::println);
+        }
 
         // check that all returned tracks are in our expected list
         release.getAllTracks().forEach(this::assertTrackIsExpected);
