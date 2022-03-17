@@ -24,8 +24,9 @@ public class MusicReleaseService {
         String releaseArtist = discogsRelease.artists.stream().collect(new DiscogsArtistNameCollector());
         Collection<Track> trackList = new LinkedList<>();
         discogsRelease.tracklist.stream().map(track -> createTrack(track, releaseArtist)).forEach(trackList::add);
+        String releaseTitle = discogsRelease.title;
         Collection<ReleasePart> parts = createParts(trackList);
-        return createMusicReleaseWithTrackList(musicRelease, releaseArtist, parts);
+        return createMusicReleaseWithTrackList(musicRelease, releaseArtist, releaseTitle, parts);
     }
 
     private Track createTrack(Tracklist tracklist, String releaseArtist) {
@@ -42,7 +43,7 @@ public class MusicReleaseService {
         return Collections.singletonList(new ReleasePart("A", Collections.emptyList(), trackList));
     }
 
-    private MusicRelease createMusicReleaseWithTrackList(MusicRelease musicRelease, String releaseArtist, Collection<ReleasePart> releaseParts) {
-        return new MusicRelease(musicRelease.id(), musicRelease.discogsId(), releaseArtist, musicRelease.title(), musicRelease.format(), releaseParts);
+    private MusicRelease createMusicReleaseWithTrackList(MusicRelease musicRelease, String releaseArtist, String releaseTitle, Collection<ReleasePart> releaseParts) {
+        return new MusicRelease(musicRelease.id(), musicRelease.discogsId(), releaseArtist, releaseTitle, musicRelease.format(), releaseParts);
     }
 }
