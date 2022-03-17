@@ -1,6 +1,6 @@
 package nl.slindenau.openmusicscrobbler.cli;
 
-import nl.slindenau.openmusicscrobbler.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;

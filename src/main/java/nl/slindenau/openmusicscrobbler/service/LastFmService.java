@@ -1,7 +1,7 @@
 package nl.slindenau.openmusicscrobbler.service;
 
 import de.umass.lastfm.scrobble.ScrobbleResult;
-import nl.slindenau.openmusicscrobbler.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientWrapper;

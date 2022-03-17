@@ -4,7 +4,7 @@ import de.umass.lastfm.Authenticator;
 import de.umass.lastfm.Caller;
 import de.umass.lastfm.Session;
 import nl.slindenau.openmusicscrobbler.Constants;
-import nl.slindenau.openmusicscrobbler.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
 /**

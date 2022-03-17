@@ -2,7 +2,7 @@ package nl.slindenau.openmusicscrobbler.discogs.client;
 
 import com.adamdonegan.Discogs4J.client.DiscogsClient;
 import nl.slindenau.openmusicscrobbler.Constants;
-import nl.slindenau.openmusicscrobbler.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 
 /**
  * @author slindenau

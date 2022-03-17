@@ -1,4 +1,4 @@
-package nl.slindenau.openmusicscrobbler;
+package nl.slindenau.openmusicscrobbler.config;
 
 /**
  * @author slindenau
