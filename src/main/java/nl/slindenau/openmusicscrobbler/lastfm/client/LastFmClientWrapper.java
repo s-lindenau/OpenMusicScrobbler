@@ -5,7 +5,7 @@ import de.umass.lastfm.Track;
 import de.umass.lastfm.scrobble.ScrobbleData;
 import de.umass.lastfm.scrobble.ScrobbleResult;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author slindenau
@@ -20,7 +20,7 @@ public class LastFmClientWrapper {
         this.session = session;
     }
 
-    public ScrobbleResult scrobbleTrack(String artist, String album, String track, Date scrobbleAtTime) {
+    public ScrobbleResult scrobbleTrack(String artist, String album, String track, Instant scrobbleAtTime) {
         ScrobbleData scrobbleData = new ScrobbleData();
         scrobbleData.setArtist(artist);
         scrobbleData.setAlbum(album);
@@ -29,7 +29,7 @@ public class LastFmClientWrapper {
         return Track.scrobble(scrobbleData, this.session);
     }
 
-    private int getTimestamp(Date scrobbleAt) {
-        return (int)(scrobbleAt.getTime() / 1000L);
+    private int getTimestamp(Instant scrobbleAt) {
+        return (int)scrobbleAt.getEpochSecond();
     }
 }
