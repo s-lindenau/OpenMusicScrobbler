@@ -14,7 +14,7 @@ public record MusicRelease(int id, int discogsId, String artist, String title, S
 
     public Collection<Track> getAllTracks() {
         return releaseParts.stream()
-                .map(ReleasePart::tracks)
+                .map(ReleasePart::getAllTracks)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
