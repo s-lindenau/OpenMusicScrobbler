@@ -15,30 +15,11 @@ import static org.mockito.Mockito.when;
 public class DiscogsClientMock {
 
     private final ResourceFileReader resourceFileReader;
-    private String userCollectionFileName;
-    private String userCollectionFolderFileName;
-    private String userCollectionFolderReleasesFileName;
-
     private final DiscogsClient clientMock;
 
     public DiscogsClientMock() {
         this.clientMock = mock(DiscogsClient.class);
         this.resourceFileReader = new ResourceFileReader();
-        setupUserCollection();
-        setupFolder();
-        setupReleases();
-    }
-
-    private void setupUserCollection() {
-        when(clientMock.collection(any())).thenAnswer(invocation -> getFileContents(userCollectionFileName));
-    }
-
-    private void setupFolder() {
-        when(clientMock.collectionFolder(any(), any())).thenAnswer(invocation -> getFileContents(userCollectionFolderFileName));
-    }
-
-    private void setupReleases() {
-        when(clientMock.collectionReleases(any(), any())).thenAnswer(invocation -> getFileContents(userCollectionFolderReleasesFileName));
     }
 
     public DiscogsClient getClient() {
@@ -46,15 +27,43 @@ public class DiscogsClientMock {
     }
 
     public void setUserCollectionFileName(String userCollectionFileName) {
-        this.userCollectionFileName = userCollectionFileName;
+        if (userCollectionFileName != null) {
+            setupUserCollection(userCollectionFileName);
+        }
     }
 
     public void setUserCollectionFolderFileName(String userCollectionFolderFileName) {
-        this.userCollectionFolderFileName = userCollectionFolderFileName;
+        if (userCollectionFolderFileName != null) {
+            setupFolder(userCollectionFolderFileName);
+        }
     }
 
     public void setUserCollectionFolderReleasesFileName(String userCollectionFolderReleasesFileName) {
-        this.userCollectionFolderReleasesFileName = userCollectionFolderReleasesFileName;
+        if (userCollectionFolderReleasesFileName != null) {
+            setupReleases(userCollectionFolderReleasesFileName);
+        }
+    }
+
+    public void setReleaseFileName(String releaseFileName) {
+        if (releaseFileName != null) {
+            setupRelease(releaseFileName);
+        }
+    }
+
+    private void setupUserCollection(String userCollectionFileName) {
+        when(clientMock.collection(any())).thenAnswer(invocation -> getFileContents(userCollectionFileName));
+    }
+
+    private void setupFolder(String userCollectionFolderFileName) {
+        when(clientMock.collectionFolder(any(), any())).thenAnswer(invocation -> getFileContents(userCollectionFolderFileName));
+    }
+
+    private void setupReleases(String userCollectionFolderReleasesFileName) {
+        when(clientMock.collectionReleases(any(), any())).thenAnswer(invocation -> getFileContents(userCollectionFolderReleasesFileName));
+    }
+
+    private void setupRelease(String releaseFileName) {
+        when(clientMock.release(any())).thenAnswer(invocation -> getFileContents(releaseFileName));
     }
 
     private String getFileContents(String fileName) {
