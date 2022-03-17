@@ -4,7 +4,7 @@
 ### Description
 The Open Music Scrobbler can be used to manually scrobble anything from your [Discogs User Collection](https://www.discogs.com/user/example) to Last.fm. 
 
-This project originated as a personal learning experience in the time my employer has reserved for us to pursue personal growth. In that context i will be working on this project at least one day per month.  
+This project originated as a personal learning experience in the time my employer has reserved for us to pursue personal growth. In that context I will be working on this project at least one day per month.  
 
 If you just want to easily scrobble something you listened to, I suggest checking out the following projects:
 - https://openscrobbler.com
@@ -42,3 +42,9 @@ If you just want to easily scrobble something you listened to, I suggest checkin
     - ~/target/dependencies folder
   - Configure the required properties
   - Run with `java -jar` open-music-scrobbler-_version_.jar
+- Running different applications
+  - The application to run can be optionally specified, by default it will start the main scrobble UI
+  - Run with `java -jar` open-music-scrobbler-_version_.jar _application_
+  - Possible options are
+    - console
+    - encrypt
