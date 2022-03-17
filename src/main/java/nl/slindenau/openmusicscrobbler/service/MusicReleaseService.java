@@ -1,6 +1,6 @@
 package nl.slindenau.openmusicscrobbler.service;
 
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Artist;
+import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsArtistNameCollector;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Tracklist;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
@@ -21,7 +21,7 @@ public class MusicReleaseService {
     private final TrackDurationService trackDurationService = new TrackDurationService();
 
     public MusicRelease createRelease(MusicRelease musicRelease, Release discogsRelease) {
-        String releaseArtist = discogsRelease.artists.stream().findFirst().map(Artist::getName).orElse("unknown artist");
+        String releaseArtist = discogsRelease.artists.stream().collect(new DiscogsArtistNameCollector());
         Collection<Track> trackList = new LinkedList<>();
         discogsRelease.tracklist.stream().map(track -> createTrack(track, releaseArtist)).forEach(trackList::add);
         Collection<ReleasePart> parts = createParts(trackList);

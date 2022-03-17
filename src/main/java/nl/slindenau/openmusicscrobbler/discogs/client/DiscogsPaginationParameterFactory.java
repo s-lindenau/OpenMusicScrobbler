@@ -1,6 +1,5 @@
 package nl.slindenau.openmusicscrobbler.discogs.client;
 
-import nl.slindenau.openmusicscrobbler.Constants;
 import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 

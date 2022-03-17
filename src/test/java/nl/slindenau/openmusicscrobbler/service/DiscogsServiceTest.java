@@ -1,7 +1,8 @@
 package nl.slindenau.openmusicscrobbler.service;
 
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientFactory;
-import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapperMock;
+import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientMock;
+import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import org.junit.jupiter.api.Assertions;
@@ -25,10 +26,11 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class DiscogsServiceTest {
 
-    private static final List<String> EXPECTED_RELEASES_IN_COLLECTION = Arrays.asList(
-            "Stres D.A. / Depresija / III. Kategorija",
-            "Nije Po Jus-u",
-            "Od Danas Do Sutra / Zaklenjena Vrata");
+    // The example user collection on discogs contains very happy music :)
+    private static final List<Release> EXPECTED_RELEASES_IN_COLLECTION = Arrays.asList(
+            new Release("Stres D.A. / Depresija / III. Kategorija", "Stres D.A. / Depresija / III. Kategorija"),
+            new Release("Problemi", "Nije Po Jus-u"),
+            new Release("Distress / Odpadki Civilizacije", "Od Danas Do Sutra / Zaklenjena Vrata"));
 
     private static final String DISCOGS_USERNAME = "example";
     private static final String USER_COLLECTION_FILE_NAME = "example-user-collection.json";
@@ -49,11 +51,12 @@ class DiscogsServiceTest {
     }
 
     private void setupDiscogsClientFactory() {
-        DiscogsClientWrapperMock client = new DiscogsClientWrapperMock();
-        client.setUserCollectionFileName(USER_COLLECTION_FILE_NAME);
-        client.setUserCollectionFolderFileName(USER_COLLECTION_FOLDER_FILE_NAME);
-        client.setUserCollectionFolderReleasesFileName(USER_COLLECTION_RELEASES_FILE_NAME);
-        when(discogsClientFactory.getClient()).thenReturn(client);
+        DiscogsClientMock clientMock = new DiscogsClientMock();
+        clientMock.setUserCollectionFileName(USER_COLLECTION_FILE_NAME);
+        clientMock.setUserCollectionFolderFileName(USER_COLLECTION_FOLDER_FILE_NAME);
+        clientMock.setUserCollectionFolderReleasesFileName(USER_COLLECTION_RELEASES_FILE_NAME);
+        DiscogsClientWrapper clientWrapper = new DiscogsClientWrapper(clientMock.getClient());
+        when(discogsClientFactory.getClient()).thenReturn(clientWrapper);
     }
 
     @Test
@@ -65,15 +68,26 @@ class DiscogsServiceTest {
         EXPECTED_RELEASES_IN_COLLECTION.forEach(expectedRelease -> assertReleaseIsInActual(expectedRelease, userCollection));
     }
 
-    private void assertReleaseIsInActual(String expectedRelease, ReleaseCollection userCollection) {
+    private void assertReleaseIsInActual(Release expectedRelease, ReleaseCollection userCollection) {
         Optional<MusicRelease> expectedInActual = userCollection.releases().stream()
-                .filter(musicRelease -> musicRelease.title().equalsIgnoreCase(expectedRelease))
+                .filter(musicRelease -> musicRelease.artist().equalsIgnoreCase(expectedRelease.artist))
+                .filter(musicRelease -> musicRelease.title().equalsIgnoreCase(expectedRelease.title))
                 .findAny();
-        Assertions.assertTrue(expectedInActual.isPresent(), "Expected release title not found: " + expectedRelease);
+        Assertions.assertTrue(expectedInActual.isPresent(), "Expected release not found: " + expectedRelease);
     }
 
     private void assertReleaseIsExpected(MusicRelease musicRelease) {
+        String actualArtist = musicRelease.artist();
         String actualTitle = musicRelease.title();
-        Assertions.assertTrue(EXPECTED_RELEASES_IN_COLLECTION.contains(actualTitle), "Release title not expected: " + actualTitle);
+        Release actualRelease = new Release(actualArtist, actualTitle);
+        Assertions.assertTrue(EXPECTED_RELEASES_IN_COLLECTION.contains(actualRelease), "Release not expected: " + actualRelease);
+    }
+
+    private record Release(String artist, String title) {
+
+        @Override
+        public String toString() {
+            return String.format("Artist=[%s], Title=[%s]", artist, title);
+        }
     }
 }

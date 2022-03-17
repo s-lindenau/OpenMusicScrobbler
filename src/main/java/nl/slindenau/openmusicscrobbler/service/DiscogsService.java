@@ -4,16 +4,25 @@ import nl.slindenau.openmusicscrobbler.Constants;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientFactory;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
+import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsArtistNameCollector;
 import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
-import nl.slindenau.openmusicscrobbler.discogs.model.collection.*;
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Artist;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.BasicInformation;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionFolder;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionRelease;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionReleases;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.UserCollection;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Format;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author slindenau
@@ -66,9 +75,17 @@ public class DiscogsService {
         int releaseId = release.getId();
         BasicInformation basicInformation = release.getBasicInformation();
         String title = basicInformation.getTitle();
-        String format = basicInformation.getFormats().stream().findFirst().map(Format::getName).orElse("unknown format");
-        String artist = basicInformation.getArtists().stream().findFirst().map(Artist::getName).orElse("unknown artist");
+        String format = getFormat(basicInformation);
+        String artist = getArtist(basicInformation);
         return new MusicRelease(nextId++, releaseId, artist, title, format, Collections.emptyList());
+    }
+
+    private String getFormat(BasicInformation basicInformation) {
+        return basicInformation.getFormats().stream().findFirst().map(Format::getName).orElse("unknown format");
+    }
+
+    private String getArtist(BasicInformation basicInformation) {
+        return basicInformation.getArtists().stream().collect(new DiscogsArtistNameCollector());
     }
 
     public MusicRelease getRelease(ReleaseCollection userCollection, Integer releaseId) {

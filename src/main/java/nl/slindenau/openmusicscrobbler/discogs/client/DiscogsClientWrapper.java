@@ -2,9 +2,9 @@ package nl.slindenau.openmusicscrobbler.discogs.client;
 
 import com.adamdonegan.Discogs4J.client.DiscogsClient;
 import nl.slindenau.openmusicscrobbler.discogs.json.JsonParser;
+import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionFolder;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionReleases;
-import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.UserCollection;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 
