@@ -25,7 +25,7 @@ public class DiscogsService {
     private final Map<String, Release> releaseCache = new HashMap<>();
     private final DiscogsClientWrapper discogsClient;
     private final MusicReleaseService musicReleaseService;
-    private int nextId = 0;
+    private int nextId = 1;
 
     public DiscogsService() {
         this(new DiscogsClientFactory(), new MusicReleaseService());
