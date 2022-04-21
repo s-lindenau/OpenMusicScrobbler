@@ -12,6 +12,7 @@ import nl.slindenau.openmusicscrobbler.model.Track;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -22,6 +23,8 @@ import java.util.Date;
  * Licence: GPLv3
  */
 public class LastFmService {
+
+    private static final int LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS = 2;
 
     private final LastFmClientFactory lastFmClientFactory;
     private final SystemProperties systemProperties = new SystemProperties();
@@ -70,6 +73,11 @@ public class LastFmService {
         if (scrobbleEnd.isAfter(Instant.now())) {
             String message = "Can't scrobble tracks at start date: %s, end date would be in the future: %s";
             throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), Date.from(scrobbleEnd)));
+        }
+        Instant maximumHistoricScrobble = Instant.now().minus(LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS * 7, ChronoUnit.DAYS);
+        if (firstTrackStartedAt.isBefore(maximumHistoricScrobble)) {
+            String message = "Can't scrobble tracks at start date: %s, Last.fm only processes historic scrobbles from the past %s weeks";
+            throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS));
         }
     }
 
