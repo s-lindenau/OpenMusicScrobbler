@@ -6,6 +6,7 @@ import nl.slindenau.openmusicscrobbler.discogs.model.release.Tracklist;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
+import nl.slindenau.openmusicscrobbler.model.TrackType;
 
 import java.time.Duration;
 import java.util.Collection;
@@ -24,10 +25,17 @@ public class MusicReleaseService {
     public MusicRelease createRelease(MusicRelease musicRelease, Release discogsRelease) {
         String releaseArtist = discogsRelease.artists.stream().collect(new DiscogsArtistNameCollector());
         Collection<Track> trackList = new LinkedList<>();
-        discogsRelease.tracklist.stream().map(track -> createTrack(track, releaseArtist)).forEach(trackList::add);
+        processTracks(discogsRelease, releaseArtist, trackList);
         String releaseTitle = discogsRelease.title;
         Collection<ReleasePart> parts = createParts(trackList);
         return createMusicReleaseWithTrackList(musicRelease, releaseArtist, releaseTitle, parts);
+    }
+
+    private void processTracks(Release discogsRelease, String releaseArtist, Collection<Track> trackList) {
+        discogsRelease.tracklist.stream()
+                .filter(track -> TrackType.TRACK.isTrackType(track.type))
+                .map(track -> createTrack(track, releaseArtist))
+                .forEach(trackList::add);
     }
 
     private Track createTrack(Tracklist tracklist, String releaseArtist) {
