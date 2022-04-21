@@ -68,7 +68,8 @@ public class LastFmService {
 
     private void checkTotalPlayTimePossible(Instant firstTrackStartedAt, Instant scrobbleEnd) {
         if (scrobbleEnd.isAfter(Instant.now())) {
-            throw new OpenMusicScrobblerException("Can't scrobble tracks at requested start date: " + Date.from(firstTrackStartedAt));
+            String message = "Can't scrobble tracks at start date: %s, end date would be in the future: %s";
+            throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), Date.from(scrobbleEnd)));
         }
     }
 
