@@ -123,7 +123,7 @@ public class ConsoleClient extends AbstractConsoleClient {
         String artist = track.artist();
         String title = track.title();
         String duration = track.duration();
-        return String.format("%s: %s - %s (%s)", position, artist, title, duration);
+        return String.format("%2s: %s - %s (%s)", position, artist, title, duration);
     }
 
     private String getDiscogsUsername() {
