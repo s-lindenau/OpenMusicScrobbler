@@ -28,6 +28,7 @@ class TrackDurationServiceTest {
     @Test
     void testUnsupportedTrackLength() {
         assertThrows(() -> parseTrackLength("1:5:15:05"));
+        assertThrows(() -> parseTrackLength("-1:00"));
     }
 
     @Test

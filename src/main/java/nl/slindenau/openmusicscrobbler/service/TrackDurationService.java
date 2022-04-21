@@ -43,7 +43,9 @@ public class TrackDurationService {
             String currentPart = trackDurationParts[i];
             Long currentPartLength = parseNumber(currentPart);
             Function<Long, Duration> durationParserFunction = getNextDurationParser(durationParsers);
-            duration = duration.plus(durationParserFunction.apply(currentPartLength));
+            Duration currentPartDuration = durationParserFunction.apply(currentPartLength);
+            checkValidDuration(currentPartDuration, currentPart);
+            duration = duration.plus(currentPartDuration);
         }
         return duration;
     }
@@ -61,6 +63,12 @@ public class TrackDurationService {
             return durationParsers.pop();
         } catch (EmptyStackException ex) {
             throw new OpenMusicScrobblerException("Unsupported track duration format", ex);
+        }
+    }
+
+    private void checkValidDuration(Duration duration, String currentPart) {
+        if (duration == null || duration.isNegative()) {
+            throw new OpenMusicScrobblerException("Can't parse track duration part: " + currentPart);
         }
     }
 }
