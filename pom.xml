@@ -6,13 +6,17 @@
 
     <groupId>nl.slindenau</groupId>
     <artifactId>open-music-scrobbler</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>Open Music Scrobbler</name>
     <packaging>jar</packaging>
 
     <scm>
         <developerConnection>git@github.com:s-lindenau/OpenMusicScrobbler.git</developerConnection>
     </scm>
+
+    <organization>
+        <name>https://github.com/s-lindenau/OpenMusicScrobbler</name>
+    </organization>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -119,6 +123,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>./dependency/</classpathPrefix>
                             <addBuildEnvironmentEntries>false</addBuildEnvironmentEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
                 </configuration>
