@@ -16,7 +16,15 @@ public class DiscogsClientFactory {
         DiscogsClient discogsClient = new DiscogsClient(userAgent);
         Boolean isDebugEnabled = new SystemProperties().isDebugEnabled();
         discogsClient.setDebugEnabled(isDebugEnabled);
+        logUserAgent(isDebugEnabled, userAgent);
         return new DiscogsClientWrapper(discogsClient);
+    }
+
+    private void logUserAgent(Boolean isDebugEnabled, String userAgent) {
+        if (isDebugEnabled) {
+            // todo: change to logger
+            System.out.println("User-Agent: " + userAgent);
+        }
     }
 
 }

@@ -64,6 +64,7 @@ public class DiscogsClientWrapper {
 
     private void debugLog(String debugInfoText) {
         if(discogsClient.isDebugEnabled()) {
+            // todo: change to logger
             System.out.println(debugInfoText);
         }
     }
