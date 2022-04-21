@@ -1,6 +1,5 @@
 package nl.slindenau.openmusicscrobbler.service;
 
-import nl.slindenau.openmusicscrobbler.Constants;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientFactory;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
@@ -30,6 +29,9 @@ import java.util.Optional;
  * Licence: GPLv3
  */
 public class DiscogsService {
+
+    private static final String DISCOGS_USER_COLLECTION_PUBLIC_FOLDER_ID = "0";
+
     private final Map<String, ReleaseCollection> releaseCollectionCache = new HashMap<>();
     private final Map<String, Release> releaseCache = new HashMap<>();
     private final DiscogsClientWrapper discogsClient;
@@ -53,7 +55,7 @@ public class DiscogsService {
         Collection<MusicRelease> releasesInCollection = new LinkedList<>();
         UserCollection userCollection = this.discogsClient.getUserCollection(discogsUsername);
         checkError(userCollection);
-        String folderId = Constants.DISCOGS_USER_COLLECTION_PUBLIC_FOLDER_ID;
+        String folderId = DISCOGS_USER_COLLECTION_PUBLIC_FOLDER_ID;
         CollectionFolder folder = discogsClient.getFolder(discogsUsername, folderId);
         checkError(folder);
         CollectionReleases collectionReleases = discogsClient.getReleases(discogsUsername, folderId);
