@@ -7,6 +7,7 @@ import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 
+import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -33,9 +34,9 @@ public class MusicReleaseService {
         String position = tracklist.position;
         String title = tracklist.title;
         String duration = tracklist.duration;
-        int lengthInSeconds = trackDurationService.parseTrackLength(duration);
+        Duration length = trackDurationService.parseTrackLength(duration);
         String trackArtist = getTrackArtist(tracklist, releaseArtist);
-        return new Track(position, trackArtist, title, duration, lengthInSeconds);
+        return new Track(position, trackArtist, title, duration, length);
     }
 
     private String getTrackArtist(Tracklist tracklist, String releaseArtist) {

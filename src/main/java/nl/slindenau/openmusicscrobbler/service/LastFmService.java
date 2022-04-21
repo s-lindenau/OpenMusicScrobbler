@@ -10,6 +10,7 @@ import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collection;
@@ -49,15 +50,15 @@ public class LastFmService {
 
     private void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks) {
         String releaseTitle = release.title();
-        int totalPlayTimeInSeconds = getTotalPlayTimeInSeconds(tracks);
+        long totalPlayTimeInSeconds = getTotalPlayTimeInSeconds(tracks);
         Instant scrobbleEnd = firstTrackStartedAt.plusSeconds(totalPlayTimeInSeconds);
         checkTotalPlayTimePossible(firstTrackStartedAt, scrobbleEnd);
-        int secondsSinceFirstTrack = 0;
+        long secondsSinceFirstTrack = 0;
         for (Track track : tracks) {
             String trackArtist = track.artist();
             String trackName = track.title();
             // we scrobble once the track is completed, so add the track time before we scrobble
-            secondsSinceFirstTrack += track.lengthInSeconds();
+            secondsSinceFirstTrack += track.length().toSeconds();
             Instant trackScrobbleAt = getTrackScrobbleAt(firstTrackStartedAt, secondsSinceFirstTrack);
             LastFmScrobbleResult result = scrobbleTrack(trackArtist.trim(), releaseTitle.trim(), trackName.trim(), trackScrobbleAt);
             // todo: handle result
@@ -71,7 +72,7 @@ public class LastFmService {
         }
     }
 
-    private Instant getTrackScrobbleAt(Instant firstTrackScrobbleAt, int secondsSinceFirstTrack) {
+    private Instant getTrackScrobbleAt(Instant firstTrackScrobbleAt, long secondsSinceFirstTrack) {
         return firstTrackScrobbleAt.plusSeconds(secondsSinceFirstTrack);
     }
 
@@ -88,11 +89,11 @@ public class LastFmService {
         return lastFmClientFactory.getClient();
     }
 
-    public int getTotalPlayTimeInSeconds(MusicRelease release) {
+    public long getTotalPlayTimeInSeconds(MusicRelease release) {
         return getTotalPlayTimeInSeconds(release.getAllTracks());
     }
 
-    public int getTotalPlayTimeInSeconds(Collection<Track> tracks) {
-        return tracks.stream().mapToInt(Track::lengthInSeconds).sum();
+    public long getTotalPlayTimeInSeconds(Collection<Track> tracks) {
+        return tracks.stream().map(Track::length).mapToLong(Duration::toSeconds).sum();
     }
 }

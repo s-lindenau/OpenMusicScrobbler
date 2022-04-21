@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import java.time.Duration;
+
 /**
  * @author slindenau
  * https://github.com/s-lindenau
@@ -43,11 +45,11 @@ class TrackDurationServiceTest {
     }
 
     private void parseTrackLength(String input, int expectedLength) {
-        int actualLength = parseTrackLength(input);
-        Assertions.assertEquals(expectedLength, actualLength, "Track Length mismatch");
+        Duration actualLength = parseTrackLength(input);
+        Assertions.assertEquals(expectedLength, actualLength.toSeconds(), "Track Length mismatch");
     }
 
-    private int parseTrackLength(String input) {
+    private Duration parseTrackLength(String input) {
         return service.parseTrackLength(input);
     }
 }

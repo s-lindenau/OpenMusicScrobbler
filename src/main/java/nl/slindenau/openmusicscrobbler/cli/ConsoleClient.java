@@ -82,7 +82,7 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private Instant getFirstTrackScrobbleDateFromCurrentTime(MusicRelease release) {
         // todo: replace with length of selected part(s) to scrobble
-        int totalPlayTime = lastFmService.getTotalPlayTimeInSeconds(release);
+        long totalPlayTime = lastFmService.getTotalPlayTimeInSeconds(release);
         // todo: replace with user input, currently we assume we just played the release
         Instant now = Instant.now();
         return now.minusSeconds(totalPlayTime);

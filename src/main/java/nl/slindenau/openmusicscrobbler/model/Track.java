@@ -1,5 +1,7 @@
 package nl.slindenau.openmusicscrobbler.model;
 
+import java.time.Duration;
+
 /**
  * A music recording
  *
@@ -7,5 +9,5 @@ package nl.slindenau.openmusicscrobbler.model;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record Track(String position, String artist, String title, String duration, int lengthInSeconds) {
+public record Track(String position, String artist, String title, String duration, Duration length) {
 }
