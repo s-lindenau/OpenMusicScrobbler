@@ -20,7 +20,7 @@ public class SystemPropertiesParser {
         try {
             return Duration.parse(input);
         } catch (DateTimeParseException ex) {
-            String message = String.format("Invalid Duration format %s for property %s", input, key);
+            String message = String.format("Invalid Duration format '%s' for property %s", input, key);
             throw new OpenMusicScrobblerException(message, ex);
         }
     }
