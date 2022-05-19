@@ -3,8 +3,9 @@ package nl.slindenau.openmusicscrobbler.service;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
 import java.time.Duration;
-import java.util.EmptyStackException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 /**
@@ -18,8 +19,8 @@ public class TrackDurationService {
 
     private static final String DEFAULT_DURATION_SEPARATOR = ":";
 
-    private Stack<Function<Long, Duration>> createDurationSegmentParseStack() {
-        Stack<Function<Long, Duration>> durationParsers = new Stack<>();
+    private Deque<Function<Long, Duration>> createDurationSegmentParsers() {
+        Deque<Function<Long, Duration>> durationParsers = new ArrayDeque<>();
         durationParsers.push(Duration::ofHours);
         durationParsers.push(Duration::ofMinutes);
         durationParsers.push(Duration::ofSeconds);
@@ -37,8 +38,8 @@ public class TrackDurationService {
     private Duration toDuration(String[] trackDurationParts) {
         int partsCount = trackDurationParts.length;
         Duration duration = Duration.ZERO;
-        Stack<Function<Long, Duration>> durationParsers = createDurationSegmentParseStack();
-        // reverse order; so we start with seconds, which is the top item in our Stack
+        Deque<Function<Long, Duration>> durationParsers = createDurationSegmentParsers();
+        // reverse order; so we start with seconds, which is the top item in our Deque
         for (int i = partsCount - 1; i >= 0; i--) {
             String currentPart = trackDurationParts[i];
             Long currentPartLength = parseNumber(currentPart);
@@ -58,10 +59,10 @@ public class TrackDurationService {
         }
     }
 
-    private Function<Long, Duration> getNextDurationParser(Stack<Function<Long, Duration>> durationParsers) {
+    private Function<Long, Duration> getNextDurationParser(Deque<Function<Long, Duration>> durationParsers) {
         try {
             return durationParsers.pop();
-        } catch (EmptyStackException ex) {
+        } catch (NoSuchElementException ex) {
             throw new OpenMusicScrobblerException("Unsupported track duration format", ex);
         }
     }
