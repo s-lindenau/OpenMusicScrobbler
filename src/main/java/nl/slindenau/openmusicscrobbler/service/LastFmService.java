@@ -9,6 +9,8 @@ import nl.slindenau.openmusicscrobbler.model.LastFmScrobbleResult;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -26,8 +28,9 @@ public class LastFmService {
 
     private static final int LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS = 2;
 
-    private final LastFmClientFactory lastFmClientFactory;
+    private final Logger logger = LoggerFactory.getLogger(LastFmService.class);
     private final SystemProperties systemProperties = new SystemProperties();
+    private final LastFmClientFactory lastFmClientFactory;
 
     public LastFmService() {
         this.lastFmClientFactory = new LastFmClientFactory();
@@ -65,7 +68,7 @@ public class LastFmService {
             Instant trackScrobbleAt = getTrackScrobbleAt(firstTrackStartedAt, secondsSinceFirstTrack);
             LastFmScrobbleResult result = scrobbleTrack(trackArtist.trim(), releaseTitle.trim(), trackName.trim(), trackScrobbleAt);
             // todo: handle result
-            System.out.println(result);
+            logger.info(String.valueOf(result));
         }
     }
 
@@ -87,7 +90,8 @@ public class LastFmService {
 
     public LastFmScrobbleResult scrobbleTrack(String artist, String album, String trackName, Instant scrobbleAtTime) {
         if (systemProperties.isDebugEnabled()) {
-            System.out.printf("Scrobble track: [%s - %s] from Album: [%s] (on %s)%n", artist, trackName, album, Date.from(scrobbleAtTime));
+            String message = String.format("Scrobble track: [%s - %s] from Album: [%s] (on %s)", artist, trackName, album, Date.from(scrobbleAtTime));
+            logger.info(message);
             return new LastFmScrobbleResult("Debug mode: scrobble not sent to API");
         }
         ScrobbleResult scrobbleResult = getLastFmClient().scrobbleTrack(artist, album, trackName, scrobbleAtTime);

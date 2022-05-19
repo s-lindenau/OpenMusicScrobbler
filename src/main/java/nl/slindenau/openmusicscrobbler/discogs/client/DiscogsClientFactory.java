@@ -3,6 +3,8 @@ package nl.slindenau.openmusicscrobbler.discogs.client;
 import com.adamdonegan.Discogs4J.client.DiscogsClient;
 import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author slindenau
@@ -10,6 +12,8 @@ import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
  * Licence: GPLv3
  */
 public class DiscogsClientFactory {
+
+    private final Logger logger = LoggerFactory.getLogger(DiscogsClientFactory.class);
 
     public DiscogsClientWrapper getClient() {
         String userAgent = new UserAgentFactory().getUserAgent();
@@ -22,8 +26,7 @@ public class DiscogsClientFactory {
 
     private void logUserAgent(Boolean isDebugEnabled, String userAgent) {
         if (isDebugEnabled) {
-            // todo: change to logger
-            System.out.println("User-Agent: " + userAgent);
+            logger.info("User-Agent: " + userAgent);
         }
     }
 

@@ -7,6 +7,8 @@ import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionFolder
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionReleases;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.UserCollection;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -16,6 +18,8 @@ import java.util.Map;
  * Licence: GPLv3
  */
 public class DiscogsClientWrapper {
+
+    private final Logger logger = LoggerFactory.getLogger(DiscogsClientWrapper.class);
 
     private final DiscogsClient discogsClient;
     private final DiscogsPaginationParameterFactory discogsPagination;
@@ -64,8 +68,7 @@ public class DiscogsClientWrapper {
 
     private void debugLog(String debugInfoText) {
         if(discogsClient.isDebugEnabled()) {
-            // todo: change to logger
-            System.out.println(debugInfoText);
+            logger.info(debugInfoText);
         }
     }
 }
