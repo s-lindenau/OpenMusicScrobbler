@@ -1,12 +1,16 @@
 package nl.slindenau.openmusicscrobbler.service;
 
+import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsArtistNameCollector;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Tracklist;
+import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.model.TrackType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.Collection;
@@ -21,6 +25,7 @@ import java.util.LinkedList;
 public class MusicReleaseService {
 
     private final TrackDurationService trackDurationService = new TrackDurationService();
+    private final Logger logger = LoggerFactory.getLogger(MusicReleaseService.class);
 
     public MusicRelease createRelease(MusicRelease musicRelease, Release discogsRelease) {
         String releaseArtist = discogsRelease.artists.stream().collect(new DiscogsArtistNameCollector());
@@ -42,9 +47,18 @@ public class MusicReleaseService {
         String position = tracklist.position;
         String title = tracklist.title;
         String duration = tracklist.duration;
-        Duration length = trackDurationService.parseTrackLength(duration);
+        Duration length = getTrackLength(duration);
         String trackArtist = getTrackArtist(tracklist, releaseArtist);
         return new Track(position, trackArtist, title, duration, length);
+    }
+
+    private Duration getTrackLength(String duration) {
+        try {
+            return trackDurationService.parseTrackLength(duration);
+        } catch(OpenMusicScrobblerException ex) {
+            logger.debug("Using default track length", ex);
+            return new SystemProperties().getDiscogsDefaultTrackLength();
+        }
     }
 
     private String getTrackArtist(Tracklist tracklist, String releaseArtist) {

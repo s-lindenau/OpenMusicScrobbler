@@ -1,5 +1,7 @@
 package nl.slindenau.openmusicscrobbler.config;
 
+import java.time.Duration;
+
 /**
  * @author slindenau
  * https://github.com/s-lindenau
@@ -20,9 +22,13 @@ public class SystemProperties {
     private static final String DISCOGS_DEFAULT_CONNECTION_TIMEOUT = "PT10S";
     private static final String DISCOGS_READ_TIMEOUT_PROPERTY = "discogs.read.timeout";
     private static final String DISCOGS_DEFAULT_READ_TIMEOUT = "PT60S";
+    private static final String DISCOGS_TRACK_LENGTH_PROPERTY = "discogs.track.length.default";
+    private static final String DISCOGS_DEFAULT_TRACK_LENGTH = "PT4M";
+
+    private final SystemPropertiesParser parser = new SystemPropertiesParser();
 
     public Boolean isDebugEnabled() {
-        return Boolean.parseBoolean(getDebugProperty());
+        return parser.asBooleanProperty(getDebugProperty());
     }
 
     private String getDebugProperty() {
@@ -49,12 +55,20 @@ public class SystemProperties {
         return getProperty(LAST_FM_API_SECRET_PROPERTY);
     }
 
-    public String getDiscogsConnectionTimeout() {
-        return getOptionalProperty(DISCOGS_CONNECTION_TIMEOUT_PROPERTY, DISCOGS_DEFAULT_CONNECTION_TIMEOUT);
+    public Duration getDiscogsConnectionTimeout() {
+        return getOptionalDuration(DISCOGS_CONNECTION_TIMEOUT_PROPERTY, DISCOGS_DEFAULT_CONNECTION_TIMEOUT);
     }
 
-    public String getDiscogsReadTimeout() {
-        return getOptionalProperty(DISCOGS_READ_TIMEOUT_PROPERTY, DISCOGS_DEFAULT_READ_TIMEOUT);
+    public Duration getDiscogsReadTimeout() {
+        return getOptionalDuration(DISCOGS_READ_TIMEOUT_PROPERTY, DISCOGS_DEFAULT_READ_TIMEOUT);
+    }
+
+    public Duration getDiscogsDefaultTrackLength() {
+        return getOptionalDuration(DISCOGS_TRACK_LENGTH_PROPERTY, DISCOGS_DEFAULT_TRACK_LENGTH);
+    }
+
+    private Duration getOptionalDuration(String key, String defaultValue) {
+        return parser.asDuration(key, getOptionalProperty(key, defaultValue));
     }
 
     private String getProperty(String key) {
