@@ -4,10 +4,9 @@ import de.umass.lastfm.scrobble.ScrobbleResult;
 import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
-import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientWrapper;
+import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientSupplier;
 import nl.slindenau.openmusicscrobbler.model.LastFmScrobbleResult;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
-import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
@@ -33,28 +31,18 @@ public class LastFmService {
     private final LastFmClientFactory lastFmClientFactory;
 
     public LastFmService() {
-        this.lastFmClientFactory = new LastFmClientFactory();
+        this(new LastFmClientFactory());
     }
 
     public LastFmService(LastFmClientFactory lastFmClientFactory) {
         this.lastFmClientFactory = lastFmClientFactory;
     }
 
-    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt) {
-        scrobbleTracks(release, firstTrackStartedAt, release.getAllTracks());
+    public LastFmClientSupplier getLastFmClient() {
+        return new LastFmClientSupplier(lastFmClientFactory::getClient);
     }
 
-    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, ReleasePart... releaseParts) {
-        for (ReleasePart releasePart : releaseParts) {
-            scrobbleTracks(release, firstTrackStartedAt, releasePart.getAllTracks());
-        }
-    }
-
-    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Track... tracks) {
-        scrobbleTracks(release, firstTrackStartedAt, Arrays.asList(tracks));
-    }
-
-    private void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks) {
+    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks, LastFmClientSupplier client) {
         String releaseTitle = release.title();
         long totalPlayTimeInSeconds = getTotalPlayTimeInSeconds(tracks);
         Instant scrobbleEnd = firstTrackStartedAt.plusSeconds(totalPlayTimeInSeconds);
@@ -66,7 +54,7 @@ public class LastFmService {
             // we scrobble once the track is completed, so add the track time before we scrobble
             secondsSinceFirstTrack += track.length().toSeconds();
             Instant trackScrobbleAt = getTrackScrobbleAt(firstTrackStartedAt, secondsSinceFirstTrack);
-            LastFmScrobbleResult result = scrobbleTrack(trackArtist.trim(), releaseTitle.trim(), trackName.trim(), trackScrobbleAt);
+            LastFmScrobbleResult result = scrobbleTrack(trackArtist.trim(), releaseTitle.trim(), trackName.trim(), trackScrobbleAt, client);
             // todo: handle result
             logger.info(String.valueOf(result));
         }
@@ -88,22 +76,14 @@ public class LastFmService {
         return firstTrackScrobbleAt.plusSeconds(secondsSinceFirstTrack);
     }
 
-    public LastFmScrobbleResult scrobbleTrack(String artist, String album, String trackName, Instant scrobbleAtTime) {
+    private LastFmScrobbleResult scrobbleTrack(String artist, String album, String trackName, Instant scrobbleAtTime, LastFmClientSupplier clientSupplier) {
         if (systemProperties.isDebugEnabled()) {
             String message = String.format("Scrobble track: [%s - %s] from Album: [%s] (on %s)", artist, trackName, album, Date.from(scrobbleAtTime));
             logger.info(message);
             return new LastFmScrobbleResult("Debug mode: scrobble not sent to API");
         }
-        ScrobbleResult scrobbleResult = getLastFmClient().scrobbleTrack(artist, album, trackName, scrobbleAtTime);
+        ScrobbleResult scrobbleResult = clientSupplier.getClient().scrobbleTrack(artist, album, trackName, scrobbleAtTime);
         return new LastFmScrobbleResult(scrobbleResult);
-    }
-
-    private LastFmClientWrapper getLastFmClient() {
-        return lastFmClientFactory.getClient();
-    }
-
-    public long getTotalPlayTimeInSeconds(MusicRelease release) {
-        return getTotalPlayTimeInSeconds(release.getAllTracks());
     }
 
     public long getTotalPlayTimeInSeconds(Collection<Track> tracks) {

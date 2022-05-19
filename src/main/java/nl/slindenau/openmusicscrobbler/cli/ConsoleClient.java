@@ -7,7 +7,7 @@ import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DateTimeService;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
-import nl.slindenau.openmusicscrobbler.service.LastFmService;
+import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
 
 import java.time.Instant;
 
@@ -22,11 +22,11 @@ public class ConsoleClient extends AbstractConsoleClient {
     private static final String CANCEL_COMMAND = "cancel";
 
     private final DiscogsService discogsService;
-    private final LastFmService lastFmService;
+    private final ScrobbleService scrobbleService;
 
     public ConsoleClient() {
         this.discogsService = new DiscogsService();
-        this.lastFmService = new LastFmService();
+        this.scrobbleService = new ScrobbleService();
     }
 
     // todo: configure logging to file
@@ -79,7 +79,7 @@ public class ConsoleClient extends AbstractConsoleClient {
     private void scrobbleTracks(MusicRelease release) {
         // todo: replace 'release' with selected part(s) to scrobble
         Instant firstTrackScrobbleAt = getFirstTrackScrobbleDateFromUserInput(release);
-        lastFmService.scrobbleTracks(release, firstTrackScrobbleAt);
+        scrobbleService.scrobbleTracks(release, firstTrackScrobbleAt);
     }
 
     private Instant getFirstTrackScrobbleDateFromUserInput(MusicRelease release) {
@@ -102,7 +102,7 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private Instant getFirstTrackScrobbleDateRelativeTo(MusicRelease release, Instant lastTrackEndedAt) {
         // todo: replace with length of selected part(s) to scrobble
-        long totalPlayTime = lastFmService.getTotalPlayTimeInSeconds(release);
+        long totalPlayTime = scrobbleService.getTotalPlayTimeInSeconds(release);
         return lastTrackEndedAt.minusSeconds(totalPlayTime);
     }
 
