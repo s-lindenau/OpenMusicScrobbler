@@ -10,10 +10,6 @@
     <name>Open Music Scrobbler</name>
     <packaging>jar</packaging>
 
-    <scm>
-        <developerConnection>git@github.com:s-lindenau/OpenMusicScrobbler.git</developerConnection>
-    </scm>
-
     <organization>
         <name>https://github.com/s-lindenau/OpenMusicScrobbler</name>
     </organization>
@@ -32,7 +28,7 @@
         <dependency>
             <groupId>com.adamdonegan</groupId>
             <artifactId>discogs4j</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
         </dependency>
         <!-- Last.fm API -->
         <dependency>
@@ -46,6 +42,7 @@
             <artifactId>text-io</artifactId>
             <version>3.4.1</version>
             <exclusions>
+                <!-- Excluded because of Beta version -->
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
