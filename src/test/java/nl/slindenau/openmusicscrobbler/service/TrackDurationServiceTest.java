@@ -42,7 +42,7 @@ class TrackDurationServiceTest {
     }
 
     private void assertThrows(Executable executable) {
-        Assertions.assertThrows(OpenMusicScrobblerException.class, executable);
+        Assertions.assertThrows(OpenMusicScrobblerException.class, executable, "Expected exception for invalid track length format was not thrown");
     }
 
     private void parseTrackLength(String input, int expectedLength) {
