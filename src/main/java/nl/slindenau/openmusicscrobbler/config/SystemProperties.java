@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.config;
 
 import java.time.Duration;
+import java.util.Properties;
 
 /**
  * @author slindenau
@@ -25,7 +26,17 @@ public class SystemProperties {
     private static final String DISCOGS_TRACK_LENGTH_PROPERTY = "discogs.track.length.default";
     private static final String DISCOGS_DEFAULT_TRACK_LENGTH = "PT4M";
 
-    private final SystemPropertiesParser parser = new SystemPropertiesParser();
+    private final SystemPropertiesParser parser;
+    private final Properties properties;
+
+    public SystemProperties() {
+        this(new SystemPropertiesParser(), System.getProperties());
+    }
+
+    protected SystemProperties(SystemPropertiesParser parser, Properties properties) {
+        this.parser = parser;
+        this.properties = properties;
+    }
 
     public Boolean isDebugEnabled() {
         return parser.asBooleanProperty(getDebugProperty());
@@ -72,10 +83,14 @@ public class SystemProperties {
     }
 
     private String getProperty(String key) {
-        return System.getProperty(key);
+        return getProperties().getProperty(key);
     }
 
     private String getOptionalProperty(String key, String defaultValue) {
-        return System.getProperty(key, defaultValue);
+        return getProperties().getProperty(key, defaultValue);
+    }
+
+    private Properties getProperties() {
+        return properties;
     }
 }

@@ -18,10 +18,22 @@ public class SystemPropertiesParser {
 
     public Duration asDuration(String key, String input) {
         try {
-            return Duration.parse(input);
-        } catch (DateTimeParseException ex) {
+            return parseDuration(input);
+        } catch (DateTimeParseException | OpenMusicScrobblerException ex) {
             String message = String.format("Invalid Duration format '%s' for property %s", input, key);
             throw new OpenMusicScrobblerException(message, ex);
+        }
+    }
+
+    private Duration parseDuration(String input) {
+        Duration duration = Duration.parse(input);
+        checkValidDuration(duration);
+        return duration;
+    }
+
+    private void checkValidDuration(Duration duration) {
+        if (duration == null || duration.isNegative()) {
+            throw new OpenMusicScrobblerException("Negative duration length not allowed");
         }
     }
 
