@@ -42,7 +42,7 @@ public class DiscogsService {
         this(new DiscogsClientFactory(), new MusicReleaseService());
     }
 
-    public DiscogsService(DiscogsClientFactory discogsClientFactory, MusicReleaseService musicReleaseService) {
+    protected DiscogsService(DiscogsClientFactory discogsClientFactory, MusicReleaseService musicReleaseService) {
         this.discogsClient = discogsClientFactory.getClient();
         this.musicReleaseService = musicReleaseService;
     }

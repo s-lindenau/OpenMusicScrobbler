@@ -34,7 +34,7 @@ public class LastFmService {
         this(new LastFmClientFactory());
     }
 
-    public LastFmService(LastFmClientFactory lastFmClientFactory) {
+    protected LastFmService(LastFmClientFactory lastFmClientFactory) {
         this.lastFmClientFactory = lastFmClientFactory;
     }
 

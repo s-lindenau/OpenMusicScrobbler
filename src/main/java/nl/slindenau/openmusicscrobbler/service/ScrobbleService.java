@@ -21,7 +21,7 @@ public class ScrobbleService {
         this(new LastFmService());
     }
 
-    public ScrobbleService(LastFmService lastFmService) {
+    protected ScrobbleService(LastFmService lastFmService) {
         this.lastFmService = lastFmService;
     }
 
