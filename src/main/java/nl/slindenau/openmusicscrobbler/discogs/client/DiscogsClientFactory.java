@@ -19,7 +19,7 @@ public class DiscogsClientFactory {
         String userAgent = new UserAgentFactory().getUserAgent();
         DiscogsClient discogsClient = new DiscogsClient(userAgent);
         SystemProperties systemProperties = new SystemProperties();
-        Boolean isDebugEnabled = systemProperties.isDebugEnabled();
+        boolean isDebugEnabled = systemProperties.isDebugEnabled();
         discogsClient.setDebugEnabled(isDebugEnabled);
         discogsClient.setConnectTimeout(systemProperties.getDiscogsConnectionTimeout());
         discogsClient.setReadTimeout(systemProperties.getDiscogsReadTimeout());

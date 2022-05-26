@@ -7,6 +7,8 @@ import nl.slindenau.openmusicscrobbler.config.SystemProperties;
 import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
+import java.util.logging.Level;
+
 /**
  * @author slindenau
  * https://github.com/s-lindenau
@@ -33,6 +35,8 @@ public class LastFmClientFactory {
         if (session == null) {
             throwMissingCredentialsException();
         }
+        boolean isDebugEnabled = systemProperties.isDebugEnabled();
+        Caller.getInstance().getLogger().setLevel(isDebugEnabled ? Level.ALL : Level.OFF);
         return new LastFmClientWrapper(session);
     }
 

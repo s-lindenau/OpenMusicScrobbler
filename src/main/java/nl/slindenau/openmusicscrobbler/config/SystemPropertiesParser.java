@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  */
 public class SystemPropertiesParser {
 
-    public Boolean asBooleanProperty(String input) {
+    public boolean asBooleanProperty(String input) {
         return Boolean.parseBoolean(input);
     }
 

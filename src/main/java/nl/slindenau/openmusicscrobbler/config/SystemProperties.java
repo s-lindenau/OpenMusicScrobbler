@@ -38,7 +38,7 @@ public class SystemProperties {
         this.properties = properties;
     }
 
-    public Boolean isDebugEnabled() {
+    public boolean isDebugEnabled() {
         return parser.asBooleanProperty(getDebugProperty());
     }
 
