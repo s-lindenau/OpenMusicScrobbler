@@ -1,7 +1,7 @@
 package nl.slindenau.openmusicscrobbler.discogs.client;
 
 import com.adamdonegan.Discogs4J.client.DiscogsClient;
-import nl.slindenau.openmusicscrobbler.test.ResourceFileReader;
+import nl.slindenau.openmusicscrobbler.util.ResourceFileReader;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;

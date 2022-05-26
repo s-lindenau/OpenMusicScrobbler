@@ -1,4 +1,4 @@
-package nl.slindenau.openmusicscrobbler.test;
+package nl.slindenau.openmusicscrobbler.util;
 
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
