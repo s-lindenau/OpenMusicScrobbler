@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Base class for testing a specific release (with track listing)
@@ -54,6 +53,10 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
         Assertions.assertEquals(getReleaseTitle(), release.title(), "Release title mismatch");
 
         if (DEBUG) {
+            System.out.println("Expected:");
+            getExpectedTracksInRelease().forEach(System.out::println);
+            System.out.println();
+            System.out.println("Actual:");
             release.getAllTracks().forEach(System.out::println);
         }
 
@@ -64,10 +67,7 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
     }
 
     private void assertTrackIsInActual(Track expectedTrack, MusicRelease release) {
-        Optional<Track> expectedInActual = release.getAllTracks().stream()
-                .filter(expectedTrack::equals)
-                .findAny();
-        Assertions.assertTrue(expectedInActual.isPresent(), "Expected track not found: " + expectedTrack);
+        Assertions.assertTrue(release.getAllTracks().contains(expectedTrack), "Expected track not found: " + expectedTrack);
     }
 
     private void assertTrackIsExpected(Track actualTrack) {

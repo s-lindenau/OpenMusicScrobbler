@@ -1,0 +1,329 @@
+{
+  "id": 505500,
+  "status": "Accepted",
+  "year": 2003,
+  "resource_url": "https://api.discogs.com/releases/505500",
+  "uri": "https://www.discogs.com/release/505500-Sleep-Dopesmoker",
+  "artists": [
+    {
+      "name": "Sleep",
+      "anv": "",
+      "join": "",
+      "role": "",
+      "tracks": "",
+      "id": 57916,
+      "resource_url": "https://api.discogs.com/artists/57916"
+    }
+  ],
+  "artists_sort": "Sleep",
+  "labels": [
+    {
+      "name": "Tee Pee Records",
+      "catno": "TP-049CD",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 37173,
+      "resource_url": "https://api.discogs.com/labels/37173"
+    }
+  ],
+  "series": [],
+  "companies": [],
+  "formats": [
+    {
+      "name": "CD",
+      "qty": "1",
+      "text": "Digipak",
+      "descriptions": [
+        "Album"
+      ]
+    }
+  ],
+  "data_quality": "Needs Vote",
+  "community": {
+    "have": 588,
+    "want": 411,
+    "rating": {
+      "count": 79,
+      "average": 4.54
+    },
+    "submitter": {
+      "username": "ZeroBeat",
+      "resource_url": "https://api.discogs.com/users/ZeroBeat"
+    },
+    "contributors": [
+      {
+        "username": "ZeroBeat",
+        "resource_url": "https://api.discogs.com/users/ZeroBeat"
+      },
+      {
+        "username": "xdefenestratorx",
+        "resource_url": "https://api.discogs.com/users/xdefenestratorx"
+      },
+      {
+        "username": "Metalluthier",
+        "resource_url": "https://api.discogs.com/users/Metalluthier"
+      },
+      {
+        "username": "The_Civilized_Worm",
+        "resource_url": "https://api.discogs.com/users/The_Civilized_Worm"
+      },
+      {
+        "username": "BeastmasterGeneral",
+        "resource_url": "https://api.discogs.com/users/BeastmasterGeneral"
+      },
+      {
+        "username": "baalofconfusion",
+        "resource_url": "https://api.discogs.com/users/baalofconfusion"
+      },
+      {
+        "username": "kfant",
+        "resource_url": "https://api.discogs.com/users/kfant"
+      },
+      {
+        "username": "tompilla",
+        "resource_url": "https://api.discogs.com/users/tompilla"
+      },
+      {
+        "username": "dreadmeat",
+        "resource_url": "https://api.discogs.com/users/dreadmeat"
+      },
+      {
+        "username": "vokuhila",
+        "resource_url": "https://api.discogs.com/users/vokuhila"
+      },
+      {
+        "username": "y82ws6",
+        "resource_url": "https://api.discogs.com/users/y82ws6"
+      },
+      {
+        "username": "KaitouGentleman",
+        "resource_url": "https://api.discogs.com/users/KaitouGentleman"
+      },
+      {
+        "username": "tlrzo",
+        "resource_url": "https://api.discogs.com/users/tlrzo"
+      },
+      {
+        "username": "javieraranya",
+        "resource_url": "https://api.discogs.com/users/javieraranya"
+      },
+      {
+        "username": "Loanesloan",
+        "resource_url": "https://api.discogs.com/users/Loanesloan"
+      }
+    ],
+    "data_quality": "Needs Vote",
+    "status": "Accepted"
+  },
+  "format_quantity": 1,
+  "date_added": "2005-08-24T10:42:15-07:00",
+  "date_changed": "2020-02-19T04:43:35-08:00",
+  "num_for_sale": 4,
+  "lowest_price": 22.0,
+  "master_id": 55625,
+  "master_url": "https://api.discogs.com/masters/55625",
+  "title": "Dopesmoker",
+  "country": "US",
+  "released": "2003",
+  "notes": "This was originally released as \"[r=389237]\".\r\n\r\nDopesmoker is an alternate version of Jerusalem that we felt our fans might enjoy.  This early version, as yet unheard, contains a more dynamic recording and a heavier mix. So get high, crank it up and listen with open ears and mind.",
+  "released_formatted": "2003",
+  "identifiers": [
+    {
+      "type": "Barcode",
+      "value": "7 07239 00492 1"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "Z65950  4 TEP2 90049-2 02"
+    },
+    {
+      "type": "Mastering SID Code",
+      "value": "IFPI L909"
+    },
+    {
+      "type": "Mould SID Code",
+      "value": "IFPI 2UA5"
+    },
+    {
+      "type": "Other",
+      "value": "TPE-049",
+      "description": "Disc"
+    },
+    {
+      "type": "Other",
+      "value": "TPE-049 CD/2X LP",
+      "description": "Sticker"
+    }
+  ],
+  "videos": [
+    {
+      "uri": "https://www.youtube.com/watch?v=ugp8a7B9izw",
+      "title": "Sleep - Dopesmoker",
+      "description": "http://sleepsl.bandcamp.com/releases\n\nhttps://www.southernlord.com/releases/view/dopesmoker",
+      "duration": 3815,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=hIw7oeZKpZc",
+      "title": "Sleep - Dopesmoker",
+      "description": "Drop out of life with bong in hand, follow the smoke to the Riff Filled Land.\n\nArtwork by Arik Roper from the Dopesmoker Reissue.",
+      "duration": 3816,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=X-EQ14KVOK4",
+      "title": "Sleep - Sonic Titan (Live 1992 Audio) [Japan Bonus Disc] Stoner Rock",
+      "description": "Sonic Titan - April 1992, Gilman St, Berkeley, CA.",
+      "duration": 558,
+      "embed": true
+    }
+  ],
+  "genres": [
+    "Rock"
+  ],
+  "styles": [
+    "Doom Metal"
+  ],
+  "tracklist": [
+    {
+      "position": "1",
+      "type_": "track",
+      "title": "Dopesmoker",
+      "duration": "1:03:31"
+    },
+    {
+      "position": "2",
+      "type_": "track",
+      "title": "Sonic Titan",
+      "duration": "9:36"
+    }
+  ],
+  "extraartists": [
+    {
+      "name": "Arik Roper",
+      "anv": "Arik Moonhawk Roper",
+      "join": "",
+      "role": "Art Direction",
+      "tracks": "",
+      "id": 565899,
+      "resource_url": "https://api.discogs.com/artists/565899"
+    },
+    {
+      "name": "Doug Ebright",
+      "anv": "",
+      "join": "",
+      "role": "Artwork [Visual Flight]",
+      "tracks": "",
+      "id": 2492523,
+      "resource_url": "https://api.discogs.com/artists/2492523"
+    },
+    {
+      "name": "Al Cisneros",
+      "anv": "",
+      "join": "",
+      "role": "Bass, Vocals",
+      "tracks": "",
+      "id": 279818,
+      "resource_url": "https://api.discogs.com/artists/279818"
+    },
+    {
+      "name": "Chris Hakius",
+      "anv": "",
+      "join": "",
+      "role": "Drums",
+      "tracks": "",
+      "id": 279819,
+      "resource_url": "https://api.discogs.com/artists/279819"
+    },
+    {
+      "name": "Billy Anderson",
+      "anv": "",
+      "join": "",
+      "role": "Engineer [Engine-eared By], Producer",
+      "tracks": "",
+      "id": 252355,
+      "resource_url": "https://api.discogs.com/artists/252355"
+    },
+    {
+      "name": "Matt Pike",
+      "anv": "",
+      "join": "",
+      "role": "Guitar",
+      "tracks": "",
+      "id": 290985,
+      "resource_url": "https://api.discogs.com/artists/290985"
+    },
+    {
+      "name": "Drunken Monkey (2)",
+      "anv": "",
+      "join": "",
+      "role": "Layout",
+      "tracks": "",
+      "id": 1832192,
+      "resource_url": "https://api.discogs.com/artists/1832192"
+    },
+    {
+      "name": "Mark Keaton",
+      "anv": "",
+      "join": "",
+      "role": "Mastered By",
+      "tracks": "",
+      "id": 350891,
+      "resource_url": "https://api.discogs.com/artists/350891"
+    },
+    {
+      "name": "Sleep",
+      "anv": "",
+      "join": "",
+      "role": "Written-By, Producer",
+      "tracks": "",
+      "id": 57916,
+      "resource_url": "https://api.discogs.com/artists/57916"
+    }
+  ],
+  "images": [
+    {
+      "type": "primary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 535
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 517
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 591
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 621
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 530
+    }
+  ],
+  "thumb": "",
+  "estimated_weight": 85,
+  "blocked_from_sale": false
+}
