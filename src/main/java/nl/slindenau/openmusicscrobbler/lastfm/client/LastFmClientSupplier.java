@@ -1,5 +1,7 @@
 package nl.slindenau.openmusicscrobbler.lastfm.client;
 
+import nl.slindenau.openmusicscrobbler.util.CachingSupplier;
+
 import java.util.function.Supplier;
 
 /**
@@ -10,16 +12,12 @@ import java.util.function.Supplier;
 public class LastFmClientSupplier {
 
     private final Supplier<LastFmClientWrapper> supplier;
-    private LastFmClientWrapper cached;
 
     public LastFmClientSupplier(Supplier<LastFmClientWrapper> supplier) {
-        this.supplier = supplier;
+        this.supplier = new CachingSupplier<>(supplier);
     }
 
     public LastFmClientWrapper getClient() {
-        if(this.cached == null) {
-            this.cached = supplier.get();
-        }
-        return this.cached;
+        return supplier.get();
     }
 }
