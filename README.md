@@ -16,9 +16,7 @@ This application is currently for desktop only. If you just want to quickly scro
 - [x] Initial Prototype (CLI)
 - [ ] Desktop GUI
 - [ ] Scheduling/offline scrobble with database
-- [ ] Web based GUI
-- [ ] Barcode scanner for quick scrobble
-- [ ] Last.fm toolbox
+- [ ] Barcode/Cover scanner for quick scrobble
 - [ ] Collection builder from other sources (mp3, search music databases)
 - [ ] Shazam-like fingerprinting for automatic scrobble mode
 
