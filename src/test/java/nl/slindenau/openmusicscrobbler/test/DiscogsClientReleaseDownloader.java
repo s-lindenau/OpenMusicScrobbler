@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.test;
 
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperty;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientFactory;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
 
@@ -16,7 +17,7 @@ public class DiscogsClientReleaseDownloader {
     public static void main(String[] commandLineArguments) {
         String releaseId = getReleaseId(commandLineArguments);
         // enable debug to log the JSON response
-        System.setProperty("oms.debug", "true");
+        System.setProperty(ApplicationProperty.DEBUG.getKey(), Boolean.TRUE.toString());
         DiscogsClientWrapper client = new DiscogsClientFactory().getClient();
         client.getRelease(releaseId);
     }

@@ -36,10 +36,10 @@ class ApplicationPropertiesTest {
 
     @Test
     void testGetOverrideDefaultValues() {
-        setupProperty("oms.debug", "true");
-        setupProperty("discogs.read.timeout", "PT1S");
-        setupProperty("discogs.connection.timeout", "PT2S");
-        setupProperty("discogs.track.length.default", "PT3S");
+        setupProperty(ApplicationProperty.DEBUG, "true");
+        setupProperty(ApplicationProperty.DISCOGS_READ_TIMEOUT, "PT1S");
+        setupProperty(ApplicationProperty.DISCOGS_CONNECTION_TIMEOUT, "PT2S");
+        setupProperty(ApplicationProperty.DISCOGS_TRACK_LENGTH, "PT3S");
 
         Assertions.assertTrue(applicationProperties.isDebugEnabled(), "Debug value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(1), applicationProperties.getDiscogsReadTimeout(), "Discogs read timeout value mismatch");
@@ -49,8 +49,8 @@ class ApplicationPropertiesTest {
 
     @Test
     void testGetInvalidValues() {
-        setupProperty("discogs.read.timeout", "PT-1S");
-        setupProperty("discogs.connection.timeout", "not a duration");
+        setupProperty(ApplicationProperty.DISCOGS_READ_TIMEOUT, "PT-1S");
+        setupProperty(ApplicationProperty.DISCOGS_CONNECTION_TIMEOUT, "not a duration");
 
         assertThrows(() -> applicationProperties.getDiscogsReadTimeout(), "Expected exception on negative duration length");
         assertThrows(() -> applicationProperties.getDiscogsConnectionTimeout(), "Expected exception on invalid duration format");
@@ -69,8 +69,8 @@ class ApplicationPropertiesTest {
         Assertions.assertNull(getter.get(), message + " property should not have a default value");
     }
 
-    private void setupProperty(String key, String value) {
-        this.properties.put(key, value);
+    private void setupProperty(ApplicationProperty property, String value) {
+        this.properties.put(property.getKey(), value);
     }
 
     private void assertThrows(Executable executable, String message) {
