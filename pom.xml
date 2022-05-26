@@ -23,7 +23,7 @@
         <oms.url>${project.organization.name}</oms.url>
         <slf4j.version>1.7.36</slf4j.version>
         <junit.version>5.8.2</junit.version>
-        <mockito.version>4.3.1</mockito.version>
+        <mockito.version>4.5.1</mockito.version>
     </properties>
 
     <dependencies>
@@ -52,11 +52,25 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- webstuff -->
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-views-mustache</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
         <!-- JSON Object processing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.1</version>
+            <version>2.13.3</version>
         </dependency>
         <!-- Logging -->
         <dependency>
@@ -88,6 +102,8 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record MusicRelease(int id, int discogsId, String artist, String title, String format, Collection<ReleasePart> releaseParts) {
+public record MusicRelease(int id, int discogsId, String artist, String title, String format, int year, Collection<ReleasePart> releaseParts) {
 
     public Collection<Track> getAllTracks() {
         return releaseParts.stream()

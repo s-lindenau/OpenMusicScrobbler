@@ -79,7 +79,8 @@ public class DiscogsService {
         String title = basicInformation.getTitle();
         String format = getFormat(basicInformation);
         String artist = getArtist(basicInformation);
-        return new MusicRelease(nextId++, releaseId, artist, title, format, Collections.emptyList());
+        int year = basicInformation.year;
+        return new MusicRelease(nextId++, releaseId, artist, title, format, year, Collections.emptyList());
     }
 
     private String getFormat(BasicInformation basicInformation) {

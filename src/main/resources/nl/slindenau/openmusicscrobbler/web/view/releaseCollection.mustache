@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Open Music Scrobbler</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <script>
+        function scrobble(id) {
+            fetch("/collection/scrobble?id=" + id, {
+                method: "POST"
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>Hello!</h1>
+<ul>
+    {{#releaseCollection}}
+        {{#releases}}
+            <li>
+                {{artist}} - {{title}} {{year}}
+                <button onclick="scrobble({{id}})">Scrobble</button>
+            </li>
+        {{/releases}}
+    {{/releaseCollection}}
+</ul>
+</body>
+</html>

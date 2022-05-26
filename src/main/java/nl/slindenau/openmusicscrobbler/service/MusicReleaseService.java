@@ -33,7 +33,8 @@ public class MusicReleaseService {
         processTracks(discogsRelease, releaseArtist, trackList);
         String releaseTitle = discogsRelease.title;
         Collection<ReleasePart> parts = createParts(trackList);
-        return createMusicReleaseWithTrackList(musicRelease, releaseArtist, releaseTitle, parts);
+        int year = discogsRelease.year;
+        return createMusicReleaseWithTrackList(musicRelease, releaseArtist, releaseTitle, year, parts);
     }
 
     private void processTracks(Release discogsRelease, String releaseArtist, Collection<Track> trackList) {
@@ -74,7 +75,7 @@ public class MusicReleaseService {
         return Collections.singletonList(new ReleasePart("A", Collections.emptyList(), trackList));
     }
 
-    private MusicRelease createMusicReleaseWithTrackList(MusicRelease musicRelease, String releaseArtist, String releaseTitle, Collection<ReleasePart> releaseParts) {
-        return new MusicRelease(musicRelease.id(), musicRelease.discogsId(), releaseArtist, releaseTitle, musicRelease.format(), releaseParts);
+    private MusicRelease createMusicReleaseWithTrackList(MusicRelease musicRelease, String releaseArtist, String releaseTitle, int year, Collection<ReleasePart> releaseParts) {
+        return new MusicRelease(musicRelease.id(), musicRelease.discogsId(), releaseArtist, releaseTitle, musicRelease.format(), year, releaseParts);
     }
 }
