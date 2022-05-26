@@ -12,20 +12,6 @@ public class ApplicationProperties {
 
     // todo: change to settings file
 
-    private static final String DEBUG_PROPERTY = "oms.debug";
-    private static final String DEBUG_DEFAULT = Boolean.FALSE.toString();
-    private static final String DISCOGS_USERNAME_PROPERTY = "discogs.username";
-    private static final String LAST_FM_USERNAME_PROPERTY = "lastfm.username";
-    private static final String LAST_FM_PASSWORD_PROPERTY = "lastfm.password";
-    private static final String LAST_FM_API_KEY_PROPERTY = "lastfm.api.key";
-    private static final String LAST_FM_API_SECRET_PROPERTY = "lastfm.api.secret";
-    private static final String DISCOGS_CONNECTION_TIMEOUT_PROPERTY = "discogs.connection.timeout";
-    private static final String DISCOGS_DEFAULT_CONNECTION_TIMEOUT = "PT10S";
-    private static final String DISCOGS_READ_TIMEOUT_PROPERTY = "discogs.read.timeout";
-    private static final String DISCOGS_DEFAULT_READ_TIMEOUT = "PT60S";
-    private static final String DISCOGS_TRACK_LENGTH_PROPERTY = "discogs.track.length.default";
-    private static final String DISCOGS_DEFAULT_TRACK_LENGTH = "PT4M";
-
     private final PropertiesParser parser = new PropertiesParser();
     private final Properties properties;
 
@@ -42,43 +28,51 @@ public class ApplicationProperties {
     }
 
     private String getDebugProperty() {
-        return getOptionalProperty(DEBUG_PROPERTY, DEBUG_DEFAULT);
+        return getProperty(ApplicationProperty.DEBUG);
     }
 
     public String getDiscogsUsername() {
-        return getProperty(DISCOGS_USERNAME_PROPERTY);
+        return getProperty(ApplicationProperty.DISCOGS_USERNAME);
     }
 
     public String getLastFmUsername() {
-        return getProperty(LAST_FM_USERNAME_PROPERTY);
+        return getProperty(ApplicationProperty.LAST_FM_USERNAME);
     }
 
     public String getLastFmPassword() {
-        return getProperty(LAST_FM_PASSWORD_PROPERTY);
+        return getProperty(ApplicationProperty.LAST_FM_PASSWORD);
     }
 
     public String getLastFmApiKey() {
-        return getProperty(LAST_FM_API_KEY_PROPERTY);
+        return getProperty(ApplicationProperty.LAST_FM_API_KEY);
     }
 
     public String getLastFmApiSecret() {
-        return getProperty(LAST_FM_API_SECRET_PROPERTY);
+        return getProperty(ApplicationProperty.LAST_FM_API_SECRET);
     }
 
     public Duration getDiscogsConnectionTimeout() {
-        return getOptionalDuration(DISCOGS_CONNECTION_TIMEOUT_PROPERTY, DISCOGS_DEFAULT_CONNECTION_TIMEOUT);
+        return getDuration(ApplicationProperty.DISCOGS_CONNECTION_TIMEOUT);
     }
 
     public Duration getDiscogsReadTimeout() {
-        return getOptionalDuration(DISCOGS_READ_TIMEOUT_PROPERTY, DISCOGS_DEFAULT_READ_TIMEOUT);
+        return getDuration(ApplicationProperty.DISCOGS_READ_TIMEOUT);
     }
 
     public Duration getDiscogsDefaultTrackLength() {
-        return getOptionalDuration(DISCOGS_TRACK_LENGTH_PROPERTY, DISCOGS_DEFAULT_TRACK_LENGTH);
+        return getDuration(ApplicationProperty.DISCOGS_TRACK_LENGTH);
     }
 
-    private Duration getOptionalDuration(String key, String defaultValue) {
-        return parser.asDuration(key, getOptionalProperty(key, defaultValue));
+    private Duration getDuration(ApplicationProperty applicationProperty) {
+        return parser.asDuration(applicationProperty.getKey(), getProperty(applicationProperty));
+    }
+
+    private String getProperty(ApplicationProperty applicationProperty) {
+        if (applicationProperty.getDefaultValue().isPresent()) {
+            return getOptionalProperty(applicationProperty.getKey(), applicationProperty.getDefaultValue().get());
+        } else {
+            return getProperty(applicationProperty.getKey());
+        }
     }
 
     private String getProperty(String key) {
