@@ -1,7 +1,7 @@
 package nl.slindenau.openmusicscrobbler.service;
 
 import de.umass.lastfm.scrobble.ScrobbleResult;
-import nl.slindenau.openmusicscrobbler.config.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientSupplier;
@@ -27,7 +27,7 @@ public class LastFmService {
     private static final int LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS = 2;
 
     private final Logger logger = LoggerFactory.getLogger(LastFmService.class);
-    private final SystemProperties systemProperties = new SystemProperties();
+    private final ApplicationProperties applicationProperties = new ApplicationProperties();
     private final LastFmClientFactory lastFmClientFactory;
 
     public LastFmService() {
@@ -77,7 +77,7 @@ public class LastFmService {
     }
 
     private LastFmScrobbleResult scrobbleTrack(String artist, String album, String trackName, Instant scrobbleAtTime, LastFmClientSupplier clientSupplier) {
-        if (systemProperties.isDebugEnabled()) {
+        if (applicationProperties.isDebugEnabled()) {
             String message = String.format("Scrobble track: [%s - %s] from Album: [%s] (on %s)", artist, trackName, album, Date.from(scrobbleAtTime));
             logger.info(message);
             return new LastFmScrobbleResult("Debug mode: scrobble not sent to API");

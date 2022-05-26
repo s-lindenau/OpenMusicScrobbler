@@ -3,7 +3,7 @@ package nl.slindenau.openmusicscrobbler.lastfm.client;
 import de.umass.lastfm.Authenticator;
 import de.umass.lastfm.Caller;
 import de.umass.lastfm.Session;
-import nl.slindenau.openmusicscrobbler.config.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 
@@ -23,11 +23,11 @@ public class LastFmClientFactory {
         Caller.getInstance().setUserAgent(userAgent);
         Caller.getInstance().setApiRootUrl(LAST_FM_SECURE_ENDPOINT);
 
-        SystemProperties systemProperties = new SystemProperties();
-        String key = systemProperties.getLastFmApiKey();
-        String secret = systemProperties.getLastFmApiSecret();
-        String user = systemProperties.getLastFmUsername();
-        String password = systemProperties.getLastFmPassword();
+        ApplicationProperties applicationProperties = new ApplicationProperties();
+        String key = applicationProperties.getLastFmApiKey();
+        String secret = applicationProperties.getLastFmApiSecret();
+        String user = applicationProperties.getLastFmUsername();
+        String password = applicationProperties.getLastFmPassword();
         if (password == null) {
             throwMissingCredentialsException();
         }
@@ -35,7 +35,7 @@ public class LastFmClientFactory {
         if (session == null) {
             throwMissingCredentialsException();
         }
-        boolean isDebugEnabled = systemProperties.isDebugEnabled();
+        boolean isDebugEnabled = applicationProperties.isDebugEnabled();
         Caller.getInstance().getLogger().setLevel(isDebugEnabled ? Level.ALL : Level.OFF);
         return new LastFmClientWrapper(session);
     }

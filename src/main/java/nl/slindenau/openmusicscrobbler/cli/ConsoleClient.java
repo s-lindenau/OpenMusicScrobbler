@@ -1,6 +1,6 @@
 package nl.slindenau.openmusicscrobbler.cli;
 
-import nl.slindenau.openmusicscrobbler.config.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
@@ -127,8 +127,8 @@ public class ConsoleClient extends AbstractConsoleClient {
     }
 
     private String getDiscogsUsername() {
-        SystemProperties systemProperties = new SystemProperties();
-        String usernameProperty = systemProperties.getDiscogsUsername();
+        ApplicationProperties applicationProperties = new ApplicationProperties();
+        String usernameProperty = applicationProperties.getDiscogsUsername();
         if (usernameProperty != null) {
             return usernameProperty;
         }

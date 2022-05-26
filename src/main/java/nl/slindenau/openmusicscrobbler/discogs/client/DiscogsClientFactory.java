@@ -1,7 +1,7 @@
 package nl.slindenau.openmusicscrobbler.discogs.client;
 
 import com.adamdonegan.Discogs4J.client.DiscogsClient;
-import nl.slindenau.openmusicscrobbler.config.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +18,11 @@ public class DiscogsClientFactory {
     public DiscogsClientWrapper getClient() {
         String userAgent = new UserAgentFactory().getUserAgent();
         DiscogsClient discogsClient = new DiscogsClient(userAgent);
-        SystemProperties systemProperties = new SystemProperties();
-        boolean isDebugEnabled = systemProperties.isDebugEnabled();
+        ApplicationProperties applicationProperties = new ApplicationProperties();
+        boolean isDebugEnabled = applicationProperties.isDebugEnabled();
         discogsClient.setDebugEnabled(isDebugEnabled);
-        discogsClient.setConnectTimeout(systemProperties.getDiscogsConnectionTimeout());
-        discogsClient.setReadTimeout(systemProperties.getDiscogsReadTimeout());
+        discogsClient.setConnectTimeout(applicationProperties.getDiscogsConnectionTimeout());
+        discogsClient.setReadTimeout(applicationProperties.getDiscogsReadTimeout());
         logUserAgent(isDebugEnabled, userAgent);
         return new DiscogsClientWrapper(discogsClient);
     }

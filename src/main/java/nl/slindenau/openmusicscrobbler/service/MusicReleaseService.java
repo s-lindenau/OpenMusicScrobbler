@@ -1,6 +1,6 @@
 package nl.slindenau.openmusicscrobbler.service;
 
-import nl.slindenau.openmusicscrobbler.config.SystemProperties;
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsArtistNameCollector;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Tracklist;
@@ -57,7 +57,7 @@ public class MusicReleaseService {
             return trackDurationService.parseTrackLength(duration);
         } catch(OpenMusicScrobblerException ex) {
             logger.debug("Using default track length", ex);
-            return new SystemProperties().getDiscogsDefaultTrackLength();
+            return new ApplicationProperties().getDiscogsDefaultTrackLength();
         }
     }
 
