@@ -15,12 +15,13 @@
     </organization>
 
     <properties>
+        <jdk.version>17</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <oms.name>${project.name}</oms.name>
-        <oms.version>${project.version}</oms.version>
-        <oms.url>${project.organization.name}</oms.url>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target>
+        <app.name>${project.name}</app.name>
+        <app.version>${project.version}</app.version>
+        <app.url>${project.organization.name}</app.url>
         <slf4j.version>1.7.36</slf4j.version>
         <junit.version>5.8.2</junit.version>
         <mockito.version>4.3.1</mockito.version>
@@ -146,7 +147,7 @@
                             <goal>write-project-properties</goal>
                         </goals>
                         <configuration>
-                            <outputFile>${project.basedir}/src/main/resources/project.properties</outputFile>
+                            <outputFile>${project.basedir}/src/main/resources/nl/slindenau/openmusicscrobbler/config/project.properties</outputFile>
                         </configuration>
                     </execution>
                 </executions>

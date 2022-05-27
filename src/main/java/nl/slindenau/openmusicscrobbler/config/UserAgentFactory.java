@@ -1,5 +1,11 @@
 package nl.slindenau.openmusicscrobbler.config;
 
+import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
+
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * @author slindenau
  * https://github.com/s-lindenau
@@ -7,28 +13,49 @@ package nl.slindenau.openmusicscrobbler.config;
  */
 public class UserAgentFactory {
 
-    private static final String APPLICATION_NAME = "Open Music Scrobbler";
     private static final String USER_AGENT_FORMAT = "%s/%s +%s";
 
+    private final Package packageInfo;
+    private final ProjectPropertiesReader propertiesReader;
+
+    public UserAgentFactory() {
+        this(UserAgentFactory.class.getPackage(), new ProjectPropertiesReader());
+    }
+
+    protected UserAgentFactory(Package packageInfo, ProjectPropertiesReader propertiesReader) {
+        this.packageInfo = packageInfo;
+        this.propertiesReader = propertiesReader;
+    }
+
     public String getUserAgent() {
-        String applicationName = getApplicationName();
-        String applicationVersion = getApplicationVersion();
-        String applicationHomepage = getApplicationHomepage();
+        String applicationName = optionalString(getApplicationName()).orElseGet(propertiesReader::getApplicationName);
+        String applicationVersion = optionalString(getApplicationVersion()).orElseGet(propertiesReader::getApplicationVersion);
+        String applicationHomepage = optionalString(getApplicationHomepage()).orElseGet(propertiesReader::getApplicationHomepage);
         if (applicationName != null && applicationVersion != null && applicationHomepage != null) {
             return String.format(USER_AGENT_FORMAT, applicationName, applicationVersion, applicationHomepage);
+        } else {
+            String message = "Can't determine User Agent from values: " + Arrays.asList(applicationName, applicationVersion, applicationHomepage);
+            throw new OpenMusicScrobblerException(message);
         }
-        return APPLICATION_NAME;
     }
 
     private String getApplicationName() {
-        return this.getClass().getPackage().getImplementationTitle();
+        return getPackage().getImplementationTitle();
     }
 
     private String getApplicationVersion() {
-        return this.getClass().getPackage().getImplementationVersion();
+        return getPackage().getImplementationVersion();
     }
 
     private String getApplicationHomepage() {
-        return this.getClass().getPackage().getImplementationVendor();
+        return getPackage().getImplementationVendor();
+    }
+
+    private Optional<String> optionalString(String input) {
+        return OptionalString.ofNullableOrBlank(input);
+    }
+
+    private Package getPackage() {
+        return this.packageInfo;
     }
 }
