@@ -6,4 +6,4 @@
 *.iml
 /bin/
 /logs/
-/src/main/resources/project.properties
+project.properties
