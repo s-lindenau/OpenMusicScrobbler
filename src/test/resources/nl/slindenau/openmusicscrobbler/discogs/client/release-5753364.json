@@ -1,0 +1,302 @@
+{
+  "id": 5753364,
+  "status": "Accepted",
+  "year": 1977,
+  "resource_url": "https://api.discogs.com/releases/5753364",
+  "uri": "https://www.discogs.com/release/5753364-Aileach-Ard-R%C3%AD",
+  "artists": [
+    {
+      "name": "Aileach",
+      "anv": "",
+      "join": "",
+      "role": "",
+      "tracks": "",
+      "id": 2616442,
+      "resource_url": "https://api.discogs.com/artists/2616442"
+    }
+  ],
+  "artists_sort": "Aileach",
+  "labels": [
+    {
+      "name": "EMI",
+      "catno": "LEAF 7014",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 26126,
+      "resource_url": "https://api.discogs.com/labels/26126"
+    }
+  ],
+  "series": [],
+  "companies": [
+    {
+      "name": "EMI (Ireland) Limited",
+      "catno": "",
+      "entity_type": "4",
+      "entity_type_name": "Record Company",
+      "id": 153362,
+      "resource_url": "https://api.discogs.com/labels/153362"
+    },
+    {
+      "name": "Dublin Sound Studios",
+      "catno": "",
+      "entity_type": "23",
+      "entity_type_name": "Recorded At",
+      "id": 355843,
+      "resource_url": "https://api.discogs.com/labels/355843"
+    }
+  ],
+  "formats": [
+    {
+      "name": "Vinyl",
+      "qty": "1",
+      "descriptions": [
+        "LP",
+        "Album"
+      ]
+    }
+  ],
+  "data_quality": "Needs Vote",
+  "community": {
+    "have": 26,
+    "want": 8,
+    "rating": {
+      "count": 1,
+      "average": 5.0
+    },
+    "submitter": {
+      "username": "teninchfan",
+      "resource_url": "https://api.discogs.com/users/teninchfan"
+    },
+    "contributors": [
+      {
+        "username": "teninchfan",
+        "resource_url": "https://api.discogs.com/users/teninchfan"
+      },
+      {
+        "username": "ObliviateSounds",
+        "resource_url": "https://api.discogs.com/users/ObliviateSounds"
+      }
+    ],
+    "data_quality": "Needs Vote",
+    "status": "Accepted"
+  },
+  "format_quantity": 1,
+  "date_added": "2014-06-02T05:30:38-07:00",
+  "date_changed": "2019-10-09T17:44:46-07:00",
+  "num_for_sale": 7,
+  "lowest_price": 6.45,
+  "master_id": 1618718,
+  "master_url": "https://api.discogs.com/masters/1618718",
+  "title": "Ard Rí",
+  "country": "Ireland",
+  "released": "1977",
+  "released_formatted": "1977",
+  "identifiers": [],
+  "genres": [
+    "Folk, World, & Country"
+  ],
+  "styles": [
+    "Folk"
+  ],
+  "tracklist": [
+    {
+      "position": "A1",
+      "type_": "track",
+      "title": "'P' Stands For Paddy",
+      "duration": ""
+    },
+    {
+      "position": "A2",
+      "type_": "track",
+      "title": "The Heather Breeze; The Yellow Tinker",
+      "duration": ""
+    },
+    {
+      "position": "A3",
+      "type_": "track",
+      "title": "The Green Fields Of America",
+      "duration": ""
+    },
+    {
+      "position": "A4",
+      "type_": "track",
+      "title": "Banish Misfortune; The Fermoy Lasses; The Chair Against The Door",
+      "duration": ""
+    },
+    {
+      "position": "A5",
+      "type_": "track",
+      "title": "Banks Of The Bann",
+      "duration": ""
+    },
+    {
+      "position": "A6",
+      "type_": "track",
+      "title": "Bold Sean And The Tinker",
+      "duration": ""
+    },
+    {
+      "position": "B1",
+      "type_": "track",
+      "title": "Paddy Ryans Dream; The Dublin Lasses",
+      "duration": ""
+    },
+    {
+      "position": "B2",
+      "type_": "track",
+      "title": "The Bold Tenant Farmer; The Nine Points Of Roguery",
+      "duration": ""
+    },
+    {
+      "position": "B3",
+      "type_": "track",
+      "title": "The Friendly Visit; The Cup Of Tea",
+      "duration": ""
+    },
+    {
+      "position": "B4",
+      "type_": "track",
+      "title": "The Lakes Of Coolfin",
+      "duration": ""
+    },
+    {
+      "position": "B5",
+      "type_": "track",
+      "title": "Four Drunken Nights",
+      "duration": ""
+    },
+    {
+      "position": "B6",
+      "type_": "track",
+      "title": "Bunch Of Thyme",
+      "duration": ""
+    },
+    {
+      "position": "B7",
+      "type_": "track",
+      "title": "Jigs Of Aileach II",
+      "duration": ""
+    }
+  ],
+  "extraartists": [
+    {
+      "name": "Pat McCabe",
+      "anv": "",
+      "join": "",
+      "role": "Accordion, Piano, Whistle, Bodhrán, Mandolin, Concertina",
+      "tracks": "",
+      "id": 3855241,
+      "resource_url": "https://api.discogs.com/artists/3855241"
+    },
+    {
+      "name": "Aileach",
+      "anv": "",
+      "join": "",
+      "role": "Arranged By",
+      "tracks": "",
+      "id": 2616442,
+      "resource_url": "https://api.discogs.com/artists/2616442"
+    },
+    {
+      "name": "Brian McRory",
+      "anv": "",
+      "join": "",
+      "role": "Banjo, Mandolin, Vocals, Guitar",
+      "tracks": "",
+      "id": 3855240,
+      "resource_url": "https://api.discogs.com/artists/3855240"
+    },
+    {
+      "name": "Ronnie Norton",
+      "anv": "",
+      "join": "",
+      "role": "Design, Photography By",
+      "tracks": "",
+      "id": 2269835,
+      "resource_url": "https://api.discogs.com/artists/2269835"
+    },
+    {
+      "name": "Bob Harper",
+      "anv": "",
+      "join": "",
+      "role": "Engineer",
+      "tracks": "",
+      "id": 1358581,
+      "resource_url": "https://api.discogs.com/artists/1358581"
+    },
+    {
+      "name": "Dinny McLoughlin",
+      "anv": "",
+      "join": "",
+      "role": "Fiddle, Whistle",
+      "tracks": "",
+      "id": 3855239,
+      "resource_url": "https://api.discogs.com/artists/3855239"
+    },
+    {
+      "name": "Bernard Heaney",
+      "anv": "",
+      "join": "",
+      "role": "Liner Notes, Painting [Drawing]",
+      "tracks": "",
+      "id": 3855238,
+      "resource_url": "https://api.discogs.com/artists/3855238"
+    },
+    {
+      "name": "Leo O'Kelly",
+      "anv": "",
+      "join": "",
+      "role": "Producer",
+      "tracks": "",
+      "id": 1187577,
+      "resource_url": "https://api.discogs.com/artists/1187577"
+    },
+    {
+      "name": "Bernard Heaney",
+      "anv": "",
+      "join": "",
+      "role": "Vocals, Guitar, Bodhrán",
+      "tracks": "",
+      "id": 3855238,
+      "resource_url": "https://api.discogs.com/artists/3855238"
+    },
+    {
+      "name": "Traditional",
+      "anv": "Trad.",
+      "join": "",
+      "role": "Written-By",
+      "tracks": "",
+      "id": 151641,
+      "resource_url": "https://api.discogs.com/artists/151641"
+    }
+  ],
+  "images": [
+    {
+      "type": "primary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 614
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 617
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 574
+    }
+  ],
+  "thumb": "",
+  "estimated_weight": 230,
+  "blocked_from_sale": false
+}

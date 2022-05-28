@@ -17,8 +17,6 @@ import java.util.List;
  */
 public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
 
-    private static final Boolean DEBUG = false;
-
     @Override
     protected String getUserCollectionFolderReleasesFileName() {
         return null;
@@ -52,25 +50,31 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
         Assertions.assertEquals(getReleaseArtist(), release.artist(), "Release artist mismatch");
         Assertions.assertEquals(getReleaseTitle(), release.title(), "Release title mismatch");
 
-        if (DEBUG) {
+        // check that all returned tracks are in our expected list
+        release.getAllTracks().forEach(actualTrack -> assertTrackIsExpected(actualTrack, release));
+        // check that all our expected tracks are in the actual list
+        getExpectedTracksInRelease().forEach(expectedTrack -> assertTrackIsInActual(expectedTrack, release));
+    }
+
+    private void assertTrackIsInActual(Track expectedTrack, MusicRelease release) {
+        boolean releaseContainsExpectedTrack = release.getAllTracks().contains(expectedTrack);
+        debugPrint(releaseContainsExpectedTrack, release);
+        Assertions.assertTrue(releaseContainsExpectedTrack, "Expected track not found: " + expectedTrack);
+    }
+
+    private void assertTrackIsExpected(Track actualTrack, MusicRelease release) {
+        boolean expectedTracksContainsActualTrack = getExpectedTracksInRelease().contains(actualTrack);
+        debugPrint(expectedTracksContainsActualTrack, release);
+        Assertions.assertTrue(expectedTracksContainsActualTrack, "Track not expected: " + actualTrack);
+    }
+
+    private void debugPrint(boolean checkSucceeded, MusicRelease release) {
+        if (!checkSucceeded) {
             System.out.println("Expected:");
             getExpectedTracksInRelease().forEach(System.out::println);
             System.out.println();
             System.out.println("Actual:");
             release.getAllTracks().forEach(System.out::println);
         }
-
-        // check that all returned tracks are in our expected list
-        release.getAllTracks().forEach(this::assertTrackIsExpected);
-        // check that all our expected tracks are in the actual list
-        getExpectedTracksInRelease().forEach(expectedTrack -> assertTrackIsInActual(expectedTrack, release));
-    }
-
-    private void assertTrackIsInActual(Track expectedTrack, MusicRelease release) {
-        Assertions.assertTrue(release.getAllTracks().contains(expectedTrack), "Expected track not found: " + expectedTrack);
-    }
-
-    private void assertTrackIsExpected(Track actualTrack) {
-        Assertions.assertTrue(getExpectedTracksInRelease().contains(actualTrack), "Track not expected: " + actualTrack);
     }
 }

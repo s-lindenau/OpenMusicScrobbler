@@ -1,0 +1,376 @@
+{
+  "id": 13264226,
+  "status": "Accepted",
+  "year": 2014,
+  "resource_url": "https://api.discogs.com/releases/13264226",
+  "uri": "https://www.discogs.com/release/13264226-Damjan-Mravunac-The-Talos-Principle-Soundtrack",
+  "artists": [
+    {
+      "name": "Damjan Mravunac",
+      "anv": "",
+      "join": "",
+      "role": "",
+      "tracks": "",
+      "id": 2287741,
+      "resource_url": "https://api.discogs.com/artists/2287741"
+    }
+  ],
+  "artists_sort": "Damjan Mravunac",
+  "labels": [
+    {
+      "name": "Devolver Digital",
+      "catno": "none",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 566141,
+      "resource_url": "https://api.discogs.com/labels/566141"
+    }
+  ],
+  "series": [],
+  "companies": [],
+  "formats": [
+    {
+      "name": "File",
+      "qty": "30",
+      "descriptions": [
+        "AAC",
+        "Album"
+      ]
+    }
+  ],
+  "data_quality": "Needs Vote",
+  "community": {
+    "have": 5,
+    "want": 2,
+    "rating": {
+      "count": 3,
+      "average": 4.33
+    },
+    "submitter": {
+      "username": "asuma",
+      "resource_url": "https://api.discogs.com/users/asuma"
+    },
+    "contributors": [
+      {
+        "username": "asuma",
+        "resource_url": "https://api.discogs.com/users/asuma"
+      },
+      {
+        "username": "Paul_Eye",
+        "resource_url": "https://api.discogs.com/users/Paul_Eye"
+      },
+      {
+        "username": "Renatar",
+        "resource_url": "https://api.discogs.com/users/Renatar"
+      }
+    ],
+    "data_quality": "Needs Vote",
+    "status": "Accepted"
+  },
+  "format_quantity": 0,
+  "date_added": "2019-02-23T22:57:20-08:00",
+  "date_changed": "2020-11-27T09:09:43-08:00",
+  "num_for_sale": 0,
+  "lowest_price": null,
+  "master_id": 1507225,
+  "master_url": "https://api.discogs.com/masters/1507225",
+  "title": "The Talos Principle - Soundtrack",
+  "released": "2014",
+  "notes": "Soundtrack to the videogame The Talos Principle and its expansion Road To Gehenna.\nAvailable as downloadable content for the Steam version, and included in the GOG version.\nIncludes alternate versions without voiceover.\n\nTracks 26 and 27 named \"Extra Bonus\".\nTracks 28 to 30 are from the \"Road To Gehenna\" expansion and do not appear on the store page.\n",
+  "released_formatted": "2014",
+  "identifiers": [],
+  "genres": [
+    "Electronic",
+    "Stage & Screen"
+  ],
+  "styles": [
+    "Soundtrack",
+    "Score",
+    "Ambient"
+  ],
+  "tracklist": [
+    {
+      "position": "1",
+      "type_": "track",
+      "title": "Welcome To Heaven",
+      "duration": "2:21"
+    },
+    {
+      "position": "1_Alt",
+      "type_": "track",
+      "title": "Welcome To Heaven",
+      "duration": "2:21"
+    },
+    {
+      "position": "2",
+      "type_": "track",
+      "title": "When In Rome",
+      "duration": "2:27"
+    },
+    {
+      "position": "3",
+      "type_": "track",
+      "title": "Trials",
+      "duration": "3:48"
+    },
+    {
+      "position": "3_Alt",
+      "type_": "track",
+      "title": "Trials",
+      "duration": "3:48"
+    },
+    {
+      "position": "4",
+      "type_": "track",
+      "title": "The Sigils Of Our Name",
+      "duration": "2:32"
+    },
+    {
+      "position": "4_Alt",
+      "type_": "track",
+      "title": "The Sigils Of Our Name",
+      "duration": "2:32"
+    },
+    {
+      "position": "5",
+      "type_": "track",
+      "title": "Temple Of My Father",
+      "duration": "2:48"
+    },
+    {
+      "position": "5_Alt",
+      "type_": "track",
+      "title": "Temple Of My Father",
+      "duration": "2:48"
+    },
+    {
+      "position": "6",
+      "type_": "track",
+      "title": "Made Of Words",
+      "duration": "4:45"
+    },
+    {
+      "position": "6_Alt",
+      "type_": "track",
+      "title": "Made Of Words",
+      "duration": "4:45"
+    },
+    {
+      "position": "7",
+      "type_": "track",
+      "title": "Sanctuary",
+      "duration": "1:54"
+    },
+    {
+      "position": "8",
+      "type_": "track",
+      "title": "A Land Of Great Beauty",
+      "duration": "3:18"
+    },
+    {
+      "position": "8_Alt",
+      "type_": "track",
+      "title": "A Land Of Great Beauty",
+      "duration": "3:18"
+    },
+    {
+      "position": "9",
+      "type_": "track",
+      "title": "A Land Of Ruins",
+      "duration": "2:42"
+    },
+    {
+      "position": "10",
+      "type_": "track",
+      "title": "Before Was Only Chaos",
+      "duration": "2:16"
+    },
+    {
+      "position": "10_Alt",
+      "type_": "track",
+      "title": "Before Was Only Chaos",
+      "duration": "2:16"
+    },
+    {
+      "position": "11",
+      "type_": "track",
+      "title": "All Else Is Decay",
+      "duration": "2:53"
+    },
+    {
+      "position": "12",
+      "type_": "track",
+      "title": "The Worlds Of My Garden Are Many",
+      "duration": "2:49"
+    },
+    {
+      "position": "12_Alt",
+      "type_": "track",
+      "title": "The Worlds Of My Garden Are Many",
+      "duration": "2:49"
+    },
+    {
+      "position": "13",
+      "type_": "track",
+      "title": "The Temple Of The Sands",
+      "duration": "2:00"
+    },
+    {
+      "position": "14",
+      "type_": "track",
+      "title": "The Guardians",
+      "duration": "2:20"
+    },
+    {
+      "position": "14_Alt",
+      "type_": "track",
+      "title": "The Guardians",
+      "duration": "2:20"
+    },
+    {
+      "position": "15",
+      "type_": "track",
+      "title": "The Dance Of Eternity",
+      "duration": "1:24"
+    },
+    {
+      "position": "16",
+      "type_": "track",
+      "title": "Your Wisdom Grows",
+      "duration": "2:09"
+    },
+    {
+      "position": "17",
+      "type_": "track",
+      "title": "Blessed And Beloved",
+      "duration": "1:49"
+    },
+    {
+      "position": "17 Alt",
+      "type_": "track",
+      "title": "Blessed And Beloved",
+      "duration": "1:49"
+    },
+    {
+      "position": "18",
+      "type_": "track",
+      "title": "A Land Of Tombs",
+      "duration": "2:16"
+    },
+    {
+      "position": "19",
+      "type_": "track",
+      "title": "To Seek Salvation",
+      "duration": "2:21"
+    },
+    {
+      "position": "20",
+      "type_": "track",
+      "title": "Do With It As You Will",
+      "duration": "2:09"
+    },
+    {
+      "position": "20 Alt",
+      "type_": "track",
+      "title": "Do With It As You Will",
+      "duration": "2:09"
+    },
+    {
+      "position": "21",
+      "type_": "track",
+      "title": "Virgo Serena",
+      "duration": "1:31"
+    },
+    {
+      "position": "22",
+      "type_": "track",
+      "title": "The Forbidden Tower",
+      "duration": "3:44"
+    },
+    {
+      "position": "22_Alt",
+      "type_": "track",
+      "title": "The Forbidden Tower",
+      "duration": "3:44"
+    },
+    {
+      "position": "23",
+      "type_": "track",
+      "title": "Out There",
+      "duration": "2:49"
+    },
+    {
+      "position": "24",
+      "type_": "track",
+      "title": "Heavenly Clouds",
+      "duration": "2:40"
+    },
+    {
+      "position": "24",
+      "type_": "track",
+      "title": "Heavenly Clouds",
+      "duration": "2:40"
+    },
+    {
+      "position": "25",
+      "type_": "track",
+      "title": "False God",
+      "duration": "3:57"
+    },
+    {
+      "position": "",
+      "type_": "heading",
+      "title": "Bonus Tracks",
+      "duration": ""
+    },
+    {
+      "position": "26",
+      "type_": "track",
+      "title": "Blessed Messenger",
+      "duration": "0:58"
+    },
+    {
+      "position": "27",
+      "type_": "track",
+      "title": "The End Of The Process (Finale)",
+      "duration": "3:29"
+    },
+    {
+      "position": "",
+      "type_": "heading",
+      "title": "-",
+      "duration": ""
+    },
+    {
+      "position": "28",
+      "type_": "track",
+      "title": "Welcome to Gehenna",
+      "duration": "1:44"
+    },
+    {
+      "position": "29",
+      "type_": "track",
+      "title": "Worlds Apart",
+      "duration": "5:00"
+    },
+    {
+      "position": "30",
+      "type_": "track",
+      "title": "The Fall Of Gehenna (Finale)",
+      "duration": "1:05"
+    }
+  ],
+  "extraartists": [],
+  "images": [
+    {
+      "type": "primary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 600
+    }
+  ],
+  "thumb": "",
+  "blocked_from_sale": false
+}
