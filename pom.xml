@@ -28,6 +28,17 @@
         <mockito.version>4.3.1</mockito.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- To override a Beta version on Text-IO -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Discogs API: https://github.com/s-lindenau/discogs4j fork of https://github.com/ajdons/discogs4j -->
         <dependency>
@@ -46,13 +57,6 @@
             <groupId>org.beryx</groupId>
             <artifactId>text-io</artifactId>
             <version>3.4.1</version>
-            <exclusions>
-                <!-- Excluded because of Beta version -->
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- JSON Object processing -->
         <dependency>
@@ -64,7 +68,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <!-- version via dependencyManagement -->
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
