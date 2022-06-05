@@ -36,7 +36,7 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
 
     @Override
     protected void runDiscogsServiceTest() {
-        MusicRelease fakeReleaseForDiscogsId = new MusicRelease(0, 0, null, null, null, Collections.emptyList());
+        MusicRelease fakeReleaseForDiscogsId = new MusicRelease(0, 0, null, null, null, null, Collections.emptyList());
         ReleaseCollection releaseCollection = new ReleaseCollection(Collections.singleton(fakeReleaseForDiscogsId));
         MusicRelease release = getService().getRelease(releaseCollection, 0);
         verifyRelease(release);

@@ -52,20 +52,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- webstuff -->
+        <!-- DropWizard Web Framework -->
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
             <version>2.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-views-mustache</artifactId>
             <version>2.1.0</version>
         </dependency>
-
         <!-- JSON Object processing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -79,9 +76,9 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
         </dependency>
         <!-- Unit Test -->
         <dependency>
@@ -102,8 +99,6 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>
