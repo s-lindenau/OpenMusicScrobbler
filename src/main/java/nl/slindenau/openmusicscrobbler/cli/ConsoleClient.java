@@ -1,13 +1,16 @@
 package nl.slindenau.openmusicscrobbler.cli;
 
+import nl.slindenau.openmusicscrobbler.cli.model.ReleaseDecorator;
+import nl.slindenau.openmusicscrobbler.cli.model.TrackDecorator;
 import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
-import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DateTimeService;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 
@@ -17,6 +20,8 @@ import java.time.Instant;
  * Licence: GPLv3
  */
 public class ConsoleClient extends AbstractConsoleClient {
+
+    private final Logger logger = LoggerFactory.getLogger(ConsoleClient.class);
 
     private static final String EXIT_COMMAND = "exit";
     private static final String CANCEL_COMMAND = "cancel";
@@ -39,8 +44,8 @@ public class ConsoleClient extends AbstractConsoleClient {
             } catch (OpenMusicScrobblerException ex) {
                 handleException(ex);
             } catch (Exception ex) {
-                ex.printStackTrace();
                 handleException(ex);
+                logger.error(ex.getMessage(), ex);
             }
             exit = askCommand(EXIT_COMMAND);
         }
@@ -64,9 +69,9 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private void handleRelease(MusicRelease release) {
         printEmptyLine();
-        printLine("Selected release " + decorateRelease(release));
+        printLine("Selected release " + new ReleaseDecorator(release));
         printLine("Tracklist");
-        release.getAllTracks().stream().map(this::decorateTrack).forEach(this::printLine);
+        release.getAllTracks().stream().map(TrackDecorator::new).map(TrackDecorator::toString).forEach(this::printLine);
         printEmptyLine();
         printLine("Scrobble release to Last.fm?");
         boolean cancel = askCommand(CANCEL_COMMAND);
@@ -107,24 +112,7 @@ public class ConsoleClient extends AbstractConsoleClient {
     }
 
     private void printReleases(ReleaseCollection collectionReleases) {
-        collectionReleases.releases().stream().map(this::decorateRelease).forEach(this::printLine);
-    }
-
-    private String decorateRelease(MusicRelease release) {
-        int releaseId = release.id();
-        String title = release.title();
-        String format = release.format();
-        String artist = release.artist();
-        Integer year = release.year();
-        return String.format("%02d: %s - %s (%s, %s)", releaseId, artist, title, format, year);
-    }
-
-    private String decorateTrack(Track track) {
-        String position = track.position();
-        String artist = track.artist();
-        String title = track.title();
-        String duration = track.duration();
-        return String.format("%2s: %s - %s (%s)", position, artist, title, duration);
+        collectionReleases.releases().stream().map(ReleaseDecorator::new).map(ReleaseDecorator::toString).forEach(this::printLine);
     }
 
     private String getDiscogsUsername() {
