@@ -115,7 +115,8 @@ public class ConsoleClient extends AbstractConsoleClient {
         String title = release.title();
         String format = release.format();
         String artist = release.artist();
-        return String.format("%02d: %s - %s (%s)", releaseId, artist, title, format);
+        Integer year = release.year();
+        return String.format("%02d: %s - %s (%s, %s)", releaseId, artist, title, format, year);
     }
 
     private String decorateTrack(Track track) {
