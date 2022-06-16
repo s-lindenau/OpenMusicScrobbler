@@ -5,14 +5,23 @@ import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsArtistNameCollector;
 import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
-import nl.slindenau.openmusicscrobbler.discogs.model.collection.*;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.BasicInformation;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionFolder;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionRelease;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionReleases;
+import nl.slindenau.openmusicscrobbler.discogs.model.collection.UserCollection;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Format;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author slindenau
