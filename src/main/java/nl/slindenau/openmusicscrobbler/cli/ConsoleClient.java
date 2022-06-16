@@ -9,8 +9,6 @@ import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import nl.slindenau.openmusicscrobbler.service.DateTimeService;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 
@@ -20,8 +18,6 @@ import java.time.Instant;
  * Licence: GPLv3
  */
 public class ConsoleClient extends AbstractConsoleClient {
-
-    private final Logger logger = LoggerFactory.getLogger(ConsoleClient.class);
 
     private static final String EXIT_COMMAND = "exit";
     private static final String CANCEL_COMMAND = "cancel";
@@ -34,8 +30,6 @@ public class ConsoleClient extends AbstractConsoleClient {
         this.scrobbleService = new ScrobbleService();
     }
 
-    // todo: configure logging to file
-
     public void run() {
         boolean exit = false;
         while (!exit) {
@@ -45,7 +39,7 @@ public class ConsoleClient extends AbstractConsoleClient {
                 handleException(ex);
             } catch (Exception ex) {
                 handleException(ex);
-                logger.error(ex.getMessage(), ex);
+                getLogger().error(ex.getMessage(), ex);
             }
             exit = askCommand(EXIT_COMMAND);
         }

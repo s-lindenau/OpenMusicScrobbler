@@ -3,6 +3,8 @@ package nl.slindenau.openmusicscrobbler.cli;
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author slindenau
@@ -11,6 +13,7 @@ import org.beryx.textio.TextTerminal;
  */
 public abstract class AbstractConsoleClient {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final TextIO textIO = TextIoFactory.getTextIO();
     private final TextTerminal<?> terminal = textIO.getTextTerminal();
 
@@ -42,5 +45,9 @@ public abstract class AbstractConsoleClient {
 
     protected void closeConsoleClient() {
         textIO.dispose();
+    }
+
+    protected Logger getLogger(){
+        return logger;
     }
 }
