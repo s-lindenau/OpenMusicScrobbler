@@ -92,6 +92,22 @@
             <artifactId>logback-classic</artifactId>
             <!-- version via dependencyManagement -->
         </dependency>
+        <!-- Logging bridges -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <!-- Unit Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

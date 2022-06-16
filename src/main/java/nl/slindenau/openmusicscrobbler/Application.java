@@ -3,6 +3,7 @@ package nl.slindenau.openmusicscrobbler;
 import nl.slindenau.openmusicscrobbler.cli.ConsoleClient;
 import nl.slindenau.openmusicscrobbler.cli.EncryptPasswordClient;
 import nl.slindenau.openmusicscrobbler.web.WebApplication;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 /**
  * @author slindenau
@@ -17,6 +18,7 @@ public class Application {
     private static final String DEFAULT_APPLICATION_TO_RUN = CONSOLE_APPLICATION;
 
     public static void main(String[] commandLineArguments) {
+        configureLogging();
         String applicationToRun = getApplicationToRun(commandLineArguments);
         switch (applicationToRun) {
             case ENCRYPT_APPLICATION -> new EncryptPasswordClient().run();
@@ -24,6 +26,11 @@ public class Application {
             case SERVER_APPLICATION -> new WebApplication().run(commandLineArguments);
             default -> throw new IllegalArgumentException("Unknown command: " + applicationToRun);
         }
+    }
+
+    private static void configureLogging() {
+        SLF4JBridgeHandler.removeHandlersForRootLogger();
+        SLF4JBridgeHandler.install();
     }
 
     private static String getApplicationToRun(String[] commandLineArguments) {
