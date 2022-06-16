@@ -16,4 +16,6 @@ public class Tracklist {
     public String title;
     public String duration;
     public List<Artist> artists;
+    @JsonProperty("sub_tracks")
+    public List<Tracklist> subTracks;
 }

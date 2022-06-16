@@ -1,0 +1,305 @@
+{
+  "id": 2647399,
+  "status": "Accepted",
+  "year": 0,
+  "resource_url": "https://api.discogs.com/releases/2647399",
+  "uri": "https://www.discogs.com/release/2647399-Vivaldi-Die-Vier-Jahreszeiten-Concerto-Grosso-Op-3-Nr-II-D-moll-PV-250",
+  "artists": [
+    {
+      "name": "Antonio Vivaldi",
+      "anv": "Vivaldi",
+      "join": "",
+      "role": "",
+      "tracks": "",
+      "id": 108566,
+      "resource_url": "https://api.discogs.com/artists/108566"
+    }
+  ],
+  "artists_sort": "Antonio Vivaldi",
+  "labels": [
+    {
+      "name": "Deutsche Grammophon",
+      "catno": "135 024",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 7703,
+      "resource_url": "https://api.discogs.com/labels/7703"
+    }
+  ],
+  "series": [],
+  "companies": [
+    {
+      "name": "Gebrüder Jänecke",
+      "catno": "",
+      "entity_type": "19",
+      "entity_type_name": "Printed By",
+      "id": 263763,
+      "resource_url": "https://api.discogs.com/labels/263763"
+    }
+  ],
+  "formats": [
+    {
+      "name": "Vinyl",
+      "qty": "1",
+      "text": "Stereo",
+      "descriptions": [
+        "LP"
+      ]
+    }
+  ],
+  "data_quality": "Needs Vote",
+  "community": {
+    "have": 161,
+    "want": 4,
+    "rating": {
+      "count": 5,
+      "average": 3.2
+    },
+    "submitter": {
+      "username": "ravenchild",
+      "resource_url": "https://api.discogs.com/users/ravenchild"
+    },
+    "contributors": [
+      {
+        "username": "ravenchild",
+        "resource_url": "https://api.discogs.com/users/ravenchild"
+      },
+      {
+        "username": "xtofcalis",
+        "resource_url": "https://api.discogs.com/users/xtofcalis"
+      },
+      {
+        "username": "target25",
+        "resource_url": "https://api.discogs.com/users/target25"
+      },
+      {
+        "username": "M3acull",
+        "resource_url": "https://api.discogs.com/users/M3acull"
+      },
+      {
+        "username": "blach",
+        "resource_url": "https://api.discogs.com/users/blach"
+      }
+    ],
+    "data_quality": "Needs Vote",
+    "status": "Accepted"
+  },
+  "format_quantity": 1,
+  "date_added": "2011-01-12T04:33:49-08:00",
+  "date_changed": "2015-06-10T12:26:38-07:00",
+  "num_for_sale": 17,
+  "lowest_price": 0.94,
+  "master_id": 543354,
+  "master_url": "https://api.discogs.com/masters/543354",
+  "title": "Die Vier Jahreszeiten & Concerto Grosso Op 3 Nr. II D-moll, P.V. 250",
+  "country": "Germany",
+  "notes": "Cover image: 'Die Vier Jahrezeiten' painting by Abel Grimmer (1570-1619, Antwerpen).\r\nPrinted in Germany by Gebrüder Jänecke, Hannover\r\n\r\nCenter labels reads [a108566]\r\nGiven tracklist as of center labels (differs from backcover - see below).\r\n\r\n-> Front cover:\r\n[url=http://www.discogs.com/artist/108566]Vivaldi[/url]\r\nDie Vier Jahreszeiten & Concerto grosso op 3 Nr. II d-moll, P.V. 250\r\n\r\n-> Spine:\r\n[url=http://www.discogs.com/artist/108566]Vivaldi[/url]: Die Vier Jahreszeiten op. 8 Nr. 1-4 · Concerto grosso d-moll op. 3 Nr. 11\r\n\r\n-> Backcover:\r\n[url=http://www.discogs.com/artist/108566]Vivaldi[/url]\r\nDie Vier Jahreszeiten & Concerto grosso op 3 Nr. II d-moll, P.V. 250\r\n\r\nConcerto grosso E-dur PV 241\r\nI. La Primavera (Der Frühling)\r\n1. Allegro\r\n2. Largo\r\n3. Allegro\r\n\r\nConcerto grosso g-moll PV 366\r\nII. L'Estate (Der Sommer)\r\n1. Allegro non molto\r\n2. Adagio\r\n3. Presto\r\n\r\nConcerto Grosso F-dur PV 257\r\nIII. L'Autumno (Der Herbst)\r\n1. Allegro\r\n2. Adagio\r\n3. Allegro\r\n\r\nConcerto Grosso f-moll PV 442\r\nIV. L'Inverno (Der Winter)\r\n1. Allegro\r\n2. Largo\r\n3. Allegro\r\n\r\nConcerto Grosso d-moll op. 3 Nr. 11 PV 250\r\n1. Allegro - Allegro · 2. Largo · 3. Allegro",
+  "identifiers": [
+    {
+      "type": "Matrix / Runout",
+      "value": "5 ℗ 1967 L 71 <>Z1 00 136915 = 5 A 135024 A",
+      "description": "Runout A-side, stamped"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "1 ℗ 1967 K71<>K 1350XX24 B 00 136915 = 3 B",
+      "description": "Runout B-side, stamped (XX stamped over 91)"
+    },
+    {
+      "type": "Rights Society",
+      "value": "D.P."
+    }
+  ],
+  "videos": [
+    {
+      "uri": "https://www.youtube.com/watch?v=7DBIR30ks64",
+      "title": "Las Cuatro Estaciones (Four Seasons) - Vivaldi",
+      "description": "Las cuatro estaciones (en italiano: Le quattro stagioni) es un grupo de cuatro conciertos para violín y orquesta (cada uno está dedicado a una estación: La primavera, El verano, El otoño y El invierno) del compositor italiano Antonio Vivaldi.\n\nCompues",
+      "duration": 2435,
+      "embed": true
+    }
+  ],
+  "genres": [
+    "Classical"
+  ],
+  "styles": [
+    "Baroque"
+  ],
+  "tracklist": [
+    {
+      "position": "",
+      "type_": "heading",
+      "title": "Die Vier Jahreszeiten",
+      "duration": ""
+    },
+    {
+      "position": "",
+      "type_": "index",
+      "title": "II Cimento Dell' Armonia E Dell' Inventione",
+      "duration": "",
+      "sub_tracks": [
+        {
+          "position": "A1",
+          "type_": "track",
+          "title": "La Primavera (Frühling)",
+          "duration": ""
+        },
+        {
+          "position": "A2",
+          "type_": "track",
+          "title": "L'Estate (Sommer)",
+          "duration": ""
+        },
+        {
+          "position": "B1",
+          "type_": "track",
+          "title": "L'Autumno (Herbst)",
+          "duration": ""
+        },
+        {
+          "position": "B2",
+          "type_": "track",
+          "title": "L'Inverno (Winter)",
+          "duration": ""
+        }
+      ]
+    },
+    {
+      "position": "",
+      "type_": "index",
+      "title": "Concerto Grosso D-moll Op. 3 Nr. 11 P.V. 250",
+      "duration": "",
+      "sub_tracks": [
+        {
+          "position": "B3.1",
+          "type_": "track",
+          "title": "Allegro - Allegro",
+          "duration": ""
+        },
+        {
+          "position": "B3.2",
+          "type_": "track",
+          "title": "Largo",
+          "duration": ""
+        },
+        {
+          "position": "B3.3",
+          "type_": "track",
+          "title": "Allegro",
+          "duration": ""
+        }
+      ]
+    }
+  ],
+  "extraartists": [
+    {
+      "name": "Claude Starck",
+      "anv": "",
+      "join": "",
+      "role": "Cello [Violincello]",
+      "tracks": "",
+      "id": 1034454,
+      "resource_url": "https://api.discogs.com/artists/1034454"
+    },
+    {
+      "name": "Antonio Vivaldi",
+      "anv": "",
+      "join": "",
+      "role": "Composed By",
+      "tracks": "",
+      "id": 108566,
+      "resource_url": "https://api.discogs.com/artists/108566"
+    },
+    {
+      "name": "Rudolf Baumgartner",
+      "anv": "",
+      "join": "",
+      "role": "Conductor [Leitung]",
+      "tracks": "",
+      "id": 834640,
+      "resource_url": "https://api.discogs.com/artists/834640"
+    },
+    {
+      "name": "Eduard Kaufmann",
+      "anv": "",
+      "join": "",
+      "role": "Harpsichord [Cembalo]",
+      "tracks": "",
+      "id": 855436,
+      "resource_url": "https://api.discogs.com/artists/855436"
+    },
+    {
+      "name": "Festival Strings Lucerne",
+      "anv": "",
+      "join": "",
+      "role": "Orchestra",
+      "tracks": "",
+      "id": 834643,
+      "resource_url": "https://api.discogs.com/artists/834643"
+    },
+    {
+      "name": "Abel Grimmer",
+      "anv": "",
+      "join": "",
+      "role": "Painting",
+      "tracks": "",
+      "id": 2242926,
+      "resource_url": "https://api.discogs.com/artists/2242926"
+    },
+    {
+      "name": "Rudolf Baumgartner",
+      "anv": "",
+      "join": "",
+      "role": "Violin [2. Violine]",
+      "tracks": "B3",
+      "id": 834640,
+      "resource_url": "https://api.discogs.com/artists/834640"
+    },
+    {
+      "name": "Wolfgang Schneiderhan",
+      "anv": "",
+      "join": "",
+      "role": "Violin [Solo-Violine]",
+      "tracks": "",
+      "id": 832900,
+      "resource_url": "https://api.discogs.com/artists/832900"
+    }
+  ],
+  "images": [
+    {
+      "type": "primary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 597
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 596
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 610
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 612
+    }
+  ],
+  "thumb": "",
+  "estimated_weight": 230,
+  "blocked_from_sale": false
+}

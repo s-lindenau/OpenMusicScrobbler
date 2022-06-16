@@ -1,0 +1,839 @@
+{
+  "id": 2318077,
+  "status": "Accepted",
+  "year": 1970,
+  "resource_url": "https://api.discogs.com/releases/2318077",
+  "uri": "https://www.discogs.com/release/2318077-Crosby-Stills-Nash-Young-D%C3%A9j%C3%A0-Vu",
+  "artists": [
+    {
+      "name": "Crosby, Stills, Nash & Young",
+      "anv": "",
+      "join": "",
+      "role": "",
+      "tracks": "",
+      "id": 285408,
+      "resource_url": "https://api.discogs.com/artists/285408"
+    }
+  ],
+  "artists_sort": "Crosby, Stills, Nash & Young",
+  "labels": [
+    {
+      "name": "Atlantic",
+      "catno": "50 001",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 681,
+      "resource_url": "https://api.discogs.com/labels/681"
+    },
+    {
+      "name": "Atlantic",
+      "catno": "SD 7200",
+      "entity_type": "1",
+      "entity_type_name": "Label",
+      "id": 681,
+      "resource_url": "https://api.discogs.com/labels/681"
+    }
+  ],
+  "series": [],
+  "companies": [
+    {
+      "name": "Polydor Records Ltd.",
+      "catno": "",
+      "entity_type": "10",
+      "entity_type_name": "Manufactured By",
+      "id": 133451,
+      "resource_url": "https://api.discogs.com/labels/133451"
+    },
+    {
+      "name": "Atlantic Recording Corporation",
+      "catno": "",
+      "entity_type": "6",
+      "entity_type_name": "Licensed From",
+      "id": 23937,
+      "resource_url": "https://api.discogs.com/labels/23937"
+    },
+    {
+      "name": "Atlantic Recording Corporation",
+      "catno": "",
+      "entity_type": "14",
+      "entity_type_name": "Copyright (c)",
+      "id": 23937,
+      "resource_url": "https://api.discogs.com/labels/23937"
+    },
+    {
+      "name": "Phonodisc B.V.",
+      "catno": "",
+      "entity_type": "30",
+      "entity_type_name": "Lacquer Cut At",
+      "id": 415807,
+      "resource_url": "https://api.discogs.com/labels/415807"
+    }
+  ],
+  "formats": [
+    {
+      "name": "Vinyl",
+      "qty": "1",
+      "text": "Gatefold",
+      "descriptions": [
+        "LP",
+        "Album"
+      ]
+    }
+  ],
+  "data_quality": "Needs Vote",
+  "community": {
+    "have": 837,
+    "want": 318,
+    "rating": {
+      "count": 62,
+      "average": 4.21
+    },
+    "submitter": {
+      "username": "BOERenSKIN",
+      "resource_url": "https://api.discogs.com/users/BOERenSKIN"
+    },
+    "contributors": [
+      {
+        "username": "BOERenSKIN",
+        "resource_url": "https://api.discogs.com/users/BOERenSKIN"
+      },
+      {
+        "username": "Rico15NL",
+        "resource_url": "https://api.discogs.com/users/Rico15NL"
+      },
+      {
+        "username": "pietpiet",
+        "resource_url": "https://api.discogs.com/users/pietpiet"
+      },
+      {
+        "username": "TheBlackestCrow",
+        "resource_url": "https://api.discogs.com/users/TheBlackestCrow"
+      },
+      {
+        "username": "leevmeister",
+        "resource_url": "https://api.discogs.com/users/leevmeister"
+      },
+      {
+        "username": "Marco717",
+        "resource_url": "https://api.discogs.com/users/Marco717"
+      },
+      {
+        "username": "echnatons",
+        "resource_url": "https://api.discogs.com/users/echnatons"
+      },
+      {
+        "username": "rockness87",
+        "resource_url": "https://api.discogs.com/users/rockness87"
+      }
+    ],
+    "data_quality": "Needs Vote",
+    "status": "Accepted"
+  },
+  "format_quantity": 1,
+  "date_added": "2010-06-14T10:57:37-07:00",
+  "date_changed": "2020-02-20T04:44:28-08:00",
+  "num_for_sale": 16,
+  "lowest_price": 5.23,
+  "master_id": 38712,
+  "master_url": "https://api.discogs.com/masters/38712",
+  "title": "Déjà Vu",
+  "country": "Netherlands",
+  "released": "1970",
+  "notes": "50 001 (SD 7200) on top of front cover, above the Atlantic logo.\nOrange-Purple Atlantic label.\n\nThe record is Made in Holland. The cover is printed in the U.S.A.\n\nCopyright 1970 Atlantic Recording Corp. 1841 Broadway, New York, N.Y. 10023 Printed U.S.A\n\n\n\n",
+  "released_formatted": "1970",
+  "identifiers": [
+    {
+      "type": "Matrix / Runout",
+      "value": "SD 7200 1Y 1 670114",
+      "description": "Side A Variant 1"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "SD 7200 2Y 1 6701120",
+      "description": "Side B Variant 1"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "SD 7200 1Y 1 670119",
+      "description": "Side A Variant 2"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "SD 7200 2Y 1 670114",
+      "description": "Side B Variant 2"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "SD 7200 A",
+      "description": "Label Side A"
+    },
+    {
+      "type": "Matrix / Runout",
+      "value": "SD 7200 B",
+      "description": "Label Side B"
+    },
+    {
+      "type": "Rights Society",
+      "value": "B.I.E.M."
+    }
+  ],
+  "videos": [
+    {
+      "uri": "https://www.youtube.com/watch?v=lh67x9iDCjg",
+      "title": "Carry On",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nCarry On · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nPercussion: Dallas Taylor\nBand  Member, Vocals: David Crosby\nProducer: David Crosby\nPercussion, Vocals: Gr",
+      "duration": 266,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=GIxb2gm3HeE",
+      "title": "Déjà Vu (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nDéjà Vu (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1970 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nElectri",
+      "duration": 252,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=r72QF7JOQvw",
+      "title": "Teach Your Children",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nTeach Your Children · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1974 Atlantic Recording Corporation\n\nUnknown: Bill Halverson\nPercussion: Dallas Taylor\nBand  Member, Vocals: David Crosby\nProducer: David Crosby\nRhyth",
+      "duration": 174,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=BIAHEVvc6dw",
+      "title": "Sleep Song (Demo) (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nSleep Song (Demo) (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2009 Atlantic Recording Corporation.\n\nWriter: Graham Nash\n\nAuto-generated by YouTube.",
+      "duration": 182,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=as5lE64J1hQ",
+      "title": "Almost Cut My Hair",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nAlmost Cut My Hair · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nRhythm  Guitar: David Crosby\nProducer: David Crosby\nVocals: David Crosby\nKe",
+      "duration": 270,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=R3XVYWsIDbc",
+      "title": "Crosby Stills Nash and Young / Deja Vu 50th anniversary super deluxe edition unboxed",
+      "description": "Subscribe to this channel: http://bit.ly/2sQ5PIK\n\nSuperDeluxeEdition.com editor, Paul Sinclair, takes a look at the Crosby Stills Nash and Young 'Deja Vu' super deluxe edition box set. Click this link to subscribe to the SDE YouTube channel and see more g",
+      "duration": 381,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=C8LYOyqJE7k",
+      "title": "Helpless",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nHelpless · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nProducer: David Crosby\nVocals: David Crosby\nProducer: Graham Nash\nVocals: Graham Nash",
+      "duration": 218,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=cniVZl2Rnig",
+      "title": "Déjà Vu (Early Alternate Mix)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nDéjà Vu (Early Alternate Mix) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nE",
+      "duration": 223,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=4lx86B6a3kc",
+      "title": "Woodstock",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nWoodstock · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nRhythm  Guitar: David Crosby\nProducer: David Crosby\nVocals: David Crosby\nKeyboards, ",
+      "duration": 234,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=v1KqiTLUnIw",
+      "title": "Woodstock (Alternate Vocals)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nWoodstock (Alternate Vocals) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nElec",
+      "duration": 259,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=YCs6Tpd5sFQ",
+      "title": "Deja Vu",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nDeja Vu · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nRhythm  Guitar: David Crosby\nProducer: David Crosby\nVocals: David Crosby\nProducer: Gra",
+      "duration": 253,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=4vjgUPzVXPE",
+      "title": "Déjà Vu (Demo)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nDéjà Vu (Demo) · Graham Nash · David Crosby\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nGuitar, Vocals: David Crosby\nProducer: David Crosby\nProducer: Graham Nash\nVocals: Graham Nash\nWriter: David Crosby",
+      "duration": 266,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=tKYjUn-SBcg",
+      "title": "Our House",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nOur House · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nProducer: David Crosby\nVocals: David Crosby\nKeyboards, Vocals: Graham Nash\nProducer:",
+      "duration": 180,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=ZMIqkWLCJM4",
+      "title": "4 + 20 (Alternate Take 2)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\n4 + 20 (Alternate Take 2) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nProducer: David Crosby\nProducer: Graham Nash\nProducer: Neil Young\nAcoustic  Guitar: Stephen Stills\nProdu",
+      "duration": 129,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=_cNbOmVgFuc",
+      "title": "4 + 20",
+      "description": "Provided to YouTube by Rhino Atlantic\n\n4 + 20 · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nProducer: David Crosby\nProducer: Graham nash\nProducer: Neil Young\nGuitar, Vocals: Stephen Stills\nProducer: S",
+      "duration": 127,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=fcRWrFZHlQw",
+      "title": "Carry On (Early Alternate Mix)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nCarry On (Early Alternate Mix) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nEl",
+      "duration": 275,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=noxlrqCe1vE",
+      "title": "Country Girl",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nCountry Girl · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nRhythm  Guitar: David Crosby\nProducer: David Crosby\nVocals: David Crosby\nRhythm  ",
+      "duration": 313,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=EYl6nVr3aSI",
+      "title": "Carry On (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nCarry On (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1970 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nElectric",
+      "duration": 268,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=lmc6w2k28y8",
+      "title": "Everybody I Love You",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nEverybody I Love You · Crosby, Stills, Nash & Young\n\nDeja Vu\n\n℗ 1970 Atlantic Recording Corp.\n\nUnknown: Bill Halverson\nDrums: Dallas Taylor\nRhythm  Guitar: David Crosby\nProducer: David Crosby\nVocals: David Crosby\n",
+      "duration": 142,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=XxpfK_A34GM",
+      "title": "Our House (Early Version)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nOur House (Early Version) · Crosby, Stills, Nash & Young\n\nOur House\n\n℗ 2021 Atlantic Recording Corporation.\n\nDrums: Dallas Taylor\nProducer: David Crosby\nHarmony  Vocals: David Crosby\nPiano: Graham Nash\nProducer: G",
+      "duration": 176,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=gyrthpOL7OI",
+      "title": "Ivory Tower (Outtake)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nIvory Tower (Outtake) · Crosby, Stills, Nash & Young\n\nIvory Tower\n\n℗ 2021 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\nGuitar, Vocals: David Crosby\nProducer: David Crosby\nProducer: Graham Nash",
+      "duration": 232,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=DliwxNKyVm4",
+      "title": "Laughing (Outtake)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nLaughing (Outtake) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2020 Atlantic Recording Corporation.\n\nWriter: David Crosby\n\nAuto-generated by YouTube.",
+      "duration": 250,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=B-nzINX8DUw",
+      "title": "4 + 20 (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\n4 + 20 (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1970 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nElectric  ",
+      "duration": 129,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=YKR38zO0KSw",
+      "title": "The Lee Shore (1969 Vocal) (Outtake)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nThe Lee Shore (1969 Vocal) (Outtake) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nWriter: David Crosby\n\nAuto-generated by YouTube.",
+      "duration": 364,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=27a73R7xJVA",
+      "title": "Teach Your Children (Demo) (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nTeach Your Children (Demo) (2021 Remaster) · Graham Nash · David Crosby\n\nDéjà Vu\n\n℗ 2006 Atlantic Recording Corporation.\n\nWriter: Graham Nash\n\nAuto-generated by YouTube.",
+      "duration": 195,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=DxNf8aF3Vos",
+      "title": "30 Dollar Fine (Outtake)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\n30 Dollar Fine (Outtake) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nComposer: Stephen Stills\n\nAuto-generated by YouTube.",
+      "duration": 166,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=tmOY7YUs6MY",
+      "title": "I'll Be There (Outtake)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nI'll Be There (Outtake) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nComposer: Stephen Stills\n\nAuto-generated by YouTube.",
+      "duration": 222,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=DS5x5ISyJwA",
+      "title": "How Have You Been (Demo) (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nHow Have You Been (Demo) (2021 Remaster) · Crosby, Stills & Nash\n\nDéjà Vu\n\n℗ 1991 Atlantic Recording Corporation.\n\nWriter: John Sebastian\n\nAuto-generated by YouTube.",
+      "duration": 225,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=5Kn2c1YYL9k",
+      "title": "Bluebird Revisited (Outtake)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nBluebird Revisited (Outtake) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nWriter: Stephen Stills\n\nAuto-generated by YouTube.",
+      "duration": 205,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=pWMyLDia6R0",
+      "title": "Country Girl (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nCountry Girl (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1970 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Crosby\nElec",
+      "duration": 314,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=R2wXiu_Nb2U",
+      "title": "Almost Cut My Hair (Early Version)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nAlmost Cut My Hair (Early Version) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 2021 Atlantic Recording Corporation.\n\nWriter: David Crosby\n\nAuto-generated by YouTube.",
+      "duration": 615,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=VlPtOB8_aRQ",
+      "title": "Neil Young & Graham Nash - Birds (Demo) [Official Audio]",
+      "description": "This demo for Birds by Neil Young featuring Graham Nash was originally recorded during the sessions for Crosby, Stills, Nash, & Young's seminal album Deja Vu. The deluxe version of Deja Vu, featuring hours of outtakes, alternate versions, and demos, is ",
+      "duration": 217,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=clcevLPtKyI",
+      "title": "Horses Through A Rainstorm (Outtake) (2020 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nHorses Through A Rainstorm (Outtake) (2020 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1991 Atlantic Recording Corporation.\n\nWriter: Graham Nash\nWriter: Terry Reid\n\nAuto-generated by YouTube.",
+      "duration": 213,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=XvGV1okMtw4",
+      "title": "Everybody I Love You (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nEverybody I Love You (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1970 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Cro",
+      "duration": 142,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=weuAjAmZD60",
+      "title": "Triad (Demo) (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nTriad (Demo) (2021 Remaster) · David Crosby\n\nDéjà Vu\n\n℗ 2006 Atlantic Recording Corporation.\n\nWriter: David Crosby\n\nAuto-generated by YouTube.",
+      "duration": 331,
+      "embed": true
+    },
+    {
+      "uri": "https://www.youtube.com/watch?v=ZT6mclMGtVA",
+      "title": "Teach Your Children (2021 Remaster)",
+      "description": "Provided to YouTube by Rhino Atlantic\n\nTeach Your Children (2021 Remaster) · Crosby, Stills, Nash & Young\n\nDéjà Vu\n\n℗ 1970 Atlantic Recording Corporation.\n\nDrums, Percussion: Dallas Taylor\n12  String  Guitar: David Crosby\nAcoustic  Guitar: David Cros",
+      "duration": 174,
+      "embed": true
+    }
+  ],
+  "genres": [
+    "Rock"
+  ],
+  "styles": [
+    "Folk Rock",
+    "Country Rock",
+    "Classic Rock"
+  ],
+  "tracklist": [
+    {
+      "position": "A1",
+      "type_": "track",
+      "title": "Carry On",
+      "extraartists": [
+        {
+          "name": "Stephen Stills",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 236968,
+          "resource_url": "https://api.discogs.com/artists/236968"
+        }
+      ],
+      "duration": "4:25"
+    },
+    {
+      "position": "A2",
+      "type_": "track",
+      "title": "Teach Your Children",
+      "extraartists": [
+        {
+          "name": "Jerry Garcia",
+          "anv": "",
+          "join": "",
+          "role": "Steel Guitar",
+          "tracks": "",
+          "id": 259913,
+          "resource_url": "https://api.discogs.com/artists/259913"
+        },
+        {
+          "name": "Graham Nash",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 262945,
+          "resource_url": "https://api.discogs.com/artists/262945"
+        }
+      ],
+      "duration": "2:53"
+    },
+    {
+      "position": "A3",
+      "type_": "track",
+      "title": "Almost Cut My Hair",
+      "extraartists": [
+        {
+          "name": "David Crosby",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 253966,
+          "resource_url": "https://api.discogs.com/artists/253966"
+        }
+      ],
+      "duration": "4:25"
+    },
+    {
+      "position": "A4",
+      "type_": "track",
+      "title": "Helpless",
+      "extraartists": [
+        {
+          "name": "Neil Young",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 138556,
+          "resource_url": "https://api.discogs.com/artists/138556"
+        }
+      ],
+      "duration": "3:30"
+    },
+    {
+      "position": "A5",
+      "type_": "track",
+      "title": "Woodstock",
+      "extraartists": [
+        {
+          "name": "Joni Mitchell",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 90233,
+          "resource_url": "https://api.discogs.com/artists/90233"
+        }
+      ],
+      "duration": "3:52"
+    },
+    {
+      "position": "B1",
+      "type_": "track",
+      "title": "Déjà Vu",
+      "extraartists": [
+        {
+          "name": "John Sebastian",
+          "anv": "",
+          "join": "",
+          "role": "Harmonica [Mouth Harp]",
+          "tracks": "",
+          "id": 28889,
+          "resource_url": "https://api.discogs.com/artists/28889"
+        },
+        {
+          "name": "David Crosby",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 253966,
+          "resource_url": "https://api.discogs.com/artists/253966"
+        }
+      ],
+      "duration": "4:10"
+    },
+    {
+      "position": "B2",
+      "type_": "track",
+      "title": "Our House",
+      "extraartists": [
+        {
+          "name": "Graham Nash",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 262945,
+          "resource_url": "https://api.discogs.com/artists/262945"
+        }
+      ],
+      "duration": "2:59"
+    },
+    {
+      "position": "B3",
+      "type_": "track",
+      "title": "4 + 20",
+      "extraartists": [
+        {
+          "name": "Stephen Stills",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 236968,
+          "resource_url": "https://api.discogs.com/artists/236968"
+        }
+      ],
+      "duration": "1:55"
+    },
+    {
+      "position": "",
+      "type_": "index",
+      "title": "Country Girl",
+      "duration": "5:05",
+      "sub_tracks": [
+        {
+          "position": "B4a",
+          "type_": "track",
+          "title": "Whiskey Boot Hill",
+          "extraartists": [
+            {
+              "name": "Neil Young",
+              "anv": "",
+              "join": "",
+              "role": "Written-By",
+              "tracks": "",
+              "id": 138556,
+              "resource_url": "https://api.discogs.com/artists/138556"
+            }
+          ],
+          "duration": ""
+        },
+        {
+          "position": "B4b",
+          "type_": "track",
+          "title": "Down, Down, Down",
+          "extraartists": [
+            {
+              "name": "Neil Young",
+              "anv": "",
+              "join": "",
+              "role": "Written-By",
+              "tracks": "",
+              "id": 138556,
+              "resource_url": "https://api.discogs.com/artists/138556"
+            }
+          ],
+          "duration": ""
+        },
+        {
+          "position": "B4c",
+          "type_": "track",
+          "title": "Country Girl (I Think You're Pretty)",
+          "extraartists": [
+            {
+              "name": "Neil Young",
+              "anv": "",
+              "join": "",
+              "role": "Written-By",
+              "tracks": "",
+              "id": 138556,
+              "resource_url": "https://api.discogs.com/artists/138556"
+            }
+          ],
+          "duration": ""
+        }
+      ]
+    },
+    {
+      "position": "B5",
+      "type_": "track",
+      "title": "Everybody I Love You",
+      "extraartists": [
+        {
+          "name": "Neil Young",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 138556,
+          "resource_url": "https://api.discogs.com/artists/138556"
+        },
+        {
+          "name": "Stephen Stills",
+          "anv": "",
+          "join": "",
+          "role": "Written-By",
+          "tracks": "",
+          "id": 236968,
+          "resource_url": "https://api.discogs.com/artists/236968"
+        }
+      ],
+      "duration": "2:20"
+    }
+  ],
+  "extraartists": [
+    {
+      "name": "Gary Burden",
+      "anv": "",
+      "join": "",
+      "role": "Art Direction",
+      "tracks": "",
+      "id": 1106428,
+      "resource_url": "https://api.discogs.com/artists/1106428"
+    },
+    {
+      "name": "Greg Reeves",
+      "anv": "Gregory Reeves",
+      "join": "",
+      "role": "Bass",
+      "tracks": "",
+      "id": 358666,
+      "resource_url": "https://api.discogs.com/artists/358666"
+    },
+    {
+      "name": "Bill Halverson",
+      "anv": "",
+      "join": "",
+      "role": "Engineer",
+      "tracks": "",
+      "id": 285407,
+      "resource_url": "https://api.discogs.com/artists/285407"
+    },
+    {
+      "name": "David Geffen",
+      "anv": "",
+      "join": "",
+      "role": "Management",
+      "tracks": "",
+      "id": 597895,
+      "resource_url": "https://api.discogs.com/artists/597895"
+    },
+    {
+      "name": "Elliot Roberts & Associates",
+      "anv": "",
+      "join": "",
+      "role": "Management [Direction]",
+      "tracks": "",
+      "id": 2604403,
+      "resource_url": "https://api.discogs.com/artists/2604403"
+    },
+    {
+      "name": "Dallas Taylor",
+      "anv": "",
+      "join": "",
+      "role": "Percussion",
+      "tracks": "",
+      "id": 308191,
+      "resource_url": "https://api.discogs.com/artists/308191"
+    },
+    {
+      "name": "Tom Gundelfinger",
+      "anv": "",
+      "join": "",
+      "role": "Photography By [Cover]",
+      "tracks": "",
+      "id": 301597,
+      "resource_url": "https://api.discogs.com/artists/301597"
+    },
+    {
+      "name": "Salli Sasche",
+      "anv": "Sally Sacks",
+      "join": "",
+      "role": "Photography By [Inside (2 In Lower Right Corner)]",
+      "tracks": "",
+      "id": 2304619,
+      "resource_url": "https://api.discogs.com/artists/2304619"
+    },
+    {
+      "name": "Henry Diltz",
+      "anv": "",
+      "join": "",
+      "role": "Photography By [Inside]",
+      "tracks": "",
+      "id": 354607,
+      "resource_url": "https://api.discogs.com/artists/354607"
+    },
+    {
+      "name": "David Crosby",
+      "anv": "",
+      "join": "",
+      "role": "Producer",
+      "tracks": "",
+      "id": 253966,
+      "resource_url": "https://api.discogs.com/artists/253966"
+    },
+    {
+      "name": "Graham Nash",
+      "anv": "",
+      "join": "",
+      "role": "Producer",
+      "tracks": "",
+      "id": 262945,
+      "resource_url": "https://api.discogs.com/artists/262945"
+    },
+    {
+      "name": "Neil Young",
+      "anv": "",
+      "join": "",
+      "role": "Producer",
+      "tracks": "",
+      "id": 138556,
+      "resource_url": "https://api.discogs.com/artists/138556"
+    },
+    {
+      "name": "Stephen Stills",
+      "anv": "",
+      "join": "",
+      "role": "Producer",
+      "tracks": "",
+      "id": 236968,
+      "resource_url": "https://api.discogs.com/artists/236968"
+    }
+  ],
+  "images": [
+    {
+      "type": "primary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 579
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 598
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 600,
+      "height": 598
+    },
+    {
+      "type": "secondary",
+      "uri": "",
+      "resource_url": "",
+      "uri150": "",
+      "width": 500,
+      "height": 333
+    }
+  ],
+  "thumb": "",
+  "estimated_weight": 230,
+  "blocked_from_sale": false
+}

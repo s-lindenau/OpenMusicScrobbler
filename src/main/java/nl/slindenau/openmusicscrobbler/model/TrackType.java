@@ -8,6 +8,7 @@ package nl.slindenau.openmusicscrobbler.model;
 public enum TrackType {
     TRACK,
     HEADING,
+    INDEX,
 
     ;
 
