@@ -66,6 +66,7 @@ class ScrobbleServiceTest {
     private ScrobbleService scrobbleService;
     private MusicRelease release;
     private ReleasePart releasePart1, releasePart2;
+    private ReleasePart releasePartA, releasePartB;
 
     @BeforeEach
     void setUp() {
@@ -79,21 +80,28 @@ class ScrobbleServiceTest {
     void testScrobbleMusicRelease() {
         scrobbleService.scrobbleTracks(release, SCROBBLE_AT);
         verifyGetLastFmClientOnce();
-        verifyScrobbleTracks(asTracks(TRACKS_PART_1_A, TRACKS_PART_1_B, TRACKS_PART_2_C, TRACKS_PART_2_D));
+        verifyScrobbleTracks(combineList(TRACKS_PART_1_A, TRACKS_PART_1_B, TRACKS_PART_2_C, TRACKS_PART_2_D));
     }
 
     @Test
     void testScrobbleReleaseParts() {
         scrobbleService.scrobbleTracks(release, SCROBBLE_AT, releasePart1);
         verifyGetLastFmClientOnce();
-        verifyScrobbleTracks(asTracks(TRACKS_PART_1_A, TRACKS_PART_1_B));
+        verifyScrobbleTracks(combineList(TRACKS_PART_1_A, TRACKS_PART_1_B));
     }
 
     @Test
     void testScrobbleReleaseParts2() {
         scrobbleService.scrobbleTracks(release, SCROBBLE_AT, releasePart2);
         verifyGetLastFmClientOnce();
-        verifyScrobbleTracks(asTracks(TRACKS_PART_2_C, TRACKS_PART_2_D));
+        verifyScrobbleTracks(combineList(TRACKS_PART_2_C, TRACKS_PART_2_D));
+    }
+
+    @Test
+    void testScrobbleReleasePartsAB() {
+        scrobbleService.scrobbleTracks(release, SCROBBLE_AT, releasePartA, releasePartB);
+        verifyGetLastFmClientOnce();
+        verifyScrobbleTracks(combineList(TRACKS_PART_1_A, TRACKS_PART_1_B));
     }
 
     @Test
@@ -104,18 +112,21 @@ class ScrobbleServiceTest {
     }
 
     private void verifyScrobbleTracks(List<Track> expectedTracks) {
-        // todo: output actual vs expected on error
         for (Track expectedTrack : expectedTracks) {
-            Assertions.assertTrue(actualScrobbles.contains(expectedTrack), "Expected track was not found in actual scrobbles");
+            boolean actualScrobbleContainsExpectedTrack = actualScrobbles.contains(expectedTrack);
+            debugPrint(actualScrobbleContainsExpectedTrack, expectedTracks);
+            Assertions.assertTrue(actualScrobbleContainsExpectedTrack, "Expected track was not found in actual scrobbles");
         }
         for (Track actualTrack : actualScrobbles) {
-            Assertions.assertTrue(expectedTracks.contains(actualTrack), "Actual scrobble was not found in expected tracks");
+            boolean expectedTracksContainsActualScrobble = expectedTracks.contains(actualTrack);
+            debugPrint(expectedTracksContainsActualScrobble, expectedTracks);
+            Assertions.assertTrue(expectedTracksContainsActualScrobble, "Actual scrobble was not found in expected tracks");
         }
     }
 
     private void setupMusicRelease() {
-        ReleasePart releasePartA = new ReleasePart("A", Collections.emptyList(), TRACKS_PART_1_A);
-        ReleasePart releasePartB = new ReleasePart("B", Collections.emptyList(), TRACKS_PART_1_B);
+        releasePartA = new ReleasePart("A", Collections.emptyList(), TRACKS_PART_1_A);
+        releasePartB = new ReleasePart("B", Collections.emptyList(), TRACKS_PART_1_B);
         ReleasePart releasePartC = new ReleasePart("C", Collections.emptyList(), TRACKS_PART_2_C);
         ReleasePart releasePartD = new ReleasePart("D", Collections.emptyList(), TRACKS_PART_2_D);
         releasePart1 = new ReleasePart("Vinyl Record 1", Arrays.asList(releasePartA, releasePartB), Collections.emptyList());
@@ -128,7 +139,8 @@ class ScrobbleServiceTest {
     }
 
     private Void storeActualTracks(InvocationOnMock invocationOnMock) {
-        this.actualScrobbles = invocationOnMock.getArgument(SCROBBLE_TRACK_LIST_METHOD_ARGUMENT_INDEX);
+        Collection<Track> scrobbles = invocationOnMock.getArgument(SCROBBLE_TRACK_LIST_METHOD_ARGUMENT_INDEX);
+        this.actualScrobbles.addAll(scrobbles);
         return null;
     }
 
@@ -137,11 +149,21 @@ class ScrobbleServiceTest {
     }
 
     @SafeVarargs
-    private List<Track> asTracks(List<Track>... trackLists) {
+    private List<Track> combineList(List<Track>... trackLists) {
         List<Track> allTracks = new ArrayList<>();
         for (List<Track> trackList : trackLists) {
             allTracks.addAll(trackList);
         }
         return allTracks;
+    }
+
+    private void debugPrint(boolean checkSucceeded, List<Track> expectedTracks) {
+        if (!checkSucceeded) {
+            System.out.println("Expected:");
+            expectedTracks.forEach(System.out::println);
+            System.out.println();
+            System.out.println("Actual:");
+            actualScrobbles.forEach(System.out::println);
+        }
     }
 }
