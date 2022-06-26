@@ -12,7 +12,9 @@
         </encoder>
     </appender>
 
-    <root level="info">
+    <define name="rootLevel" class="nl.slindenau.openmusicscrobbler.config.LogLevelPropertyDefiner"/>
+
+    <root level="${rootLevel}">
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
