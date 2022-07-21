@@ -29,6 +29,7 @@ class ApplicationPropertiesTest {
     @Test
     void testGetDefaultValues() {
         Assertions.assertFalse(applicationProperties.isDebugEnabled(), "Default value for Debug should be false");
+        Assertions.assertEquals("info", applicationProperties.getLogLevel(), "Default value for Log Level should be info");
         Assertions.assertEquals(Duration.ofMinutes(1), applicationProperties.getDiscogsReadTimeout(), "Discogs read timeout default value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(10), applicationProperties.getDiscogsConnectionTimeout(), "Discogs connect timeout default value mismatch");
         Assertions.assertEquals(Duration.ofMinutes(4), applicationProperties.getDiscogsDefaultTrackLength(), "Discogs track length default value mismatch");
@@ -37,11 +38,13 @@ class ApplicationPropertiesTest {
     @Test
     void testGetOverrideDefaultValues() {
         setupProperty(ApplicationProperty.DEBUG, "true");
+        setupProperty(ApplicationProperty.LOG_LEVEL, "debug");
         setupProperty(ApplicationProperty.DISCOGS_READ_TIMEOUT, "PT1S");
         setupProperty(ApplicationProperty.DISCOGS_CONNECTION_TIMEOUT, "PT2S");
         setupProperty(ApplicationProperty.DISCOGS_TRACK_LENGTH, "PT3S");
 
         Assertions.assertTrue(applicationProperties.isDebugEnabled(), "Debug value mismatch");
+        Assertions.assertEquals("debug", applicationProperties.getLogLevel(), "Log Level value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(1), applicationProperties.getDiscogsReadTimeout(), "Discogs read timeout value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(2), applicationProperties.getDiscogsConnectionTimeout(), "Discogs connect timeout value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(3), applicationProperties.getDiscogsDefaultTrackLength(), "Discogs track length value mismatch");

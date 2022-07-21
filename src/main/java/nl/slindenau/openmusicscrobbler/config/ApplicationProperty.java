@@ -8,7 +8,7 @@ import java.util.Optional;
  * Licence: GPLv3
  */
 public enum ApplicationProperty {
-    DEBUG("oms.debug", "Enable debug logging [true or false]. Scrobbles are not sent to Last.FM when enabled.", Boolean.FALSE.toString()),
+
     DISCOGS_USERNAME("discogs.username", "Discogs username"),
     LAST_FM_USERNAME("lastfm.username", "Last.fm username"),
     LAST_FM_PASSWORD("lastfm.password", "Last.fm password, either plaintext or MD5 hashed."), // todo: encrypt (hashed) password
@@ -17,6 +17,8 @@ public enum ApplicationProperty {
     DISCOGS_CONNECTION_TIMEOUT("discogs.connection.timeout", "Timeout for Discogs API connection setup (Java Duration format)", "PT10S"),
     DISCOGS_READ_TIMEOUT("discogs.read.timeout", "Timeout for Discogs API call results (Java Duration format)", "PT60S"),
     DISCOGS_TRACK_LENGTH("discogs.track.length.default", "Default track duration to substitute a missing duration on Discogs (Java Duration format)", "PT4M"),
+    DEBUG("oms.debug", "Enable debug logging [true or false]. Scrobbles are not sent to Last.FM when enabled.", Boolean.FALSE.toString()),
+    LOG_LEVEL("oms.log.level", "Determines what logging information is written to the log file. Possible values are Logback levels (logging library)", "info"),
 
     ;
 

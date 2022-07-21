@@ -31,6 +31,10 @@ public class ApplicationProperties {
         return getProperty(ApplicationProperty.DEBUG);
     }
 
+    public String getLogLevel() {
+        return getProperty(ApplicationProperty.LOG_LEVEL);
+    }
+
     public String getDiscogsUsername() {
         return getProperty(ApplicationProperty.DISCOGS_USERNAME);
     }
