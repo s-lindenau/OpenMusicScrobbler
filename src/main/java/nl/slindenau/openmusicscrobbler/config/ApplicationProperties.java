@@ -3,6 +3,7 @@ package nl.slindenau.openmusicscrobbler.config;
 import nl.slindenau.openmusicscrobbler.util.CombinedProperties;
 
 import java.time.Duration;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -12,13 +13,11 @@ import java.util.Properties;
  */
 public class ApplicationProperties {
 
-    // todo: change to settings file (baseProperties) and keep the System properties as the override
-
     private final PropertiesParser parser = new PropertiesParser();
     private final CombinedProperties properties;
 
     public ApplicationProperties() {
-        this(System.getProperties());
+        this(new ConfigurationProperties().readConfigurationProperties());
     }
 
     protected ApplicationProperties(Properties properties) {
@@ -90,6 +89,16 @@ public class ApplicationProperties {
     }
 
     private CombinedProperties getProperties() {
+        return properties;
+    }
+
+    protected Properties getAsProperties() {
+        Properties properties = new Properties();
+        for (ApplicationProperty applicationProperty : ApplicationProperty.values()) {
+            String propertyKey = applicationProperty.getKey();
+            String propertyValue = getProperty(applicationProperty);
+            properties.put(propertyKey, Objects.requireNonNullElse(propertyValue, ""));
+        }
         return properties;
     }
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.function.Executable;
 import java.time.Duration;
 import java.util.Properties;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * @author slindenau
@@ -66,6 +67,17 @@ class ApplicationPropertiesTest {
         testEmptyValue(applicationProperties::getLastFmPassword, "LastFm password");
         testEmptyValue(applicationProperties::getLastFmApiKey, "LastFm api key");
         testEmptyValue(applicationProperties::getLastFmApiSecret, "LastFm api secret");
+    }
+
+    @Test
+    void testGetAsProperties() {
+        Properties asProperties = applicationProperties.getAsProperties();
+        Stream.of(ApplicationProperty.values()).forEach(applicationProperty -> assertPropertyExists(applicationProperty, asProperties));
+    }
+
+    private void assertPropertyExists(ApplicationProperty applicationProperty, Properties asProperties) {
+        String applicationPropertyKey = applicationProperty.getKey();
+        Assertions.assertTrue(asProperties.containsKey(applicationPropertyKey), "ApplicationProperty not found in properties: " + applicationPropertyKey);
     }
 
     private void testEmptyValue(Supplier<Object> getter, String message) {

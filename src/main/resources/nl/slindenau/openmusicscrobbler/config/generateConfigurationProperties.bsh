@@ -1,0 +1,23 @@
+/*
+ * Executed by maven-scripting-plugin in pom.xml
+ * Language: Beanshell (bsh)
+ *
+ * @author slindenau
+ * https://github.com/s-lindenau
+ * Licence: GPLv3
+ */
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+// variable 'project' is org.apache.maven.project.MavenProject
+String outputDirectory = project.getBuild().getOutputDirectory();
+Path outputPath = Paths.get(outputDirectory, new String[]{});
+Path targetPath = outputPath.getParent();
+
+// variable 'log' is org.apache.maven.plugin.logging.Log
+log.info("Output directory: " + targetPath);
+
+configuration = new nl.slindenau.openmusicscrobbler.config.ConfigurationProperties();
+Path configurationFile = configuration.writeConfigurationProperties(targetPath);
+return "Configuration properties file created: " + configurationFile;

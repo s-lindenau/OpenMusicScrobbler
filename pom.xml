@@ -190,6 +190,40 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Scripting Plugin: run ScriptEngine compatible scripts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scripting-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-configuration-properties</id>
+                        <!-- phase must be at or after compile to be able to use current project code -->
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>eval</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <engineName>beanshell</engineName>
+                    <scriptFile>${project.basedir}/src/main/resources/nl/slindenau/openmusicscrobbler/config/generateConfigurationProperties.bsh</scriptFile>
+                </configuration>
+                <dependencies>
+                    <!-- Script Engine: Beanshell -->
+                    <dependency>
+                        <groupId>org.apache-extras.beanshell</groupId>
+                        <artifactId>bsh</artifactId>
+                        <version>2.0b6</version>
+                    </dependency>
+                    <!-- Dependency to current project (self) for executing project code -->
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>${project.artifactId}</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 </project>
