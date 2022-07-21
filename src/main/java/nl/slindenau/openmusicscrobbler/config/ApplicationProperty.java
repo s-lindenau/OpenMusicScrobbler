@@ -16,7 +16,7 @@ public enum ApplicationProperty {
     LAST_FM_API_SECRET("lastfm.api.secret", "Last.fm API secret"),
     DISCOGS_CONNECTION_TIMEOUT("discogs.connection.timeout", "Timeout for Discogs API connection setup (Java Duration format)", "PT10S"),
     DISCOGS_READ_TIMEOUT("discogs.read.timeout", "Timeout for Discogs API call results (Java Duration format)", "PT60S"),
-    DISCOGS_TRACK_LENGTH("discogs.track.length.default", "Default track duration to substitute a missing duration on Discogs (Java Duration format)", "PT4M"),
+    DISCOGS_TRACK_LENGTH("discogs.track.length.default", "Default track duration to substitute a missing duration on Discogs (Java Duration format)", "PT1M"),
     DEBUG("oms.debug", "Enable debug logging [true or false]. Scrobbles are not sent to Last.FM when enabled.", Boolean.FALSE.toString()),
     LOG_LEVEL("oms.log.level", "Determines what logging information is written to the log file. Possible values are Logback levels (logging library)", "info"),
 

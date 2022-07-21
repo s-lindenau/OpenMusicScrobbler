@@ -32,7 +32,7 @@ class ApplicationPropertiesTest {
         Assertions.assertEquals("info", applicationProperties.getLogLevel(), "Default value for Log Level should be info");
         Assertions.assertEquals(Duration.ofMinutes(1), applicationProperties.getDiscogsReadTimeout(), "Discogs read timeout default value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(10), applicationProperties.getDiscogsConnectionTimeout(), "Discogs connect timeout default value mismatch");
-        Assertions.assertEquals(Duration.ofMinutes(4), applicationProperties.getDiscogsDefaultTrackLength(), "Discogs track length default value mismatch");
+        Assertions.assertEquals(Duration.ofMinutes(1), applicationProperties.getDiscogsDefaultTrackLength(), "Discogs track length default value mismatch");
     }
 
     @Test

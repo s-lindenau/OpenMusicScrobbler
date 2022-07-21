@@ -20,7 +20,7 @@ public class DiscogsRelease5753364Test extends DiscogsServiceReleaseTest {
 
     private static final String ARTIST = "Aileach";
     private static final String ALBUM = "Ard Rí";
-    private static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(4);
+    private static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(1);
 
     private static final List<Track> EXPECTED_TRACKS_IN_RELEASE = Arrays.asList(
             new Track("A1", ARTIST, "'P' Stands For Paddy", "", DEFAULT_TRACK_LENGTH),

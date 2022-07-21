@@ -18,6 +18,7 @@ public class DiscogsRelease2318077Test extends DiscogsServiceReleaseTest {
 
     private static final String ARTIST = "Crosby, Stills, Nash & Young";
     private static final String ALBUM = "Déjà Vu";
+    private static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(1);
 
     private static final List<Track> EXPECTED_TRACKS_IN_RELEASE = Arrays.asList(
             new Track("A1", ARTIST, "Carry On", "4:25", Duration.parse("PT4M25S")),
@@ -28,9 +29,9 @@ public class DiscogsRelease2318077Test extends DiscogsServiceReleaseTest {
             new Track("B1", ARTIST, "Déjà Vu", "4:10", Duration.parse("PT4M10S")),
             new Track("B2", ARTIST, "Our House", "2:59", Duration.parse("PT2M59S")),
             new Track("B3", ARTIST, "4 + 20", "1:55", Duration.parse("PT1M55S")),
-            new Track("B4a", ARTIST, "Country Girl: Whiskey Boot Hill", "", Duration.parse("PT4M")),
-            new Track("B4b", ARTIST, "Country Girl: Down, Down, Down", "", Duration.parse("PT4M")),
-            new Track("B4c", ARTIST, "Country Girl: Country Girl (I Think You're Pretty)", "", Duration.parse("PT4M")),
+            new Track("B4a", ARTIST, "Country Girl: Whiskey Boot Hill", "", DEFAULT_TRACK_LENGTH),
+            new Track("B4b", ARTIST, "Country Girl: Down, Down, Down", "", DEFAULT_TRACK_LENGTH),
+            new Track("B4c", ARTIST, "Country Girl: Country Girl (I Think You're Pretty)", "", DEFAULT_TRACK_LENGTH),
             new Track("B5", ARTIST, "Everybody I Love You", "2:20", Duration.parse("PT2M20S"))
     );
 
