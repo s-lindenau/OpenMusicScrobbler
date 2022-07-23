@@ -28,12 +28,16 @@ public class CombinedProperties {
     }
 
     public String getProperty(String key, String defaultValue) {
-        return getOverrideProperty(key).orElse(baseProperties.getProperty(key, defaultValue));
+        // no getProperty(key, default); blank values are seen as non-null and don't return the defaultValue
+        return getOverrideProperty(key).orElse(getBaseProperty(key).orElse(defaultValue));
+    }
+
+    private Optional<String> getBaseProperty(String key) {
+        return OptionalString.ofNullableOrBlank(baseProperties.getProperty(key));
     }
 
     private Optional<String> getOverrideProperty(String key) {
         if (overrideProperties != null) {
-            // no getProperty with default value on the override; check if the key is defined in the baseProperties in that case
             return OptionalString.ofNullableOrBlank(overrideProperties.getProperty(key));
         }
         return Optional.empty();

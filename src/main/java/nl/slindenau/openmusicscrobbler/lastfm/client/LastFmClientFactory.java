@@ -28,7 +28,7 @@ public class LastFmClientFactory {
         String secret = applicationProperties.getLastFmApiSecret();
         String user = applicationProperties.getLastFmUsername();
         String password = applicationProperties.getLastFmPassword();
-        if (password == null) {
+        if (password == null || password.isBlank()) {
             throwMissingCredentialsException();
         }
         Session session = Authenticator.getMobileSession(user, password, key, secret);

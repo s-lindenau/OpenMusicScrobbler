@@ -9,8 +9,10 @@ import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import nl.slindenau.openmusicscrobbler.service.DateTimeService;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.time.Instant;
+import java.util.Optional;
 
 /**
  * @author slindenau
@@ -111,11 +113,8 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private String getDiscogsUsername() {
         ApplicationProperties applicationProperties = new ApplicationProperties();
-        String usernameProperty = applicationProperties.getDiscogsUsername();
-        if (usernameProperty != null) {
-            return usernameProperty;
-        }
-        return readConsoleTextInput("Discogs Username");
+        Optional<String> usernameProperty = OptionalString.ofNullableOrBlank(applicationProperties.getDiscogsUsername());
+        return usernameProperty.orElseGet(() -> readConsoleTextInput("Discogs Username"));
     }
 
     private void handleException(Exception exception) {
