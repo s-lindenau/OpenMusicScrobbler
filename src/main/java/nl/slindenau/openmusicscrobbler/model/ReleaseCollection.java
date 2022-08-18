@@ -9,5 +9,6 @@ import java.util.Collection;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record ReleaseCollection(Collection<MusicRelease> releases) {
+public record ReleaseCollection(Collection<MusicReleaseBasicInformation> releases) {
+
 }

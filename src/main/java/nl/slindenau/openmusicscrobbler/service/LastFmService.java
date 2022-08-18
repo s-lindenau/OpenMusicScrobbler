@@ -43,7 +43,7 @@ public class LastFmService {
     }
 
     public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks, LastFmClientSupplier client) {
-        String releaseTitle = release.title();
+        String releaseTitle = release.basicInformation().title();
         long totalPlayTimeInSeconds = getTotalPlayTimeInSeconds(tracks);
         Instant scrobbleEnd = firstTrackStartedAt.plusSeconds(totalPlayTimeInSeconds);
         checkTotalPlayTimePossible(firstTrackStartedAt, scrobbleEnd);

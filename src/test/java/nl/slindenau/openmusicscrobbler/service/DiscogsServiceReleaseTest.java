@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.service;
 
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +17,8 @@ import java.util.List;
  * Licence: GPLv3
  */
 public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
+
+    private static final int RELEASE_ID = 0;
 
     @Override
     protected String getUserCollectionFolderReleasesFileName() {
@@ -34,10 +37,14 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
 
     @Override
     protected void runDiscogsServiceTest() {
-        MusicRelease fakeReleaseForDiscogsId = new MusicRelease(0, 0, null, null, null, null, Collections.emptyList());
-        ReleaseCollection releaseCollection = new ReleaseCollection(Collections.singleton(fakeReleaseForDiscogsId));
-        MusicRelease release = getService().getRelease(releaseCollection, 0);
+        MusicReleaseBasicInformation emptyBasicInformationForReleaseId = getMusicReleaseBasicInformation();
+        ReleaseCollection releaseCollection = new ReleaseCollection(Collections.singleton(emptyBasicInformationForReleaseId));
+        MusicRelease release = getService().getRelease(releaseCollection, RELEASE_ID);
         verifyRelease(release);
+    }
+
+    private MusicReleaseBasicInformation getMusicReleaseBasicInformation() {
+        return new MusicReleaseBasicInformation(RELEASE_ID, RELEASE_ID, null, null, null, null);
     }
 
     protected abstract List<Track> getExpectedTracksInRelease();
@@ -47,8 +54,8 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
     protected abstract String getReleaseTitle();
 
     protected void verifyRelease(MusicRelease release) {
-        Assertions.assertEquals(getReleaseArtist(), release.artist(), "Release artist mismatch");
-        Assertions.assertEquals(getReleaseTitle(), release.title(), "Release title mismatch");
+        Assertions.assertEquals(getReleaseArtist(), release.basicInformation().artist(), "Release artist mismatch");
+        Assertions.assertEquals(getReleaseTitle(), release.basicInformation().title(), "Release title mismatch");
 
         // check that all returned tracks are in our expected list
         release.getAllTracks().forEach(actualTrack -> assertTrackIsExpected(actualTrack, release));

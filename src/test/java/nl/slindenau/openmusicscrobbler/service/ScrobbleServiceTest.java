@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.service;
 
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import org.junit.jupiter.api.Assertions;
@@ -131,7 +132,8 @@ class ScrobbleServiceTest {
         ReleasePart releasePartD = new ReleasePart("D", Collections.emptyList(), TRACKS_PART_2_D);
         releasePart1 = new ReleasePart("Vinyl Record 1", Arrays.asList(releasePartA, releasePartB), Collections.emptyList());
         releasePart2 = new ReleasePart("Vinyl Record 2", Arrays.asList(releasePartC, releasePartD), Collections.emptyList());
-        release = new MusicRelease(0, 0, ARTIST, TITLE, FORMAT, YEAR, Arrays.asList(releasePart1, releasePart2));
+        MusicReleaseBasicInformation basicInformation = new MusicReleaseBasicInformation(0, 0, ARTIST, TITLE, FORMAT, YEAR);
+        release = new MusicRelease(basicInformation, Arrays.asList(releasePart1, releasePart2));
     }
 
     private void setupLastFmService() {

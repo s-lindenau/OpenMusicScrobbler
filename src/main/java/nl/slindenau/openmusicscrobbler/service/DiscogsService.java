@@ -14,10 +14,10 @@ import nl.slindenau.openmusicscrobbler.discogs.model.release.Format;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -52,7 +52,7 @@ public class DiscogsService {
     }
 
     private ReleaseCollection findUserCollection(String discogsUsername) {
-        Collection<MusicRelease> releasesInCollection = new LinkedList<>();
+        Collection<MusicReleaseBasicInformation> releasesInCollection = new LinkedList<>();
         UserCollection userCollection = this.discogsClient.getUserCollection(discogsUsername);
         checkError(userCollection);
         String folderId = DISCOGS_USER_COLLECTION_PUBLIC_FOLDER_ID;
@@ -68,19 +68,19 @@ public class DiscogsService {
         return new ReleaseCollection(releasesInCollection);
     }
 
-    private void processReleases(CollectionReleases collectionReleases, Collection<MusicRelease> releasesInCollection) {
+    private void processReleases(CollectionReleases collectionReleases, Collection<MusicReleaseBasicInformation> releasesInCollection) {
         checkError(collectionReleases);
-        collectionReleases.getReleases().stream().map(this::findRelease).forEach(releasesInCollection::add);
+        collectionReleases.getReleases().stream().map(this::createRelease).forEach(releasesInCollection::add);
     }
 
-    private MusicRelease findRelease(CollectionRelease release) {
+    private MusicReleaseBasicInformation createRelease(CollectionRelease release) {
         int releaseId = release.getId();
         BasicInformation basicInformation = release.getBasicInformation();
         String title = basicInformation.getTitle();
         String format = getFormat(basicInformation);
         String artist = getArtist(basicInformation);
-        Integer year = basicInformation.year == 0 ? null : basicInformation.year;
-        return new MusicRelease(nextId++, releaseId, artist, title, format, year, Collections.emptyList());
+        Integer year = getYear(basicInformation);
+        return new MusicReleaseBasicInformation(nextId++, releaseId, artist, title, format, year);
     }
 
     private String getFormat(BasicInformation basicInformation) {
@@ -91,22 +91,26 @@ public class DiscogsService {
         return basicInformation.getArtists().stream().collect(new DiscogsArtistNameCollector());
     }
 
+    private Integer getYear(BasicInformation basicInformation) {
+        return basicInformation.year == 0 ? null : basicInformation.year;
+    }
+
     public MusicRelease getRelease(ReleaseCollection userCollection, Integer releaseId) {
-        Optional<MusicRelease> release = userCollection.releases().stream().filter(musicRelease -> musicRelease.id() == releaseId).findFirst();
+        Optional<MusicReleaseBasicInformation> release = userCollection.releases().stream().filter(musicRelease -> musicRelease.id() == releaseId).findFirst();
         return release.map(this::getMusicReleaseTracks).orElseThrow(() -> new OpenMusicScrobblerException("Unknown release with id: " + releaseId));
     }
 
-    private MusicRelease getMusicReleaseTracks(MusicRelease musicRelease) {
+    private MusicRelease getMusicReleaseTracks(MusicReleaseBasicInformation musicRelease) {
         Release discogsRelease = getDiscogsRelease(musicRelease);
         return musicReleaseService.createRelease(musicRelease, discogsRelease);
     }
 
-    private Release getDiscogsRelease(MusicRelease release) {
+    private Release getDiscogsRelease(MusicReleaseBasicInformation release) {
         String releaseId = String.valueOf(release.discogsId());
-        return releaseCache.computeIfAbsent(releaseId, this::findRelease);
+        return releaseCache.computeIfAbsent(releaseId, this::createDiscogsRelease);
     }
 
-    private Release findRelease(String releaseId) {
+    private Release createDiscogsRelease(String releaseId) {
         Release release = discogsClient.getRelease(releaseId);
         checkError(release);
         return release;

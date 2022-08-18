@@ -65,7 +65,7 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private void handleRelease(MusicRelease release) {
         printEmptyLine();
-        printLine("Selected release " + new ReleaseDecorator(release));
+        printLine("Selected release " + new ReleaseDecorator(release.basicInformation()));
         printLine("Tracklist");
         release.getAllTracks().stream().map(TrackDecorator::new).map(TrackDecorator::toString).forEach(this::printLine);
         printEmptyLine();

@@ -1,6 +1,6 @@
 package nl.slindenau.openmusicscrobbler.service;
 
-import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import org.junit.jupiter.api.Assertions;
 
@@ -57,14 +57,14 @@ class DiscogsServiceCollectionTest extends DiscogsServiceTest {
     }
 
     private void assertReleaseIsInActual(Release expectedRelease, ReleaseCollection userCollection) {
-        Optional<MusicRelease> expectedInActual = userCollection.releases().stream()
+        Optional<MusicReleaseBasicInformation> expectedInActual = userCollection.releases().stream()
                 .filter(musicRelease -> musicRelease.artist().equalsIgnoreCase(expectedRelease.artist))
                 .filter(musicRelease -> musicRelease.title().equalsIgnoreCase(expectedRelease.title))
                 .findAny();
         Assertions.assertTrue(expectedInActual.isPresent(), "Expected release not found: " + expectedRelease);
     }
 
-    private void assertReleaseIsExpected(MusicRelease musicRelease) {
+    private void assertReleaseIsExpected(MusicReleaseBasicInformation musicRelease) {
         String actualArtist = musicRelease.artist();
         String actualTitle = musicRelease.title();
         Release actualRelease = new Release(actualArtist, actualTitle);

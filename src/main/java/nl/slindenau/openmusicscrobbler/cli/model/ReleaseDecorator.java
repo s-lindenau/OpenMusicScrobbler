@@ -1,13 +1,13 @@
 package nl.slindenau.openmusicscrobbler.cli.model;
 
-import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 
 /**
  * @author slindenau
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record ReleaseDecorator(MusicRelease musicRelease) {
+public record ReleaseDecorator(MusicReleaseBasicInformation musicRelease) {
 
     private static final String RELEASE_FORMAT_BASE = "%02d: %s - %s";
     private static final String RELEASE_FORMAT_WITH_YEAR = RELEASE_FORMAT_BASE + " (%s, %s)";
@@ -18,7 +18,7 @@ public record ReleaseDecorator(MusicRelease musicRelease) {
         return decorateRelease(musicRelease);
     }
 
-    private String decorateRelease(MusicRelease release) {
+    private String decorateRelease(MusicReleaseBasicInformation release) {
         int releaseId = release.id();
         String title = release.title();
         String format = release.format();

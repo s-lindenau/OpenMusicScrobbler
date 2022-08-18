@@ -6,6 +6,7 @@ import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Tracklist;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.model.TrackType;
@@ -32,14 +33,13 @@ public class MusicReleaseService {
     private final TrackDurationService trackDurationService = new TrackDurationService();
     private final Logger logger = LoggerFactory.getLogger(MusicReleaseService.class);
 
-    public MusicRelease createRelease(MusicRelease musicRelease, Release discogsRelease) {
+    public MusicRelease createRelease(MusicReleaseBasicInformation musicRelease, Release discogsRelease) {
         String releaseArtist = discogsRelease.artists.stream().collect(new DiscogsArtistNameCollector());
         Collection<Track> trackList = new LinkedList<>();
         processTracks(discogsRelease, releaseArtist, trackList);
         String releaseTitle = discogsRelease.title;
         Collection<ReleasePart> parts = createParts(trackList);
-        int year = discogsRelease.year;
-        return createMusicReleaseWithTrackList(musicRelease, releaseArtist, releaseTitle, year, parts);
+        return createMusicReleaseWithTrackList(musicRelease, releaseArtist, releaseTitle, parts);
     }
 
     private void processTracks(Release discogsRelease, String releaseArtist, Collection<Track> trackList) {
@@ -128,7 +128,12 @@ public class MusicReleaseService {
         return Collections.singletonList(new ReleasePart("A", Collections.emptyList(), trackList));
     }
 
-    private MusicRelease createMusicReleaseWithTrackList(MusicRelease musicRelease, String releaseArtist, String releaseTitle, int year, Collection<ReleasePart> releaseParts) {
-        return new MusicRelease(musicRelease.id(), musicRelease.discogsId(), releaseArtist, releaseTitle, musicRelease.format(), year, releaseParts);
+    private MusicRelease createMusicReleaseWithTrackList(MusicReleaseBasicInformation musicRelease, String releaseArtist, String releaseTitle, Collection<ReleasePart> releaseParts) {
+        MusicReleaseBasicInformation updatedBasicInformation = getUpdatedBasicInformation(musicRelease, releaseArtist, releaseTitle);
+        return new MusicRelease(updatedBasicInformation, releaseParts);
+    }
+
+    private MusicReleaseBasicInformation getUpdatedBasicInformation(MusicReleaseBasicInformation musicRelease, String releaseArtist, String releaseTitle) {
+        return new MusicReleaseBasicInformation(musicRelease.id(), musicRelease.discogsId(), releaseArtist, releaseTitle, musicRelease.format(), musicRelease.year());
     }
 }

@@ -1,6 +1,6 @@
 package nl.slindenau.openmusicscrobbler.cli.model;
 
-import nl.slindenau.openmusicscrobbler.model.MusicRelease;
+import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,17 +20,17 @@ class ReleaseDecoratorTest {
 
     @Test
     void testWithYear() {
-        MusicRelease release = new MusicRelease(ID, ID, ARTIST, TITLE, FORMAT, YEAR, null);
+        MusicReleaseBasicInformation release = new MusicReleaseBasicInformation(ID, ID, ARTIST, TITLE, FORMAT, YEAR);
         assertReleaseMatches(release, "01: Artist - Title (CD, 2000)");
     }
 
     @Test
     void testWithoutYear() {
-        MusicRelease release = new MusicRelease(ID, ID, ARTIST, TITLE, FORMAT, MISSING_YEAR, null);
+        MusicReleaseBasicInformation release = new MusicReleaseBasicInformation(ID, ID, ARTIST, TITLE, FORMAT, MISSING_YEAR);
         assertReleaseMatches(release, "01: Artist - Title (CD)");
     }
 
-    private void assertReleaseMatches(MusicRelease release, String expectedValue) {
+    private void assertReleaseMatches(MusicReleaseBasicInformation release, String expectedValue) {
         ReleaseDecorator releaseDecorator = new ReleaseDecorator(release);
         String actualValue = releaseDecorator.toString();
         Assertions.assertEquals(expectedValue, actualValue, "Decorated release toString mismatch");
