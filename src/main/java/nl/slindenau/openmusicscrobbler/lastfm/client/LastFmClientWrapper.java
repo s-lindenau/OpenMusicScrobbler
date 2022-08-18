@@ -1,7 +1,6 @@
 package nl.slindenau.openmusicscrobbler.lastfm.client;
 
 import de.umass.lastfm.Session;
-import de.umass.lastfm.Track;
 import de.umass.lastfm.scrobble.ScrobbleData;
 import de.umass.lastfm.scrobble.ScrobbleResult;
 
@@ -14,9 +13,11 @@ import java.time.Instant;
  */
 public class LastFmClientWrapper {
 
+    private final LastFmClientFacade clientFacade;
     private final Session session;
 
-    public LastFmClientWrapper(Session session) {
+    public LastFmClientWrapper(LastFmClientFacade clientFacade, Session session) {
+        this.clientFacade = clientFacade;
         this.session = session;
     }
 
@@ -26,7 +27,11 @@ public class LastFmClientWrapper {
         scrobbleData.setAlbum(album);
         scrobbleData.setTrack(track);
         scrobbleData.setTimestamp(getTimestamp(scrobbleAtTime));
-        return Track.scrobble(scrobbleData, this.session);
+        return scrobbleTrackAndGetResult(scrobbleData);
+    }
+
+    private ScrobbleResult scrobbleTrackAndGetResult(ScrobbleData scrobbleData) {
+        return clientFacade.scrobbleTrack(scrobbleData, this.session);
     }
 
     private int getTimestamp(Instant scrobbleAt) {

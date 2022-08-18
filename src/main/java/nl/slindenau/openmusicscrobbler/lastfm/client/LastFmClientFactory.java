@@ -1,6 +1,5 @@
 package nl.slindenau.openmusicscrobbler.lastfm.client;
 
-import de.umass.lastfm.Authenticator;
 import de.umass.lastfm.Caller;
 import de.umass.lastfm.Session;
 import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
@@ -18,10 +17,20 @@ public class LastFmClientFactory {
 
     private static final String LAST_FM_SECURE_ENDPOINT = "https://ws.audioscrobbler.com/2.0/";
 
+    private final LastFmClientFacade clientFacade;
+
+    public LastFmClientFactory() {
+        this(new LastFmClientFacade());
+    }
+
+    protected LastFmClientFactory(LastFmClientFacade clientFacade) {
+        this.clientFacade = clientFacade;
+    }
+
     public LastFmClientWrapper getClient() {
         String userAgent = new UserAgentFactory().getUserAgent();
-        Caller.getInstance().setUserAgent(userAgent);
-        Caller.getInstance().setApiRootUrl(LAST_FM_SECURE_ENDPOINT);
+        getCaller().setUserAgent(userAgent);
+        getCaller().setApiRootUrl(LAST_FM_SECURE_ENDPOINT);
 
         ApplicationProperties applicationProperties = new ApplicationProperties();
         String key = applicationProperties.getLastFmApiKey();
@@ -29,18 +38,22 @@ public class LastFmClientFactory {
         String user = applicationProperties.getLastFmUsername();
         String password = applicationProperties.getLastFmPassword();
         if (password == null || password.isBlank()) {
-            throwMissingCredentialsException();
+            throw newMissingCredentialsException();
         }
-        Session session = Authenticator.getMobileSession(user, password, key, secret);
+        Session session = clientFacade.getSession(user, password, key, secret);
         if (session == null) {
-            throwMissingCredentialsException();
+            throw newMissingCredentialsException();
         }
         boolean isDebugEnabled = applicationProperties.isDebugEnabled();
-        Caller.getInstance().getLogger().setLevel(isDebugEnabled ? Level.ALL : Level.OFF);
-        return new LastFmClientWrapper(session);
+        getCaller().getLogger().setLevel(isDebugEnabled ? Level.ALL : Level.OFF);
+        return new LastFmClientWrapper(clientFacade, session);
     }
 
-    private void throwMissingCredentialsException() {
-        throw new OpenMusicScrobblerException("Could not create Last.fm session. Check authentication details!");
+    private Caller getCaller() {
+        return clientFacade.getCaller();
+    }
+
+    private OpenMusicScrobblerException newMissingCredentialsException() {
+        return new OpenMusicScrobblerException("Could not create Last.fm session. Check authentication details!");
     }
 }

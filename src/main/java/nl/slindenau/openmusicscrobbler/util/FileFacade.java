@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
+ * Facade around the static java nio File/Path api
+ *
  * @author slindenau
  * https://github.com/s-lindenau
  * Licence: GPLv3
