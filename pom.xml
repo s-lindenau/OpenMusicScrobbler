@@ -229,7 +229,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
                 <executions>
                     <execution>
                         <id>create-release-zip</id>
@@ -240,6 +240,7 @@
                         <configuration>
                             <outputDirectory>${project.build.directory}/release</outputDirectory>
                             <appendAssemblyId>false</appendAssemblyId>
+                            <attach>false</attach>
                             <descriptors>
                                 <descriptor>src/main/assembly/release-zip.xml</descriptor>
                             </descriptors>
