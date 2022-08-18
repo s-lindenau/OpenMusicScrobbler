@@ -17,11 +17,11 @@ public class ApplicationProperties {
     private final CombinedProperties properties;
 
     public ApplicationProperties() {
-        this(new ConfigurationProperties().readConfigurationProperties());
+        this(new ConfigurationProperties().readConfigurationProperties(), System.getProperties());
     }
 
-    protected ApplicationProperties(Properties properties) {
-        this.properties = new CombinedProperties(properties).withOverride(System.getProperties());
+    protected ApplicationProperties(Properties properties, Properties overrideProperties) {
+        this.properties = new CombinedProperties(properties).withOverride(overrideProperties);
     }
 
     public boolean isDebugEnabled() {

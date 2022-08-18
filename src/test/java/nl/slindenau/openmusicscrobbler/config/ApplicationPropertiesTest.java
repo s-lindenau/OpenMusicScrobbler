@@ -20,11 +20,13 @@ class ApplicationPropertiesTest {
 
     private ApplicationProperties applicationProperties;
     private Properties properties;
+    private Properties overrideProperties;
 
     @BeforeEach
     void setUp() {
         this.properties = new Properties();
-        this.applicationProperties = new ApplicationProperties(properties);
+        this.overrideProperties = new Properties();
+        this.applicationProperties = new ApplicationProperties(properties, overrideProperties);
     }
 
     @Test
@@ -37,7 +39,7 @@ class ApplicationPropertiesTest {
     }
 
     @Test
-    void testGetOverrideDefaultValues() {
+    void testGetChangedDefaultValues() {
         setupProperty(ApplicationProperty.DEBUG, "true");
         setupProperty(ApplicationProperty.LOG_LEVEL, "debug");
         setupProperty(ApplicationProperty.DISCOGS_READ_TIMEOUT, "PT1S");
@@ -49,6 +51,15 @@ class ApplicationPropertiesTest {
         Assertions.assertEquals(Duration.ofSeconds(1), applicationProperties.getDiscogsReadTimeout(), "Discogs read timeout value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(2), applicationProperties.getDiscogsConnectionTimeout(), "Discogs connect timeout value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(3), applicationProperties.getDiscogsDefaultTrackLength(), "Discogs track length value mismatch");
+    }
+
+    @Test
+    void testOverrideProperties () {
+        setupProperty(ApplicationProperty.LOG_LEVEL, "debug");
+        setupOverrideProperty(ApplicationProperty.LOG_LEVEL, "warn");
+        setupOverrideProperty(ApplicationProperty.LAST_FM_API_SECRET, "secret");
+        Assertions.assertEquals("warn", applicationProperties.getLogLevel(), "Log Level value mismatch");
+        Assertions.assertEquals("secret", applicationProperties.getLastFmApiSecret(), "LastFm api secret value mismatch");
     }
 
     @Test
@@ -86,6 +97,10 @@ class ApplicationPropertiesTest {
 
     private void setupProperty(ApplicationProperty property, String value) {
         this.properties.put(property.getKey(), value);
+    }
+
+    private void setupOverrideProperty(ApplicationProperty property, String value) {
+        this.overrideProperties.put(property.getKey(), value);
     }
 
     private void assertThrows(Executable executable, String message) {
