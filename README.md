@@ -15,6 +15,7 @@ This application is currently for desktop only. If you just want to quickly scro
 ### Roadmap
 - [x] Initial Prototype (CLI)
 - [ ] Desktop GUI
+- [ ] Web GUI
 - [ ] Scheduling/offline scrobble with database
 - [ ] Barcode/Cover scanner for quick scrobble
 - [ ] Collection builder from other sources (mp3, search music databases)
@@ -38,9 +39,17 @@ This application is currently for desktop only. If you just want to quickly scro
   - Building
     - `git clone git@github.com:s-lindenau/OpenMusicScrobbler.git`
     - `mvn clean package`
+  - Supply api keys
+    - If desired the Last.fm api keys can be added to the final build by setting the following options on the `mvn package` command:
+      - `-Dlastfm.api.key=mykey`
+      - `-Dlastfm.api.secret=mysecret`
   - From the packaged build take the following:
       - ~/target/open-music-scrobbler-_version_.jar
       - ~/target/dependencies folder
+      - ~/target/config.properties
+  - Release zip
+    - All the relevant files listed above are also zipped for convenient distribution
+    - See ~/target/release folder
 - Running the application
   - Configure the required properties
   - Run with `java -jar` open-music-scrobbler-_version_.jar
@@ -48,5 +57,6 @@ This application is currently for desktop only. If you just want to quickly scro
   - The application to run can be optionally specified, by default it will start the main scrobble UI
   - Run with `java -jar` open-music-scrobbler-_version_.jar _application_
   - Possible options for _application_ are
-    - console
-    - encrypt
+    - `console` the main command line based scrobble client
+    - `config` a command line based wizard that helps to set the configuration properties
+    - `server` run as a server for the web based client
