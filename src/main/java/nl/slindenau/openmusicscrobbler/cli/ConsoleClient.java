@@ -86,7 +86,7 @@ public class ConsoleClient extends AbstractConsoleClient {
     private Instant getFirstTrackScrobbleDateFromUserInput(MusicRelease release) {
         printEmptyLine();
         String message = "When was the last track played? Leave empty by pressing [Enter] for 'just now', or enter when the last track finished (format: %s)";
-        String input = readConsoleTextInput(String.format(message, DateTimeService.DATE_TIME_FORMAT), 0);
+        String input = readConsoleOptionalTextInput(String.format(message, DateTimeService.DATE_TIME_FORMAT));
         if (!isEmpty(input)) {
             return getFirstTrackScrobbleDateRelativeTo(release, new DateTimeService().parseInstant(input));
         }
@@ -123,7 +123,7 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private boolean askCommand(String command) {
         String message = String.format("Press [Enter] to continue or type [%s] to stop", command);
-        String input = readConsoleTextInput(message, 0);
+        String input = readConsoleOptionalTextInput(message);
         return command.equalsIgnoreCase(input);
     }
 }

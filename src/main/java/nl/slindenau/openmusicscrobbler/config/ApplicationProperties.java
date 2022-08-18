@@ -72,7 +72,7 @@ public class ApplicationProperties {
         return parser.asDuration(applicationProperty.getKey(), getProperty(applicationProperty));
     }
 
-    private String getProperty(ApplicationProperty applicationProperty) {
+    public String getProperty(ApplicationProperty applicationProperty) {
         if (applicationProperty.getDefaultValue().isPresent()) {
             return getOptionalProperty(applicationProperty.getKey(), applicationProperty.getDefaultValue().get());
         } else {

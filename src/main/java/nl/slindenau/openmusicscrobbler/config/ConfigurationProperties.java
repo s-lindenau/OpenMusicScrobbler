@@ -36,9 +36,13 @@ public class ConfigurationProperties {
      * @return the parsed configuration properties
      */
     public Properties readConfigurationProperties() {
-        Path currentDirectory = fileFacade.get(CURRENT_WORKING_DIRECTORY);
+        Path currentDirectory = getConfigurationPropertiesDirectory();
         Path propertiesFile = getConfigurationPropertiesFile(currentDirectory);
         return readConfigurationProperties(propertiesFile);
+    }
+
+    public Path getConfigurationPropertiesDirectory() {
+        return fileFacade.get(CURRENT_WORKING_DIRECTORY);
     }
 
     /**

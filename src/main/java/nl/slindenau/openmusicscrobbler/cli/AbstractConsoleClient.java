@@ -35,19 +35,19 @@ public abstract class AbstractConsoleClient {
         return textIO.newStringInputReader().read(message);
     }
 
-    protected String readConsoleTextInput(String message, int minimalInputLength) {
-        return textIO.newStringInputReader().withMinLength(minimalInputLength).read(message);
+    protected String readConsoleOptionalTextInput(String message) {
+        return textIO.newStringInputReader().withMinLength(0).read(message);
     }
 
     protected String readConsolePasswordInput(String message) {
-        return textIO.newStringInputReader().withInputMasking(true).read(message);
+        return textIO.newStringInputReader().withMinLength(0).withInputMasking(true).read(message);
     }
 
     protected void closeConsoleClient() {
         textIO.dispose();
     }
 
-    protected Logger getLogger(){
+    protected Logger getLogger() {
         return logger;
     }
 }

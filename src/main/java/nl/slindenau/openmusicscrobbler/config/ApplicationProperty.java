@@ -11,7 +11,7 @@ public enum ApplicationProperty {
 
     DISCOGS_USERNAME("discogs.username", "Discogs username"),
     LAST_FM_USERNAME("lastfm.username", "Last.fm username"),
-    LAST_FM_PASSWORD("lastfm.password", "Last.fm password, either plaintext or MD5 hashed."), // todo: encrypt (hashed) password
+    LAST_FM_PASSWORD("lastfm.password", "Last.fm password"),
     LAST_FM_API_KEY("lastfm.api.key", "Last.fm API key, see https://www.last.fm/api/authentication"),
     LAST_FM_API_SECRET("lastfm.api.secret", "Last.fm API secret"),
     DISCOGS_CONNECTION_TIMEOUT("discogs.connection.timeout", "Timeout for Discogs API connection setup (Java Duration format)", "PT10S"),
@@ -40,7 +40,6 @@ public enum ApplicationProperty {
         return key;
     }
 
-    // todo: use in generating properties file
     public String getDescription() {
         return description;
     }
