@@ -26,6 +26,7 @@
         <slf4j.version>1.7.36</slf4j.version>
         <junit.version>5.8.2</junit.version>
         <mockito.version>4.6.1</mockito.version>
+        <dropwizard.version>2.1.0</dropwizard.version>
     </properties>
 
     <dependencyManagement>
@@ -68,12 +69,12 @@
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
-            <version>2.1.0</version>
+            <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-views-mustache</artifactId>
-            <version>2.1.0</version>
+            <version>${dropwizard.version}</version>
         </dependency>
         <!-- JSON Object processing -->
         <dependency>
@@ -223,6 +224,28 @@
                         <version>${project.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <!-- Assembly plugin: create a release zip package -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>create-release-zip</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/release</outputDirectory>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/main/assembly/release-zip.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
