@@ -23,14 +23,12 @@ public class DiscogsClientFactory {
         discogsClient.setDebugEnabled(isDebugEnabled);
         discogsClient.setConnectTimeout(applicationProperties.getDiscogsConnectionTimeout());
         discogsClient.setReadTimeout(applicationProperties.getDiscogsReadTimeout());
-        logUserAgent(isDebugEnabled, userAgent);
+        logUserAgent(userAgent);
         return new DiscogsClientWrapper(discogsClient);
     }
 
-    private void logUserAgent(Boolean isDebugEnabled, String userAgent) {
-        if (isDebugEnabled) {
-            logger.info("User-Agent: " + userAgent);
-        }
+    private void logUserAgent(String userAgent) {
+        logger.info("User-Agent: " + userAgent);
     }
 
 }
