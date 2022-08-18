@@ -5,7 +5,7 @@ import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientSupplier;
-import nl.slindenau.openmusicscrobbler.model.LastFmScrobbleResult;
+import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResult;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import org.slf4j.Logger;

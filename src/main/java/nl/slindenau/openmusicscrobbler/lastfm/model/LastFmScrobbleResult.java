@@ -1,4 +1,4 @@
-package nl.slindenau.openmusicscrobbler.model;
+package nl.slindenau.openmusicscrobbler.lastfm.model;
 
 import de.umass.lastfm.scrobble.ScrobbleResult;
 
