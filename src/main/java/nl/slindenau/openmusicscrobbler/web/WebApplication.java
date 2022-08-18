@@ -4,10 +4,15 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
-import nl.slindenau.openmusicscrobbler.DropWizardConfiguration;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.web.api.CollectionResource;
 
+/**
+ * @author slindenau
+ * @author davidvollmar
+ * https://github.com/s-lindenau
+ * Licence: GPLv3
+ */
 public class WebApplication extends Application<DropWizardConfiguration> {
 
     @Override
