@@ -21,13 +21,15 @@ public class ConfigurationProperties {
     private static final String CURRENT_WORKING_DIRECTORY = ".";
 
     private final FileFacade fileFacade;
+    private final SystemProperties systemProperties;
 
     public ConfigurationProperties() {
-        this(new FileFacade());
+        this(new FileFacade(), new SystemProperties());
     }
 
-    protected ConfigurationProperties(FileFacade fileFacade) {
+    protected ConfigurationProperties(FileFacade fileFacade, SystemProperties systemProperties) {
         this.fileFacade = fileFacade;
+        this.systemProperties = systemProperties;
     }
 
     /**
@@ -42,7 +44,12 @@ public class ConfigurationProperties {
     }
 
     public Path getConfigurationPropertiesDirectory() {
-        return fileFacade.get(CURRENT_WORKING_DIRECTORY);
+        String configurationDirectory = getConfigurationDirectory();
+        return fileFacade.get(configurationDirectory);
+    }
+
+    private String getConfigurationDirectory() {
+        return systemProperties.getConfigurationDirectory().orElse(CURRENT_WORKING_DIRECTORY);
     }
 
     /**

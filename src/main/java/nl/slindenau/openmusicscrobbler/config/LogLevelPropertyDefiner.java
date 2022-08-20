@@ -2,6 +2,7 @@ package nl.slindenau.openmusicscrobbler.config;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.core.PropertyDefinerBase;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author slindenau
@@ -15,7 +16,13 @@ public class LogLevelPropertyDefiner extends PropertyDefinerBase {
 
     @Override
     public String getPropertyValue() {
-        return getLogLevel().toString();
+        try {
+            return getLogLevel().toString();
+        } catch (Exception ex) {
+            // logging during the initialization phase will be replayed
+            LoggerFactory.getLogger(this.getClass()).warn(ex.getMessage(), ex);
+            return DEFAULT_LEVEL.toString();
+        }
     }
 
     private Level getLogLevel() {
