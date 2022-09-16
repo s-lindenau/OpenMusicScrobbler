@@ -4,13 +4,13 @@ import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientFactory;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsArtistNameCollector;
+import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsReleaseFormatCollector;
 import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.BasicInformation;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionFolder;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionRelease;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionReleases;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.UserCollection;
-import nl.slindenau.openmusicscrobbler.discogs.model.release.Format;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Release;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
@@ -84,7 +84,7 @@ public class DiscogsService {
     }
 
     private String getFormat(BasicInformation basicInformation) {
-        return basicInformation.getFormats().stream().findFirst().map(Format::getName).orElse("unknown format");
+        return new DiscogsReleaseFormatCollector().getFormat(basicInformation);
     }
 
     private String getArtist(BasicInformation basicInformation) {
