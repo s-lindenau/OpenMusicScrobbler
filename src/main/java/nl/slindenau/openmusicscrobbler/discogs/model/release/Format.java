@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.discogs.model.release;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
  */
 public class Format extends DiscogsApiResponse {
     public String name;
-    public String qty;
+    @JsonProperty("qty")
+    public String quantity;
     public String text;
     public List<String> descriptions;
 
@@ -23,12 +25,12 @@ public class Format extends DiscogsApiResponse {
         this.name = name;
     }
 
-    public String getQty() {
-        return qty;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setQty(String qty) {
-        this.qty = qty;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public String getText() {

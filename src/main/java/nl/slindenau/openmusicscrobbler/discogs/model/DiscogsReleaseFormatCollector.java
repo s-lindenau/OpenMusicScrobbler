@@ -2,6 +2,7 @@ package nl.slindenau.openmusicscrobbler.discogs.model;
 
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.BasicInformation;
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Format;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,11 +35,20 @@ public class DiscogsReleaseFormatCollector {
 
     private String getSingleFormatCountText(Format format) {
         String formatName = format.getName();
-        long count = Long.parseLong(format.getQty());
+        long count = getCount(format);
         if (count > 1) {
             return String.format(N_TIMES_FORMAT_Y, count, formatName);
         } else {
             return formatName;
+        }
+    }
+
+    private long getCount(Format format) {
+        try {
+            return Long.parseLong(format.getQuantity());
+        } catch (NumberFormatException ex) {
+            LoggerFactory.getLogger(this.getClass()).warn("Format quantity is not a number: " + format.getQuantity(), ex);
+            return 1;
         }
     }
 }
