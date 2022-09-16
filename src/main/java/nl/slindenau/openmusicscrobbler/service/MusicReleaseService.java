@@ -10,6 +10,7 @@ import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.model.TrackType;
+import nl.slindenau.openmusicscrobbler.service.releasepart.ReleasePartParserStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,8 +125,7 @@ public class MusicReleaseService {
     }
 
     private Collection<ReleasePart> createParts(Collection<Track> trackList) {
-        // todo: split parts and give the correct identification per part
-        return Collections.singletonList(new ReleasePart("A", Collections.emptyList(), trackList));
+        return new ReleasePartParserStrategy().getParseStrategy(trackList).createParts(trackList);
     }
 
     private MusicRelease createMusicReleaseWithTrackList(MusicReleaseBasicInformation musicRelease, String releaseArtist, String releaseTitle, Collection<ReleasePart> releaseParts) {

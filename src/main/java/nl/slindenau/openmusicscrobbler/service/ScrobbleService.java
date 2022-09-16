@@ -6,7 +6,7 @@ import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 
 import java.time.Instant;
-import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * @author slindenau
@@ -36,12 +36,12 @@ public class ScrobbleService {
         }
     }
 
-    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Track... tracks) {
-        lastFmService.scrobbleTracks(release, firstTrackStartedAt, Arrays.asList(tracks), getClient());
+    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks) {
+        lastFmService.scrobbleTracks(release, firstTrackStartedAt, tracks, getClient());
     }
 
-    public long getTotalPlayTimeInSeconds(MusicRelease release) {
-        return lastFmService.getTotalPlayTimeInSeconds(release.getAllTracks());
+    public long getTotalPlayTimeInSeconds(Collection<Track> tracks) {
+        return lastFmService.getTotalPlayTimeInSeconds(tracks);
     }
 
     private LastFmClientSupplier getClient() {

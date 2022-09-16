@@ -6,13 +6,19 @@ import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
+import nl.slindenau.openmusicscrobbler.model.ReleasePart;
+import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DateTimeService;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
 import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.time.Instant;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author slindenau
@@ -67,43 +73,78 @@ public class ConsoleClient extends AbstractConsoleClient {
         printEmptyLine();
         printLine("Selected release " + new ReleaseDecorator(release.basicInformation()));
         printLine("Tracklist");
-        release.getAllTracks().stream().map(TrackDecorator::new).map(TrackDecorator::toString).forEach(this::printLine);
+        printTracks(release.getAllTracks());
+        Collection<Track> tracks = handleReleaseSelection(release);
+        while (tracks.isEmpty()) {
+            tracks = handleReleaseSelection(release);
+        }
         printEmptyLine();
-        printLine("Scrobble release to Last.fm?");
+        printLine("Selected tracks: ");
+        printTracks(tracks);
+        printEmptyLine();
+        printLine("Scrobble tracks to Last.fm?");
         boolean cancel = askCommand(CANCEL_COMMAND);
         if (!cancel) {
-            scrobbleTracks(release);
+            scrobbleTracks(release, tracks);
             printLine("Scrobble complete!");
         }
     }
 
-    private void scrobbleTracks(MusicRelease release) {
-        // todo: replace 'release' with selected part(s) to scrobble
-        Instant firstTrackScrobbleAt = getFirstTrackScrobbleDateFromUserInput(release);
-        scrobbleService.scrobbleTracks(release, firstTrackScrobbleAt);
+    private void printTracks(Collection<Track> tracks) {
+        tracks.stream().map(TrackDecorator::new).map(TrackDecorator::toString).forEach(this::printLine);
     }
 
-    private Instant getFirstTrackScrobbleDateFromUserInput(MusicRelease release) {
+    private Collection<Track> handleReleaseSelection(MusicRelease release) {
+        String parts = release.releaseParts().stream().map(ReleasePart::partIdentification).collect(Collectors.joining(", "));
+        if (isEmpty(parts)) {
+            return release.getAllTracks();
+        }
+        printEmptyLine();
+        printLine("Release parts: " + parts);
+        String selectedParts = readConsoleOptionalTextInput("Select parts to scrobble, or leave empty by pressing [Enter] for all tracks");
+        if (isEmpty(selectedParts)) {
+            return release.getAllTracks();
+        }
+        return getSelectedTracks(release, selectedParts);
+    }
+
+    private Collection<Track> getSelectedTracks(MusicRelease release, String selectedPartsInput) {
+        List<Track> selected = new LinkedList<>();
+        String selectedParts = selectedPartsInput.toLowerCase().trim();
+        for (ReleasePart releasePart : release.releaseParts()) {
+            String partIdentification = releasePart.partIdentification().toLowerCase();
+            if (selectedParts.contains(partIdentification)) {
+                selected.addAll(releasePart.getAllTracks());
+            }
+        }
+        return selected;
+    }
+
+    private void scrobbleTracks(MusicRelease release, Collection<Track> tracks) {
+        Instant firstTrackScrobbleAt = getFirstTrackScrobbleDateFromUserInput(tracks);
+        scrobbleService.scrobbleTracks(release, firstTrackScrobbleAt, tracks);
+    }
+
+    private Instant getFirstTrackScrobbleDateFromUserInput(Collection<Track> tracks) {
         printEmptyLine();
         String message = "When was the last track played? Leave empty by pressing [Enter] for 'just now', or enter when the last track finished (format: %s)";
         String input = readConsoleOptionalTextInput(String.format(message, DateTimeService.DATE_TIME_FORMAT));
         if (!isEmpty(input)) {
-            return getFirstTrackScrobbleDateRelativeTo(release, new DateTimeService().parseInstant(input));
+            return getFirstTrackScrobbleDateRelativeTo(tracks, new DateTimeService().parseInstant(input));
         }
-        return getFirstTrackScrobbleDateFromCurrentTime(release);
+        return getFirstTrackScrobbleDateFromCurrentTime(tracks);
     }
 
     private boolean isEmpty(String input) {
-        return input == null || input.isEmpty();
+        return input == null || input.isEmpty() || input.isBlank();
     }
 
-    private Instant getFirstTrackScrobbleDateFromCurrentTime(MusicRelease release) {
-        return getFirstTrackScrobbleDateRelativeTo(release, Instant.now());
+    private Instant getFirstTrackScrobbleDateFromCurrentTime(Collection<Track> tracks) {
+        return getFirstTrackScrobbleDateRelativeTo(tracks, Instant.now());
     }
 
-    private Instant getFirstTrackScrobbleDateRelativeTo(MusicRelease release, Instant lastTrackEndedAt) {
-        // todo: replace with length of selected part(s) to scrobble
-        long totalPlayTime = scrobbleService.getTotalPlayTimeInSeconds(release);
+    private Instant getFirstTrackScrobbleDateRelativeTo(Collection<Track> tracks, Instant lastTrackEndedAt) {
+        long totalPlayTime = scrobbleService.getTotalPlayTimeInSeconds(tracks);
         return lastTrackEndedAt.minusSeconds(totalPlayTime);
     }
 

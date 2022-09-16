@@ -1,11 +1,13 @@
 package nl.slindenau.openmusicscrobbler.service.release;
 
 import nl.slindenau.openmusicscrobbler.config.ApplicationProperty;
+import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DiscogsServiceReleaseTest;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,13 +24,16 @@ public class DiscogsRelease5753364Test extends DiscogsServiceReleaseTest {
     private static final String ALBUM = "Ard Rí";
     private static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(1);
 
-    private static final List<Track> EXPECTED_TRACKS_IN_RELEASE = Arrays.asList(
+    private static final List<Track> EXPECTED_TRACKS_IN_RELEASE_A = Arrays.asList(
             new Track("A1", ARTIST, "'P' Stands For Paddy", "", DEFAULT_TRACK_LENGTH),
             new Track("A2", ARTIST, "The Heather Breeze; The Yellow Tinker", "", DEFAULT_TRACK_LENGTH),
             new Track("A3", ARTIST, "The Green Fields Of America", "", DEFAULT_TRACK_LENGTH),
             new Track("A4", ARTIST, "Banish Misfortune; The Fermoy Lasses; The Chair Against The Door", "", DEFAULT_TRACK_LENGTH),
             new Track("A5", ARTIST, "Banks Of The Bann", "", DEFAULT_TRACK_LENGTH),
-            new Track("A6", ARTIST, "Bold Sean And The Tinker", "", DEFAULT_TRACK_LENGTH),
+            new Track("A6", ARTIST, "Bold Sean And The Tinker", "", DEFAULT_TRACK_LENGTH)
+    );
+
+    private static final List<Track> EXPECTED_TRACKS_IN_RELEASE_B = Arrays.asList(
             new Track("B1", ARTIST, "Paddy Ryans Dream; The Dublin Lasses", "", DEFAULT_TRACK_LENGTH),
             new Track("B2", ARTIST, "The Bold Tenant Farmer; The Nine Points Of Roguery", "", DEFAULT_TRACK_LENGTH),
             new Track("B3", ARTIST, "The Friendly Visit; The Cup Of Tea", "", DEFAULT_TRACK_LENGTH),
@@ -44,8 +49,16 @@ public class DiscogsRelease5753364Test extends DiscogsServiceReleaseTest {
     }
 
     @Override
-    protected List<Track> getExpectedTracksInRelease() {
-        return EXPECTED_TRACKS_IN_RELEASE;
+    protected Collection<Track> getExpectedTracksInRelease() {
+        return combineList(EXPECTED_TRACKS_IN_RELEASE_A, EXPECTED_TRACKS_IN_RELEASE_B);
+    }
+
+    @Override
+    protected Collection<ReleasePart> getExpectedPartsInRelease() {
+        return List.of(
+                createReleasePart("A", EXPECTED_TRACKS_IN_RELEASE_A),
+                createReleasePart("B", EXPECTED_TRACKS_IN_RELEASE_B)
+        );
     }
 
     @Override

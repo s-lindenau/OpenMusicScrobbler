@@ -3,9 +3,12 @@ package nl.slindenau.openmusicscrobbler.service;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
+import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,7 +50,22 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
         return new MusicReleaseBasicInformation(RELEASE_ID, RELEASE_ID, null, null, null, null);
     }
 
-    protected abstract List<Track> getExpectedTracksInRelease();
+    protected ReleasePart createReleasePart(String identification, List<Track> tracks) {
+        return new ReleasePart(identification, Collections.emptyList(), tracks);
+    }
+
+    @SafeVarargs
+    protected final List<Track> combineList(List<Track>... trackLists) {
+        List<Track> allTracks = new ArrayList<>();
+        for (List<Track> trackList : trackLists) {
+            allTracks.addAll(trackList);
+        }
+        return allTracks;
+    }
+
+    protected abstract Collection<Track> getExpectedTracksInRelease();
+
+    protected abstract Collection<ReleasePart> getExpectedPartsInRelease();
 
     protected abstract String getReleaseArtist();
 
@@ -61,27 +79,52 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
         release.getAllTracks().forEach(actualTrack -> assertTrackIsExpected(actualTrack, release));
         // check that all our expected tracks are in the actual list
         getExpectedTracksInRelease().forEach(expectedTrack -> assertTrackIsInActual(expectedTrack, release));
-    }
-
-    private void assertTrackIsInActual(Track expectedTrack, MusicRelease release) {
-        boolean releaseContainsExpectedTrack = release.getAllTracks().contains(expectedTrack);
-        debugPrint(releaseContainsExpectedTrack, release);
-        Assertions.assertTrue(releaseContainsExpectedTrack, "Expected track not found: " + expectedTrack);
+        // same for parts
+        release.releaseParts().forEach(actualReleasePart -> assertReleasePartIsExpected(actualReleasePart, release));
+        getExpectedPartsInRelease().forEach(expectedReleasePart -> assertReleasePartIsInActual(expectedReleasePart, release));
     }
 
     private void assertTrackIsExpected(Track actualTrack, MusicRelease release) {
         boolean expectedTracksContainsActualTrack = getExpectedTracksInRelease().contains(actualTrack);
-        debugPrint(expectedTracksContainsActualTrack, release);
+        debugPrintTracks(expectedTracksContainsActualTrack, release);
         Assertions.assertTrue(expectedTracksContainsActualTrack, "Track not expected: " + actualTrack);
     }
 
-    private void debugPrint(boolean checkSucceeded, MusicRelease release) {
+    private void assertTrackIsInActual(Track expectedTrack, MusicRelease release) {
+        boolean releaseContainsExpectedTrack = release.getAllTracks().contains(expectedTrack);
+        debugPrintTracks(releaseContainsExpectedTrack, release);
+        Assertions.assertTrue(releaseContainsExpectedTrack, "Expected track not found: " + expectedTrack);
+    }
+
+    private void assertReleasePartIsExpected(ReleasePart actualReleasePart, MusicRelease release) {
+        boolean expectedPartsContainsActualReleasePart = getExpectedPartsInRelease().contains(actualReleasePart);
+        debugPrintReleaseParts(expectedPartsContainsActualReleasePart, release);
+        Assertions.assertTrue(expectedPartsContainsActualReleasePart, "ReleasePart not expected: " + actualReleasePart);
+    }
+
+    private void assertReleasePartIsInActual(ReleasePart expectedReleasePart, MusicRelease release) {
+        boolean releaseContainsExpectedReleasePart = release.releaseParts().contains(expectedReleasePart);
+        debugPrintReleaseParts(releaseContainsExpectedReleasePart, release);
+        Assertions.assertTrue(releaseContainsExpectedReleasePart, "Expected ReleasePart not found: " + expectedReleasePart);
+    }
+
+    private void debugPrintTracks(boolean checkSucceeded, MusicRelease release) {
         if (!checkSucceeded) {
             System.out.println("Expected:");
             getExpectedTracksInRelease().forEach(System.out::println);
             System.out.println();
             System.out.println("Actual:");
             release.getAllTracks().forEach(System.out::println);
+        }
+    }
+
+    private void debugPrintReleaseParts(boolean checkSucceeded, MusicRelease release) {
+        if (!checkSucceeded) {
+            System.out.println("Expected:");
+            getExpectedPartsInRelease().forEach(System.out::println);
+            System.out.println();
+            System.out.println("Actual:");
+            release.releaseParts().forEach(System.out::println);
         }
     }
 }

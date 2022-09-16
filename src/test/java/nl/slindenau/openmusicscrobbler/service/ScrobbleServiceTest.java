@@ -107,7 +107,7 @@ class ScrobbleServiceTest {
 
     @Test
     void testScrobbleTracks() {
-        scrobbleService.scrobbleTracks(release, SCROBBLE_AT, TRACKS_PART_1_A.toArray(new Track[]{}));
+        scrobbleService.scrobbleTracks(release, SCROBBLE_AT, TRACKS_PART_1_A);
         verifyGetLastFmClientOnce();
         verifyScrobbleTracks(TRACKS_PART_1_A);
     }

@@ -1,10 +1,12 @@
 package nl.slindenau.openmusicscrobbler.service.release;
 
+import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DiscogsServiceReleaseTest;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -45,8 +47,13 @@ public class DiscogsRelease2047006Test extends DiscogsServiceReleaseTest {
     }
 
     @Override
-    protected List<Track> getExpectedTracksInRelease() {
+    protected Collection<Track> getExpectedTracksInRelease() {
         return EXPECTED_TRACKS_IN_RELEASE;
+    }
+
+    @Override
+    protected Collection<ReleasePart> getExpectedPartsInRelease() {
+        return List.of(createReleasePart("All", EXPECTED_TRACKS_IN_RELEASE));
     }
 
     @Override
