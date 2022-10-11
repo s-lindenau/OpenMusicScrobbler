@@ -2,6 +2,7 @@ package nl.slindenau.openmusicscrobbler.discogs.model;
 
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Artist;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -22,6 +23,7 @@ import java.util.stream.Collector;
  */
 public class DiscogsArtistNameCollector implements Collector<Artist, String, String> {
 
+    private static final String[] NO_SPACE_BEFORE_JOIN_CHARACTERS = {","};
     private static final String SPACE = " ";
     private final DiscogsArtistName discogsArtistName = new DiscogsArtistName();
     private final StringBuilder artistNameBuilder = new StringBuilder();
@@ -71,9 +73,20 @@ public class DiscogsArtistNameCollector implements Collector<Artist, String, Str
             this.artistNameBuilder.append(nextArtist);
         } else {
             this.artistNameBuilder.append(nextArtist);
-            this.artistNameBuilder.append(SPACE);
+            appendSpaceBeforeJoinCharacter(joinCharacter);
             this.artistNameBuilder.append(joinCharacter);
             this.artistNameBuilder.append(SPACE);
         }
+    }
+
+    private void appendSpaceBeforeJoinCharacter(String joinCharacter) {
+        if (isAppendSpaceNotAllowed(joinCharacter)) {
+            return;
+        }
+        this.artistNameBuilder.append(SPACE);
+    }
+
+    private boolean isAppendSpaceNotAllowed(String joinCharacter) {
+        return Arrays.asList(NO_SPACE_BEFORE_JOIN_CHARACTERS).contains(joinCharacter);
     }
 }
