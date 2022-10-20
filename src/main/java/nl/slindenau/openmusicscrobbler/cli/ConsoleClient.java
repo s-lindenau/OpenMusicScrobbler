@@ -11,6 +11,7 @@ import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DateTimeService;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
+import nl.slindenau.openmusicscrobbler.service.search.SearchService;
 import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.time.Instant;
@@ -32,10 +33,12 @@ public class ConsoleClient extends AbstractConsoleClient {
 
     private final DiscogsService discogsService;
     private final ScrobbleService scrobbleService;
+    private final SearchService searchService;
 
     public ConsoleClient() {
         this.discogsService = new DiscogsService();
         this.scrobbleService = new ScrobbleService();
+        this.searchService = new SearchService();
     }
 
     public void run() {
@@ -58,14 +61,39 @@ public class ConsoleClient extends AbstractConsoleClient {
         String discogsUsername = getDiscogsUsername();
         printLine("Fetching user collection: " + discogsUsername);
         ReleaseCollection userCollection = discogsService.getUserCollection(discogsUsername);
-        handleCollection(userCollection);
+        printEmptyLine();
+        printLine("-- Main Menu --");
+        printLine("1: Browse collection");
+        printLine("2: Search collection");
+        Integer menuItem = readConsoleNumberInput("Select menu item to continue");
+        printEmptyLine();
+        switch (menuItem) {
+            case 1 -> handleCollection(userCollection);
+            case 2 -> searchCollection(userCollection);
+        }
     }
 
-    private void handleCollection(ReleaseCollection userCollection) {
-        printReleases(userCollection);
+    private void searchCollection(ReleaseCollection userCollection) {
+        searchService.loadCollection(userCollection);
+        ReleaseCollection matchingSearch = handleSearchInput();
+        while (matchingSearch.releases().isEmpty()) {
+            printLine("No results, please try again.");
+            matchingSearch = handleSearchInput();
+        }
+        printEmptyLine();
+        handleCollection(matchingSearch);
+    }
+
+    private ReleaseCollection handleSearchInput() {
+        String searchQueryText = readConsoleTextInput("Enter search query to filter collection items");
+        return searchService.findMatching(searchQueryText);
+    }
+
+    private void handleCollection(ReleaseCollection collectionReleases) {
+        printReleases(collectionReleases);
         printEmptyLine();
         Integer releaseId = readConsoleNumberInput("Select release ID to continue");
-        MusicRelease selectedRelease = discogsService.getRelease(userCollection, releaseId);
+        MusicRelease selectedRelease = discogsService.getRelease(collectionReleases, releaseId);
         handleRelease(selectedRelease);
     }
 
