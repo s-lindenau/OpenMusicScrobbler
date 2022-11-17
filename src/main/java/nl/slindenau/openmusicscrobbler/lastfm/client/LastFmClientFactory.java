@@ -18,21 +18,24 @@ public class LastFmClientFactory {
     private static final String LAST_FM_SECURE_ENDPOINT = "https://ws.audioscrobbler.com/2.0/";
 
     private final LastFmClientFacade clientFacade;
+    private final UserAgentFactory userAgentFactory;
+    private final ApplicationProperties applicationProperties;
 
     public LastFmClientFactory() {
-        this(new LastFmClientFacade());
+        this(new LastFmClientFacade(), new UserAgentFactory(), new ApplicationProperties());
     }
 
-    protected LastFmClientFactory(LastFmClientFacade clientFacade) {
+    protected LastFmClientFactory(LastFmClientFacade clientFacade, UserAgentFactory userAgentFactory, ApplicationProperties applicationProperties) {
         this.clientFacade = clientFacade;
+        this.userAgentFactory = userAgentFactory;
+        this.applicationProperties = applicationProperties;
     }
 
     public LastFmClientWrapper getClient() {
-        String userAgent = new UserAgentFactory().getUserAgent();
+        String userAgent = userAgentFactory.getUserAgent();
         getCaller().setUserAgent(userAgent);
         getCaller().setApiRootUrl(LAST_FM_SECURE_ENDPOINT);
 
-        ApplicationProperties applicationProperties = new ApplicationProperties();
         String key = applicationProperties.getLastFmApiKey();
         String secret = applicationProperties.getLastFmApiSecret();
         String user = applicationProperties.getLastFmUsername();
