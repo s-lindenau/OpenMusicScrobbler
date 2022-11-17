@@ -96,7 +96,7 @@ public class DiscogsService {
     }
 
     public MusicRelease getRelease(ReleaseCollection userCollection, Integer releaseId) {
-        Optional<MusicReleaseBasicInformation> release = userCollection.releases().stream().filter(musicRelease -> musicRelease.id() == releaseId).findFirst();
+        Optional<MusicReleaseBasicInformation> release = userCollection.findById(releaseId);
         return release.map(this::getMusicReleaseTracks).orElseThrow(() -> new OpenMusicScrobblerException("Unknown release with id: " + releaseId));
     }
 
