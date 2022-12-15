@@ -249,5 +249,15 @@
                 </executions>
             </plugin>
         </plugins>
+        <!-- Resources plugin: replace property placeholders (filter) in resource files -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.bsh</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 </project>
