@@ -28,9 +28,6 @@ import java.util.stream.Collectors;
  */
 public class ConsoleClient extends AbstractConsoleClient {
 
-    private static final String EXIT_COMMAND = "exit";
-    private static final String CANCEL_COMMAND = "cancel";
-
     private final DiscogsService discogsService;
     private final ScrobbleService scrobbleService;
     private final SearchService searchService;
@@ -45,32 +42,39 @@ public class ConsoleClient extends AbstractConsoleClient {
         boolean exit = false;
         while (!exit) {
             try {
-                mainApplicationLoop();
+                exit = mainApplicationLoop();
             } catch (OpenMusicScrobblerException ex) {
                 handleException(ex);
             } catch (Exception ex) {
                 handleException(ex);
                 getLogger().error(ex.getMessage(), ex);
             }
-            exit = askCommand(EXIT_COMMAND);
+            if (!exit) {
+                readConsoleOptionalTextInput("Press [Enter] to continue");
+            }
         }
         closeConsoleClient();
     }
 
-    private void mainApplicationLoop() {
+    private boolean mainApplicationLoop() {
         String discogsUsername = getDiscogsUsername();
         printLine("Fetching user collection: " + discogsUsername);
         ReleaseCollection userCollection = discogsService.getUserCollection(discogsUsername);
         printEmptyLine();
         printLine("-- Main Menu --");
+        printLine("0: Exit application");
         printLine("1: Browse collection");
         printLine("2: Search collection");
         Integer menuItem = readConsoleNumberInput("Select menu item to continue");
         printEmptyLine();
         switch (menuItem) {
+            case 0 -> {
+                return true;
+            }
             case 1 -> handleCollection(userCollection);
             case 2 -> searchCollection(userCollection);
         }
+        return false;
     }
 
     private void searchCollection(ReleaseCollection userCollection) {
@@ -111,10 +115,12 @@ public class ConsoleClient extends AbstractConsoleClient {
         printTracks(tracks);
         printEmptyLine();
         printLine("Scrobble tracks to Last.fm?");
-        boolean cancel = askCommand(CANCEL_COMMAND);
-        if (!cancel) {
+        boolean isConfirmed = askConfirm();
+        if (isConfirmed) {
             scrobbleTracks(release, tracks);
-            printLine("Scrobble complete!");
+            printLine("Scrobble completed!");
+        } else {
+            printLine("Scrobble cancelled.");
         }
     }
 
@@ -190,9 +196,9 @@ public class ConsoleClient extends AbstractConsoleClient {
         printLine("Error message: " + exception.getMessage());
     }
 
-    private boolean askCommand(String command) {
-        String message = String.format("Press [Enter] to continue or type [%s] to stop", command);
+    private boolean askConfirm() {
+        String message = "Press [Enter] to continue or type [cancel] to stop";
         String input = readConsoleOptionalTextInput(message);
-        return command.equalsIgnoreCase(input);
+        return OptionalString.ofNullableOrBlank(input).isEmpty();
     }
 }
