@@ -23,7 +23,6 @@ import java.util.stream.Stream;
  */
 public class ConfigurationWizardClient extends AbstractConsoleClient {
 
-    private static final String CANCEL_COMMAND = "cancel";
     private static final String PASSWORD_STRING = "***";
     private static final String EMPTY_STRING = "";
 
@@ -37,11 +36,16 @@ public class ConfigurationWizardClient extends AbstractConsoleClient {
 
         Stream.of(ApplicationProperty.values()).forEach(this::configureProperty);
 
-        String command = readConsoleOptionalTextInput("Press [Enter] to save or type [cancel] to revert changes");
-        if (!command.equalsIgnoreCase(CANCEL_COMMAND)) {
+        boolean isConfirmed = askConfirm();
+        if (isConfirmed) {
             saveProperties();
         }
         closeConsoleClient();
+    }
+
+    private boolean askConfirm() {
+        String command = readConsoleOptionalTextInput("Press [Enter] to save or type [cancel] to revert changes");
+        return OptionalString.ofNullableOrBlank(command).isEmpty();
     }
 
     private void configureProperty(ApplicationProperty applicationProperty) {
