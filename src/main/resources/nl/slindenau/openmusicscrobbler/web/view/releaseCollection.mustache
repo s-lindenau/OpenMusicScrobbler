@@ -3,10 +3,11 @@
 <head>
     <title>${app.name}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <meta charset="utf-8">
     <script>
         function scrobble(id) {
-            fetch("/collection/scrobble?id=" + id, {
+            fetch("/app/collection/scrobble?id=" + id, {
                 method: "POST"
             });
         }
