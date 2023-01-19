@@ -62,9 +62,10 @@ public class ConsoleClient extends AbstractConsoleClient {
         ReleaseCollection userCollection = discogsService.getUserCollection(discogsUsername);
         printEmptyLine();
         printLine("-- Main Menu --");
-        printLine("0: Exit application");
         printLine("1: Browse collection");
         printLine("2: Search collection");
+        printLine("0: Exit application");
+        printEmptyLine();
         Integer menuItem = readConsoleNumberInput("Select menu item to continue");
         printEmptyLine();
         switch (menuItem) {
