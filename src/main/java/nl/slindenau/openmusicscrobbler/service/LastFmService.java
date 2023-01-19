@@ -25,6 +25,7 @@ import java.util.Date;
 public class LastFmService {
 
     private static final int LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS = 2;
+    private static final int DAYS_PER_WEEK = 7;
 
     private final Logger logger = LoggerFactory.getLogger(LastFmService.class);
     private final ApplicationProperties applicationProperties = new ApplicationProperties();
@@ -65,7 +66,7 @@ public class LastFmService {
             String message = "Can't scrobble tracks at start date: %s, end date would be in the future: %s";
             throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), Date.from(scrobbleEnd)));
         }
-        Instant maximumHistoricScrobble = Instant.now().minus(LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS * 7, ChronoUnit.DAYS);
+        Instant maximumHistoricScrobble = Instant.now().minus(LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS * DAYS_PER_WEEK, ChronoUnit.DAYS);
         if (firstTrackStartedAt.isBefore(maximumHistoricScrobble)) {
             String message = "Can't scrobble tracks at start date: %s, Last.fm only processes historic scrobbles from the past %s weeks";
             throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS));
