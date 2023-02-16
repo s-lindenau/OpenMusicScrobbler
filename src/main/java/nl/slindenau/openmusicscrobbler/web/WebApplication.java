@@ -29,9 +29,9 @@ public class WebApplication extends Application<DropWizardConfiguration> {
 
     @Override
     public void run(DropWizardConfiguration configuration, Environment environment) {
-        CollectionResource collectionResource = new CollectionResource();
         environment.jersey().setUrlPattern(JERSEY_APPLICATION_ROOT_URL_PATTERN);
-        environment.jersey().register(collectionResource);
+        environment.jersey().register(new LoggingExceptionMapper());
+        environment.jersey().register(new CollectionResource());
     }
 
     @Override

@@ -2,6 +2,7 @@ package nl.slindenau.openmusicscrobbler;
 
 import nl.slindenau.openmusicscrobbler.cli.ConfigurationWizardClient;
 import nl.slindenau.openmusicscrobbler.cli.ConsoleClient;
+import nl.slindenau.openmusicscrobbler.exception.LoggingUncaughtExceptionHandler;
 import nl.slindenau.openmusicscrobbler.web.WebApplication;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
@@ -18,7 +19,7 @@ public class Application {
     private static final String DEFAULT_APPLICATION_TO_RUN = CONSOLE_APPLICATION;
 
     public static void main(String[] commandLineArguments) {
-        configureLogging();
+        configureApplication();
         String applicationToRun = getApplicationToRun(commandLineArguments);
         switch (applicationToRun) {
             case CONSOLE_APPLICATION -> new ConsoleClient().run();
@@ -26,6 +27,15 @@ public class Application {
             case SERVER_APPLICATION -> new WebApplication().run(commandLineArguments);
             default -> throw new IllegalArgumentException("Unknown command: " + applicationToRun);
         }
+    }
+
+    private static void configureApplication() {
+        configureExceptionHandling();
+        configureLogging();
+    }
+
+    private static void configureExceptionHandling() {
+       Thread.setDefaultUncaughtExceptionHandler(new LoggingUncaughtExceptionHandler());
     }
 
     private static void configureLogging() {
