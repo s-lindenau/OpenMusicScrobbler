@@ -33,6 +33,15 @@ public class MusicReleaseService {
 
     private final TrackDurationService trackDurationService = new TrackDurationService();
     private final Logger logger = LoggerFactory.getLogger(MusicReleaseService.class);
+    private final ApplicationProperties applicationProperties;
+
+    public MusicReleaseService() {
+        this(new ApplicationProperties());
+    }
+
+    public MusicReleaseService(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
+    }
 
     public MusicRelease createRelease(MusicReleaseBasicInformation musicRelease, Release discogsRelease) {
         String releaseArtist = discogsRelease.artists.stream().collect(new DiscogsArtistNameCollector());
@@ -112,7 +121,7 @@ public class MusicReleaseService {
             return trackDurationService.parseTrackLength(duration);
         } catch (OpenMusicScrobblerException ex) {
             logger.debug("Using default track length", ex);
-            return new ApplicationProperties().getDiscogsDefaultTrackLength();
+            return this.applicationProperties.getDiscogsDefaultTrackLength();
         }
     }
 
