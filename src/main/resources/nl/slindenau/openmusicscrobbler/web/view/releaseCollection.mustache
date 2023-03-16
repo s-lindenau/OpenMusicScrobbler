@@ -5,13 +5,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta charset="utf-8">
-    <script>
-        function scrobble(id) {
-            fetch("/app/collection/scrobble?id=" + id, {
-                method: "POST"
-            });
+    <style>
+        :root {
+            --anchor-color: #0000EE;
         }
-    </script>
+
+        a:link {
+            color: var(--anchor-color);
+        }
+
+        a:active {
+            color: var(--anchor-color);
+        }
+
+        a:visited {
+            color: var(--anchor-color);
+        }
+
+        a:hover {
+            color: var(--anchor-color);
+        }
+    </style>
 </head>
 <body>
 <h1>Music Collection</h1>
@@ -20,8 +34,7 @@
     {{#releaseCollection}}
         {{#releases}}
             <li>
-                {{artist}} - {{title}} ({{year}})
-                <button onclick="scrobble({{id}})">Scrobble</button>
+                {{artist}} - {{title}}{{#year}} ({{year}}){{/year}} <a href="/app/collection/release?id={{discogsId}}">Select</a>
             </li>
         {{/releases}}
     {{/releaseCollection}}

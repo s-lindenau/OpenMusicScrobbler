@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>${app.name}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="utf-8">
+    <script>
+        function scrobble(id) {
+            fetch("/app/collection/scrobble?id=" + id, {
+                method: "POST"
+            });
+            // TODO: remove alert
+            alert("Not yet implemented...");
+        }
+    </script>
+</head>
+<body>
+<h1>Scrobble release</h1>
+{{#release}}
+    {{#basicInformation}}<b>{{artist}} - {{title}}{{#year}} ({{year}}){{/year}}</b>{{/basicInformation}}
+    <p>Select tracks to scrobble</p>
+    {{#releaseParts}}
+        <ul>
+            {{#allTracks}}
+                <li>
+                    {{position}}: {{artist}} - {{title}}{{#duration}} ({{duration}}){{/duration}}
+                </li>
+            {{/allTracks}}
+        </ul>
+    {{/releaseParts}}
+    <button onclick="scrobble({{basicInformation.discogsId}})">Scrobble selected tracks</button>
+{{/release}}
+</body>
+</html>
