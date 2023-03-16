@@ -20,7 +20,6 @@ public class DiscogsRelease2318077Test extends DiscogsServiceReleaseTest {
 
     private static final String ARTIST = "Crosby, Stills, Nash & Young";
     private static final String ALBUM = "Déjà Vu";
-    private static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(1);
 
     private static final List<Track> EXPECTED_TRACKS_IN_RELEASE = Arrays.asList(
             new Track("A1", ARTIST, "Carry On", "4:25", Duration.parse("PT4M25S")),

@@ -22,6 +22,7 @@ import java.util.List;
 public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
 
     private static final int RELEASE_ID = 0;
+    private static final int DISCOGS_ID = 1;
 
     @Override
     protected String getUserCollectionFolderReleasesFileName() {
@@ -44,10 +45,13 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
         ReleaseCollection releaseCollection = new ReleaseCollection(Collections.singleton(emptyBasicInformationForReleaseId));
         MusicRelease release = getService().getRelease(releaseCollection, RELEASE_ID);
         verifyRelease(release);
+
+        MusicRelease discogsRelease = getService().getReleaseByDiscogsId(releaseCollection, DISCOGS_ID);
+        Assertions.assertEquals(release.basicInformation().id(), discogsRelease.basicInformation().id(), "Release by discogs ID does not match release by ID");
     }
 
     private MusicReleaseBasicInformation getMusicReleaseBasicInformation() {
-        return new MusicReleaseBasicInformation(RELEASE_ID, RELEASE_ID, null, null, null, null);
+        return new MusicReleaseBasicInformation(RELEASE_ID, DISCOGS_ID, null, null, null, null);
     }
 
     protected ReleasePart createReleasePart(String identification, List<Track> tracks) {

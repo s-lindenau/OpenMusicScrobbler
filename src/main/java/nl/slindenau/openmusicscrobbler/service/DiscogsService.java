@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * @author slindenau
@@ -96,7 +97,15 @@ public class DiscogsService {
     }
 
     public MusicRelease getRelease(ReleaseCollection userCollection, Integer releaseId) {
-        Optional<MusicReleaseBasicInformation> release = userCollection.findById(releaseId);
+        return getReleaseById(userCollection::findById, releaseId);
+    }
+
+    public MusicRelease getReleaseByDiscogsId(ReleaseCollection userCollection, Integer discogsId) {
+        return getReleaseById(userCollection::findByDiscogsId, discogsId);
+    }
+
+    private MusicRelease getReleaseById(Function<Integer, Optional<MusicReleaseBasicInformation>> findReleaseById, Integer releaseId) {
+        Optional<MusicReleaseBasicInformation> release = findReleaseById.apply(releaseId);
         return release.map(this::getMusicReleaseTracks).orElseThrow(() -> new OpenMusicScrobblerException("Unknown release with id: " + releaseId));
     }
 

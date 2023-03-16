@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.service;
 
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientFactory;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientMock;
 import nl.slindenau.openmusicscrobbler.discogs.client.DiscogsClientWrapper;
@@ -7,7 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.Duration;
 
 import static org.mockito.Mockito.when;
 
@@ -21,15 +25,20 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public abstract class DiscogsServiceTest {
 
+    protected static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(1);
+
     private DiscogsService service;
 
     @Mock
     private DiscogsClientFactory discogsClientFactory;
+    @Mock
+    private ApplicationProperties applicationProperties;
 
     @BeforeEach
     void setUp() {
         setupDiscogsClientFactory();
-        MusicReleaseService musicReleaseService = new MusicReleaseService();
+        Mockito.lenient().when(applicationProperties.getDiscogsDefaultTrackLength()).thenReturn(DEFAULT_TRACK_LENGTH);
+        MusicReleaseService musicReleaseService = new MusicReleaseService(applicationProperties);
         service = new DiscogsService(discogsClientFactory, musicReleaseService);
     }
 

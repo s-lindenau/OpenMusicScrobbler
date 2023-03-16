@@ -4,7 +4,6 @@ import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DiscogsServiceReleaseTest;
 
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +19,6 @@ public class DiscogsRelease2647399Test extends DiscogsServiceReleaseTest {
 
     private static final String ARTIST = "Vivaldi";
     private static final String ALBUM = "Die Vier Jahreszeiten & Concerto Grosso Op 3 Nr. II D-moll, P.V. 250";
-    private static final Duration DEFAULT_TRACK_LENGTH = Duration.ofMinutes(1);
 
     private static final List<Track> EXPECTED_TRACKS_IN_RELEASE = Arrays.asList(
             new Track("A1", ARTIST, "II Cimento Dell' Armonia E Dell' Inventione: La Primavera (Frühling)", "", DEFAULT_TRACK_LENGTH),
