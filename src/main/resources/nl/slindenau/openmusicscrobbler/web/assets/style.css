@@ -1,0 +1,19 @@
+:root {
+    --anchor-color: #0000EE;
+}
+
+a:link {
+    color: var(--anchor-color);
+}
+
+a:active {
+    color: var(--anchor-color);
+}
+
+a:visited {
+    color: var(--anchor-color);
+}
+
+a:hover {
+    color: var(--anchor-color);
+}
