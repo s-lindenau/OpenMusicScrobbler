@@ -4,9 +4,9 @@
 ### Description
 The Open Music Scrobbler can be used to manually scrobble anything from your [Discogs User Collection](https://www.discogs.com/user/example) to Last.fm.
 
-Connect with your Discogs username to browse your public collection, and select any album to scrobble. Connect with your Last.fm account to scrobble the selected album(s) and track(s) at a given instant in time. If the track duration is present on Discogs, the scrobbles will be created based on the actual playtime of each track. 
+Connect with your Discogs account to browse your (public) collection, and select any album to scrobble. Connect with your Last.fm account to scrobble the selected album(s) and track(s) at a given instant in time. If the track duration is present on Discogs, the scrobbles will be created based on the actual playtime of each track. 
 
-This application is currently for desktop only. If you just want to quickly scrobble something you listened to, I suggest also checking out the following projects:
+This application is currently for desktop or self-hosted only. If you just want to quickly scrobble something you listened to, I suggest also checking out the following projects:
 - https://openscrobbler.com
 - https://vinylscrobbler.com
 - https://codescrobble.com
@@ -14,8 +14,7 @@ This application is currently for desktop only. If you just want to quickly scro
 
 ### Roadmap
 - [x] Initial Prototype (CLI)
-- [ ] Desktop GUI
-- [ ] Web GUI
+- [x] Web GUI
 - [ ] Scheduling/offline scrobble with database
 - [ ] Barcode/Cover scanner for quick scrobble
 - [ ] Collection builder from other sources (mp3, search music databases)
@@ -60,3 +59,6 @@ This application is currently for desktop only. If you just want to quickly scro
     - `console` the main command line based scrobble client
     - `config` a command line based wizard that helps to set the configuration properties
     - `server` run as a server for the web based client
+- Using the application
+  - The `console` application is an interactive prompt directly in the console used to run the application. If no console is present, a GUI console alternative is started. Follow the menu and instructions on screen, and input text on various prompts to select and scrobble tracks.
+  - The `server` web based application can be accessed with any modern browser. After starting the application, browse to http://localhost:8080 to access the main menu. Follow the links on screen to select and scrobble tracks.
