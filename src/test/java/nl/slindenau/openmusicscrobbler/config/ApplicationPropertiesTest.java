@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.time.Duration;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -45,9 +46,11 @@ class ApplicationPropertiesTest {
         setupProperty(ApplicationProperty.DISCOGS_READ_TIMEOUT, "PT1S");
         setupProperty(ApplicationProperty.DISCOGS_CONNECTION_TIMEOUT, "PT2S");
         setupProperty(ApplicationProperty.DISCOGS_TRACK_LENGTH, "PT3S");
+        setupProperty(ApplicationProperty.DISCOGS_TOKEN, "personal-token");
 
         Assertions.assertTrue(applicationProperties.isDebugEnabled(), "Debug value mismatch");
         Assertions.assertEquals("debug", applicationProperties.getLogLevel(), "Log Level value mismatch");
+        Assertions.assertEquals(Optional.of("personal-token"), applicationProperties.getDiscogsPersonalAccessToken(), "Discogs personal token value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(1), applicationProperties.getDiscogsReadTimeout(), "Discogs read timeout value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(2), applicationProperties.getDiscogsConnectionTimeout(), "Discogs connect timeout value mismatch");
         Assertions.assertEquals(Duration.ofSeconds(3), applicationProperties.getDiscogsDefaultTrackLength(), "Discogs track length value mismatch");
@@ -81,6 +84,11 @@ class ApplicationPropertiesTest {
     }
 
     @Test
+    void testGetDefaultEmptyOptionalValues() {
+        testEmptyOptionalValue(applicationProperties::getDiscogsPersonalAccessToken, "Discogs personal token");
+    }
+
+    @Test
     void testGetAsProperties() {
         Properties asProperties = applicationProperties.getAsProperties();
         Stream.of(ApplicationProperty.values()).forEach(applicationProperty -> assertPropertyExists(applicationProperty, asProperties));
@@ -89,6 +97,10 @@ class ApplicationPropertiesTest {
     private void assertPropertyExists(ApplicationProperty applicationProperty, Properties asProperties) {
         String applicationPropertyKey = applicationProperty.getKey();
         Assertions.assertTrue(asProperties.containsKey(applicationPropertyKey), "ApplicationProperty not found in properties: " + applicationPropertyKey);
+    }
+
+    private void testEmptyOptionalValue(Supplier<Optional<?>> getter, String message) {
+        Assertions.assertEquals(Optional.empty(), getter.get(), message + " property should not have a default value");
     }
 
     private void testEmptyValue(Supplier<Object> getter, String message) {

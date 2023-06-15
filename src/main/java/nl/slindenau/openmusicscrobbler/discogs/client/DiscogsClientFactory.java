@@ -6,6 +6,8 @@ import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
 /**
  * @author slindenau
  * https://github.com/s-lindenau
@@ -15,16 +17,35 @@ public class DiscogsClientFactory {
 
     private final Logger logger = LoggerFactory.getLogger(DiscogsClientFactory.class);
 
+    private final ApplicationProperties applicationProperties;
+    private final UserAgentFactory userAgentFactory;
+
+    public DiscogsClientFactory() {
+        this(new ApplicationProperties(), new UserAgentFactory());
+    }
+
+    protected DiscogsClientFactory(ApplicationProperties applicationProperties, UserAgentFactory userAgentFactory) {
+        this.applicationProperties = applicationProperties;
+        this.userAgentFactory = userAgentFactory;
+    }
+
     public DiscogsClientWrapper getClient() {
-        String userAgent = new UserAgentFactory().getUserAgent();
-        DiscogsClient discogsClient = new DiscogsClient(userAgent);
-        ApplicationProperties applicationProperties = new ApplicationProperties();
-        boolean isDebugEnabled = applicationProperties.isDebugEnabled();
-        discogsClient.setDebugEnabled(isDebugEnabled);
+        String userAgent = userAgentFactory.getUserAgent();
+        logUserAgent(userAgent);
+
+        DiscogsClient discogsClient = getDiscogsClient(userAgent);
+        discogsClient.setDebugEnabled(applicationProperties.isDebugEnabled());
         discogsClient.setConnectTimeout(applicationProperties.getDiscogsConnectionTimeout());
         discogsClient.setReadTimeout(applicationProperties.getDiscogsReadTimeout());
-        logUserAgent(userAgent);
+
         return new DiscogsClientWrapper(discogsClient);
+    }
+
+    private DiscogsClient getDiscogsClient(String userAgent) {
+        Optional<String> discogsPersonalAccessToken = applicationProperties.getDiscogsPersonalAccessToken();
+        return discogsPersonalAccessToken
+                .map(personalAccessToken -> new DiscogsClient(userAgent, personalAccessToken))
+                .orElseGet(() -> new DiscogsClient(userAgent));
     }
 
     private void logUserAgent(String userAgent) {

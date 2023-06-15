@@ -10,6 +10,7 @@ import java.util.Optional;
 public enum ApplicationProperty {
 
     DISCOGS_USERNAME("discogs.username", "Discogs username"),
+    DISCOGS_TOKEN("discogs.personal.token", "Discogs personal access token (Optional), see https://www.discogs.com/settings/developers"),
     LAST_FM_USERNAME("lastfm.username", "Last.fm username"),
     LAST_FM_PASSWORD("lastfm.password", "Last.fm password"),
     LAST_FM_API_KEY("lastfm.api.key", "Last.fm API key, see https://www.last.fm/api/authentication"),

@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.discogs.client;
 
 import com.adamdonegan.Discogs4J.client.DiscogsClient;
+import com.adamdonegan.Discogs4J.models.AuthenticationType;
 import nl.slindenau.openmusicscrobbler.discogs.json.JsonParser;
 import nl.slindenau.openmusicscrobbler.discogs.model.Pagination;
 import nl.slindenau.openmusicscrobbler.discogs.model.collection.CollectionFolder;
@@ -60,6 +61,10 @@ public class DiscogsClientWrapper {
         String release = discogsClient.release(releaseId);
         debugLog(release);
         return jsonParser.parseJsonObject(release, Release.class);
+    }
+
+    public boolean isUsingAuthentication() {
+        return !AuthenticationType.NONE.equals(discogsClient.getAuthenticationType());
     }
 
     private Map<String, String> getPageParameters(Pagination pagination, int pageNumber) {

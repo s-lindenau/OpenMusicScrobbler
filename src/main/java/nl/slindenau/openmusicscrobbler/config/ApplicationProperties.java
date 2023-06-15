@@ -1,9 +1,11 @@
 package nl.slindenau.openmusicscrobbler.config;
 
 import nl.slindenau.openmusicscrobbler.util.CombinedProperties;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.time.Duration;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Properties;
 
 /**
@@ -54,6 +56,10 @@ public class ApplicationProperties {
 
     public String getLastFmApiSecret() {
         return getProperty(ApplicationProperty.LAST_FM_API_SECRET);
+    }
+
+    public Optional<String> getDiscogsPersonalAccessToken() {
+        return OptionalString.ofNullableOrBlank(getProperty(ApplicationProperty.DISCOGS_TOKEN));
     }
 
     public Duration getDiscogsConnectionTimeout() {
