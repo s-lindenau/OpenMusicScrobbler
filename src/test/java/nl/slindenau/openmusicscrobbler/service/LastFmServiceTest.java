@@ -109,7 +109,7 @@ class LastFmServiceTest {
     }
 
     private MusicRelease setupMusicRelease() {
-        MusicReleaseBasicInformation information = new MusicReleaseBasicInformation(0, 0, "Artist", "Title", "Format", 0);
+        MusicReleaseBasicInformation information = new MusicReleaseBasicInformation(0, 0, "Artist", "Title", "Format", 0, "Thumb");
         return new MusicRelease(information, Collections.emptyList());
     }
 

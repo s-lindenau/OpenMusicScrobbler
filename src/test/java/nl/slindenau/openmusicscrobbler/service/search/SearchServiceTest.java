@@ -36,9 +36,9 @@ class SearchServiceTest {
 
     private Collection<MusicReleaseBasicInformation> setupReleases() {
         Collection<MusicReleaseBasicInformation> releases = new ArrayList<>();
-        releaseNoHit = new MusicReleaseBasicInformation(1, 1, "A", "T", "F", 0);
-        releaseYearHit = new MusicReleaseBasicInformation(2, 2, "Kadril", "Eva", "CD", 1999);
-        releaseTitleHit = new MusicReleaseBasicInformation(3, 3, "Vengaboys", "1999 (I Wanna Go Back)", "File", 2021);
+        releaseNoHit = new MusicReleaseBasicInformation(1, 1, "A", "T", "F", 0, "T");
+        releaseYearHit = new MusicReleaseBasicInformation(2, 2, "Kadril", "Eva", "CD", 1999, "T");
+        releaseTitleHit = new MusicReleaseBasicInformation(3, 3, "Vengaboys", "1999 (I Wanna Go Back)", "File", 2021, "T");
         releases.add(releaseNoHit);
         releases.add(releaseYearHit);
         releases.add(releaseTitleHit);

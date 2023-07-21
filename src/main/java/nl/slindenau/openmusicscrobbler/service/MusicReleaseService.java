@@ -143,6 +143,11 @@ public class MusicReleaseService {
     }
 
     private MusicReleaseBasicInformation getUpdatedBasicInformation(MusicReleaseBasicInformation musicRelease, String releaseArtist, String releaseTitle) {
-        return new MusicReleaseBasicInformation(musicRelease.id(), musicRelease.discogsId(), releaseArtist, releaseTitle, musicRelease.format(), musicRelease.year());
+        int id = musicRelease.id();
+        int discogsId = musicRelease.discogsId();
+        String format = musicRelease.format();
+        Integer year = musicRelease.year();
+        String thumbnail = musicRelease.thumbnail();
+        return new MusicReleaseBasicInformation(id, discogsId, releaseArtist, releaseTitle, format, year, thumbnail);
     }
 }

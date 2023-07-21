@@ -15,18 +15,19 @@ class ReleaseDecoratorTest {
     private static final String ARTIST = "Artist";
     private static final String TITLE = "Title";
     private static final String FORMAT = "CD";
+    private static final String THUMBNAIL = "Thumb";
     private static final int YEAR = 2000;
     private static final int MISSING_YEAR = 0;
 
     @Test
     void testWithYear() {
-        MusicReleaseBasicInformation release = new MusicReleaseBasicInformation(ID, ID, ARTIST, TITLE, FORMAT, YEAR);
+        MusicReleaseBasicInformation release = new MusicReleaseBasicInformation(ID, ID, ARTIST, TITLE, FORMAT, YEAR, THUMBNAIL);
         assertReleaseMatches(release, "01: Artist - Title (CD, 2000)");
     }
 
     @Test
     void testWithoutYear() {
-        MusicReleaseBasicInformation release = new MusicReleaseBasicInformation(ID, ID, ARTIST, TITLE, FORMAT, MISSING_YEAR);
+        MusicReleaseBasicInformation release = new MusicReleaseBasicInformation(ID, ID, ARTIST, TITLE, FORMAT, MISSING_YEAR, THUMBNAIL);
         assertReleaseMatches(release, "01: Artist - Title (CD)");
     }
 

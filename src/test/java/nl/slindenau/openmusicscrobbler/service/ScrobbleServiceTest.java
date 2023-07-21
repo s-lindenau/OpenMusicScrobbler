@@ -36,6 +36,7 @@ class ScrobbleServiceTest {
     private static final String ARTIST = "Artist";
     private static final String TITLE = "Title";
     private static final String FORMAT = "2x Vinyl";
+    private static final String THUMBNAIL = "Thumb";
     private static final Integer YEAR = 2000;
     private static final Instant SCROBBLE_AT = Instant.now();
     private static final int SCROBBLE_TRACK_LIST_METHOD_ARGUMENT_INDEX = 2;
@@ -132,7 +133,7 @@ class ScrobbleServiceTest {
         ReleasePart releasePartD = new ReleasePart("D", Collections.emptyList(), TRACKS_PART_2_D);
         releasePart1 = new ReleasePart("Vinyl Record 1", Arrays.asList(releasePartA, releasePartB), Collections.emptyList());
         releasePart2 = new ReleasePart("Vinyl Record 2", Arrays.asList(releasePartC, releasePartD), Collections.emptyList());
-        MusicReleaseBasicInformation basicInformation = new MusicReleaseBasicInformation(0, 0, ARTIST, TITLE, FORMAT, YEAR);
+        MusicReleaseBasicInformation basicInformation = new MusicReleaseBasicInformation(0, 0, ARTIST, TITLE, FORMAT, YEAR, THUMBNAIL);
         release = new MusicRelease(basicInformation, Arrays.asList(releasePart1, releasePart2));
     }
 

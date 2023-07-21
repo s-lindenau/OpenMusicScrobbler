@@ -51,7 +51,7 @@ public abstract class DiscogsServiceReleaseTest extends DiscogsServiceTest {
     }
 
     private MusicReleaseBasicInformation getMusicReleaseBasicInformation() {
-        return new MusicReleaseBasicInformation(RELEASE_ID, DISCOGS_ID, null, null, null, null);
+        return new MusicReleaseBasicInformation(RELEASE_ID, DISCOGS_ID, null, null, null, null, null);
     }
 
     protected ReleasePart createReleasePart(String identification, List<Track> tracks) {

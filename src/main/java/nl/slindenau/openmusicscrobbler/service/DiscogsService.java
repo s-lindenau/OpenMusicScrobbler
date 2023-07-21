@@ -16,6 +16,7 @@ import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -71,7 +72,9 @@ public class DiscogsService {
 
     private void processReleases(CollectionReleases collectionReleases, Collection<MusicReleaseBasicInformation> releasesInCollection) {
         checkError(collectionReleases);
-        collectionReleases.getReleases().stream().map(this::createRelease).forEach(releasesInCollection::add);
+        collectionReleases.getReleases().stream()
+                .map(this::createRelease)
+                .forEach(releasesInCollection::add);
     }
 
     private MusicReleaseBasicInformation createRelease(CollectionRelease release) {
@@ -81,7 +84,8 @@ public class DiscogsService {
         String format = getFormat(basicInformation);
         String artist = getArtist(basicInformation);
         Integer year = getYear(basicInformation);
-        return new MusicReleaseBasicInformation(nextId++, releaseId, artist, title, format, year);
+        String thumbnail = getThumbnail(basicInformation);
+        return new MusicReleaseBasicInformation(nextId++, releaseId, artist, title, format, year, thumbnail);
     }
 
     private String getFormat(BasicInformation basicInformation) {
@@ -94,6 +98,10 @@ public class DiscogsService {
 
     private Integer getYear(BasicInformation basicInformation) {
         return basicInformation.year == 0 ? null : basicInformation.year;
+    }
+
+    private String getThumbnail(BasicInformation basicInformation) {
+        return OptionalString.ofNullableOrBlank(basicInformation.thumb).orElse(null);
     }
 
     public MusicRelease getRelease(ReleaseCollection userCollection, Integer releaseId) {

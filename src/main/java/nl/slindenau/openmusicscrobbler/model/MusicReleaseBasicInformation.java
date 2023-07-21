@@ -8,6 +8,6 @@ package nl.slindenau.openmusicscrobbler.model;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record MusicReleaseBasicInformation(int id, int discogsId, String artist, String title, String format, Integer year) {
+public record MusicReleaseBasicInformation(int id, int discogsId, String artist, String title, String format, Integer year, String thumbnail) {
 
 }
