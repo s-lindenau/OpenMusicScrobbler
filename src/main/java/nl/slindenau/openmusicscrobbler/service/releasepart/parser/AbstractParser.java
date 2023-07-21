@@ -59,7 +59,9 @@ public abstract class AbstractParser implements ReleasePartParser {
     }
 
     private ReleasePart createReleasePart(String partNumber, List<ParsedTrack> parsedTracks) {
-        Collection<Track> tracks = parsedTracks.stream().map(ParsedTrack::track).collect(Collectors.toCollection(LinkedList::new));
+        Collection<Track> tracks = parsedTracks.stream()
+                .map(ParsedTrack::track)
+                .collect(Collectors.toCollection(LinkedList::new));
         return new ReleasePart(partNumber, Collections.emptyList(), tracks);
     }
 

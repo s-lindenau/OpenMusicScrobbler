@@ -19,7 +19,9 @@ public class NumericParser extends AbstractParser {
 
     @Override
     public int getConfidence(Collection<Track> trackList) {
-        return trackList.stream().mapToInt(this::getTrackConfidence).sum();
+        return trackList.stream()
+                .mapToInt(this::getTrackConfidence)
+                .sum();
     }
 
     private int getTrackConfidence(Track track) {

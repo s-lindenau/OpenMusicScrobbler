@@ -88,6 +88,9 @@ public class LastFmService {
     }
 
     public long getTotalPlayTimeInSeconds(Collection<Track> tracks) {
-        return tracks.stream().map(Track::length).mapToLong(Duration::toSeconds).sum();
+        return tracks.stream()
+                .map(Track::length)
+                .mapToLong(Duration::toSeconds)
+                .sum();
     }
 }
