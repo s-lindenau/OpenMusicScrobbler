@@ -88,8 +88,6 @@ public class ConfigurationProperties {
         return configurationPropertiesFile;
     }
 
-    // todo: unit test create config file
-
     private Path getConfigurationPropertiesFile(Path directory) {
         if(fileFacade.exists(directory) && fileFacade.isDirectory(directory)) {
             return directory.resolve(CONFIGURATION_PROPERTIES_FILE_NAME);
