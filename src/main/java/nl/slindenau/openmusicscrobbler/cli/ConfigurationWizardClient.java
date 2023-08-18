@@ -49,33 +49,48 @@ public class ConfigurationWizardClient extends AbstractConsoleClient {
     }
 
     private void configureProperty(ApplicationProperty applicationProperty) {
-        if (ApplicationProperty.LAST_FM_PASSWORD.equals(applicationProperty)) {
-            configurePropertyValue(applicationProperty, this::readLastFmPasswordInput, this::printPasswordProperty);
+        if (applicationProperty.isSensitive()) {
+            configurePropertyValue(applicationProperty, this::readPasswordInput, this::printPasswordProperty);
         } else {
-            configurePropertyValue(applicationProperty, this::readConsoleOptionalTextInput, this::printPlainProperty);
+            configurePropertyValue(applicationProperty, this::readPlainInput, this::printPlainProperty);
         }
     }
 
-    private void configurePropertyValue(ApplicationProperty applicationProperty, Function<String, String> propertyValueReader, Function<ApplicationProperty, String> propertyValuePrinter) {
+    private void configurePropertyValue(ApplicationProperty applicationProperty, Function<ApplicationProperty, String> propertyValueReader, Function<ApplicationProperty, String> propertyValuePrinter) {
         String propertyKey = applicationProperty.getKey();
         printLine("Property: " + propertyKey);
         printLine("Description: " + applicationProperty.getDescription());
         printLine("Current value: " + propertyValuePrinter.apply(applicationProperty));
-        String propertyInput = propertyValueReader.apply("Enter new value");
+        String propertyInput = propertyValueReader.apply(applicationProperty);
         Optional<String> propertyValue = OptionalString.ofNullableOrBlank(propertyInput);
         propertyValue.ifPresent(newPropertyValue -> System.setProperty(propertyKey, newPropertyValue));
         printEmptyLine();
     }
 
-    private String readLastFmPasswordInput(String propertyName) {
-        String passwordInput = readConsolePasswordInput(propertyName);
+    private String readPlainInput(ApplicationProperty applicationProperty) {
+        return readConsoleOptionalTextInput(getApplicationPropertyInputMessage(applicationProperty));
+    }
+
+    private String readPasswordInput(ApplicationProperty applicationProperty) {
+        String passwordInput = readConsolePasswordInput(getApplicationPropertyInputMessage(applicationProperty));
         Optional<String> password = OptionalString.ofNullableOrBlank(passwordInput);
-        if(password.isPresent()) {
-            // todo: properly encrypt the md5 hash
-            return StringUtilities.md5(passwordInput);
+        if (password.isPresent()) {
+            return processPassword(applicationProperty, passwordInput);
         } else {
             return null;
         }
+    }
+
+    private String getApplicationPropertyInputMessage(ApplicationProperty applicationProperty) {
+        return "Enter new value for " + applicationProperty.getKey();
+    }
+
+    private String processPassword(ApplicationProperty applicationProperty, String passwordInput) {
+        if (ApplicationProperty.LAST_FM_PASSWORD.equals(applicationProperty)) {
+            // todo: properly encrypt the md5 hash
+            return StringUtilities.md5(passwordInput);
+        }
+        return passwordInput;
     }
 
     private String printPlainProperty(ApplicationProperty applicationProperty) {
