@@ -11,6 +11,7 @@ import nl.slindenau.openmusicscrobbler.model.ReleasePart;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.model.TrackType;
 import nl.slindenau.openmusicscrobbler.service.releasepart.ReleasePartParserStrategy;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -109,7 +110,7 @@ public class MusicReleaseService {
     }
 
     private String getTrackTitle(Tracklist tracklist, String indexTitle) {
-        if (indexTitle == null || indexTitle.isBlank()) {
+        if (isEmpty(indexTitle)) {
             return tracklist.title;
         } else {
             return String.format(TRACK_WITH_INDEX_TITLE_FORMAT, indexTitle, tracklist.title);
@@ -149,5 +150,9 @@ public class MusicReleaseService {
         Integer year = musicRelease.year();
         String thumbnail = musicRelease.thumbnail();
         return new MusicReleaseBasicInformation(id, discogsId, releaseArtist, releaseTitle, format, year, thumbnail);
+    }
+
+    private boolean isEmpty(String input) {
+        return OptionalString.ofNullableOrBlank(input).isEmpty();
     }
 }

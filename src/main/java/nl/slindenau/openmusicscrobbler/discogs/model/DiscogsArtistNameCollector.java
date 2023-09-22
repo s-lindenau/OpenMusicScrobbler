@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.discogs.model;
 
 import nl.slindenau.openmusicscrobbler.discogs.model.release.Artist;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,7 +62,7 @@ public class DiscogsArtistNameCollector implements Collector<Artist, String, Str
 
     private String getArtistName(Artist artist) {
         String artistNameVariation = artist.getArtistNameVariation();
-        if (artistNameVariation == null || artistNameVariation.isBlank()) {
+        if (isEmpty(artistNameVariation)) {
             return discogsArtistName.getArtistName(artist.getName());
         } else {
             return discogsArtistName.getArtistName(artistNameVariation);
@@ -69,7 +70,7 @@ public class DiscogsArtistNameCollector implements Collector<Artist, String, Str
     }
 
     private void join(String nextArtist, String joinCharacter) {
-        if (joinCharacter == null || joinCharacter.isBlank()) {
+        if (isEmpty(joinCharacter)) {
             this.artistNameBuilder.append(nextArtist);
         } else {
             this.artistNameBuilder.append(nextArtist);
@@ -88,5 +89,9 @@ public class DiscogsArtistNameCollector implements Collector<Artist, String, Str
 
     private boolean isAppendSpaceNotAllowed(String joinCharacter) {
         return Arrays.asList(NO_SPACE_BEFORE_JOIN_CHARACTERS).contains(joinCharacter);
+    }
+
+    private boolean isEmpty(String input) {
+        return OptionalString.ofNullableOrBlank(input).isEmpty();
     }
 }

@@ -171,7 +171,7 @@ public class ConsoleClient extends AbstractConsoleClient {
     }
 
     private boolean isEmpty(String input) {
-        return input == null || input.isEmpty() || input.isBlank();
+        return OptionalString.ofNullableOrBlank(input).isEmpty();
     }
 
     private Instant getFirstTrackScrobbleDateFromCurrentTime(Collection<Track> tracks) {

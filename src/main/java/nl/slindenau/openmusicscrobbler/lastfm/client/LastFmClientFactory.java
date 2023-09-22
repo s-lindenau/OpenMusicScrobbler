@@ -5,6 +5,7 @@ import de.umass.lastfm.Session;
 import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.config.UserAgentFactory;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 
 import java.util.logging.Level;
 
@@ -40,7 +41,7 @@ public class LastFmClientFactory {
         String secret = applicationProperties.getLastFmApiSecret();
         String user = applicationProperties.getLastFmUsername();
         String password = applicationProperties.getLastFmPassword();
-        if (password == null || password.isBlank()) {
+        if (isEmpty(password)) {
             throw newMissingCredentialsException();
         }
         Session session = clientFacade.getSession(user, password, key, secret);
@@ -58,5 +59,9 @@ public class LastFmClientFactory {
 
     private OpenMusicScrobblerException newMissingCredentialsException() {
         return new OpenMusicScrobblerException("Could not create Last.fm session. Check authentication details!");
+    }
+
+    private boolean isEmpty(String input) {
+        return OptionalString.ofNullableOrBlank(input).isEmpty();
     }
 }
