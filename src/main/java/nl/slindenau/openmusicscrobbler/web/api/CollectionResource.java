@@ -5,6 +5,8 @@ import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
+import nl.slindenau.openmusicscrobbler.service.search.SearchService;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 import nl.slindenau.openmusicscrobbler.web.view.ReleaseCollectionView;
 import nl.slindenau.openmusicscrobbler.web.view.ReleaseView;
 
@@ -15,6 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -30,6 +33,7 @@ public class CollectionResource {
     private final ApplicationProperties applicationProperties = new ApplicationProperties();
     //todo: make thread safe
     private final DiscogsService discogsService = new DiscogsService();
+    private final SearchService searchService = new SearchService();
 
     @GET
     @Timed
@@ -43,6 +47,14 @@ public class CollectionResource {
     @Timed
     public ReleaseCollectionView getCollectionAsView() {
         return new ReleaseCollectionView(getUserCollection());
+    }
+
+    @GET
+    @Path("/search")
+    public ReleaseCollectionView getSearchView(@QueryParam("query") String searchQueryParameter) {
+        return OptionalString.ofNullableOrBlank(searchQueryParameter)
+                .map(this::getReleaseCollectionViewMatchingSearchQuery)
+                .orElseGet(this::getEmptyReleaseCollectionView);
     }
 
     @GET
@@ -64,6 +76,21 @@ public class CollectionResource {
     private void scrobbleRelease(Long discogsId) {
         // todo: implement
         System.out.println("Scrobble: " + discogsId);
+    }
+
+    private ReleaseCollectionView getEmptyReleaseCollectionView() {
+        ReleaseCollection emptyCollection = new ReleaseCollection(Collections.emptyList());
+        return new ReleaseCollectionView(emptyCollection, ReleaseCollectionView.EMPTY_SEARCH);
+    }
+
+    private ReleaseCollectionView getReleaseCollectionViewMatchingSearchQuery(String searchQuery) {
+        ReleaseCollection releaseCollectionMatchingSearch = findReleaseCollectionMatchingQuery(searchQuery);
+        return new ReleaseCollectionView(releaseCollectionMatchingSearch, searchQuery);
+    }
+
+    private ReleaseCollection findReleaseCollectionMatchingQuery(String searchQuery) {
+        searchService.loadCollection(getUserCollection());
+        return searchService.findMatching(searchQuery);
     }
 
     private MusicRelease findMusicRelease(long discogsId) {

@@ -9,6 +9,13 @@
 </head>
 <body>
 <h1>Music Collection</h1>
+{{#isSearch}}
+    <form>
+        <label for="searchQuery">Search: </label>
+        <input id="searchQuery" name="query" placeholder="Search for releases" type="text" value="{{SearchQuery}}">
+    </form>
+{{/isSearch}}
+{{^releaseCollection.releases.isEmpty}}
 <p>Select release to scrobble</p>
 <ul>
     {{#releaseCollection}}
@@ -19,5 +26,6 @@
         {{/releases}}
     {{/releaseCollection}}
 </ul>
+{{/releaseCollection.releases.isEmpty}}
 </body>
 </html>
