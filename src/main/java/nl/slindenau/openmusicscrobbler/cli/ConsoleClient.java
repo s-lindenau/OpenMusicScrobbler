@@ -165,7 +165,7 @@ public class ConsoleClient extends AbstractConsoleClient {
         String message = "When was the last track played? Leave empty by pressing [Enter] for 'just now', or enter when the last track finished (format: %s)";
         String input = readConsoleOptionalTextInput(String.format(message, DateTimeService.DATE_TIME_FORMAT));
         if (!isEmpty(input)) {
-            return getFirstTrackScrobbleDateRelativeTo(tracks, new DateTimeService().parseInstant(input));
+            return scrobbleService.getFirstTrackScrobbleDateRelativeTo(tracks, new DateTimeService().parseInstant(input));
         }
         return getFirstTrackScrobbleDateFromCurrentTime(tracks);
     }
@@ -175,12 +175,7 @@ public class ConsoleClient extends AbstractConsoleClient {
     }
 
     private Instant getFirstTrackScrobbleDateFromCurrentTime(Collection<Track> tracks) {
-        return getFirstTrackScrobbleDateRelativeTo(tracks, Instant.now());
-    }
-
-    private Instant getFirstTrackScrobbleDateRelativeTo(Collection<Track> tracks, Instant lastTrackEndedAt) {
-        long totalPlayTime = scrobbleService.getTotalPlayTimeInSeconds(tracks);
-        return lastTrackEndedAt.minusSeconds(totalPlayTime);
+        return scrobbleService.getFirstTrackScrobbleDateRelativeTo(tracks, Instant.now());
     }
 
     private void printReleases(ReleaseCollection collectionReleases) {

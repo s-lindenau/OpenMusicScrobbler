@@ -1,5 +1,6 @@
 package nl.slindenau.openmusicscrobbler.service;
 
+import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResultHolder;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.MusicReleaseBasicInformation;
 import nl.slindenau.openmusicscrobbler.model.ReleasePart;
@@ -63,6 +64,8 @@ class ScrobbleServiceTest {
 
     @Mock
     private LastFmService lastFmService;
+    @Mock
+    private LastFmScrobbleResultHolder lastFmScrobbleResultHolder;
 
     private Collection<Track> actualScrobbles;
     private ScrobbleService scrobbleService;
@@ -141,10 +144,10 @@ class ScrobbleServiceTest {
         doAnswer(this::storeActualTracks).when(lastFmService).scrobbleTracks(any(), any(), any(), any());
     }
 
-    private Void storeActualTracks(InvocationOnMock invocationOnMock) {
+    private LastFmScrobbleResultHolder storeActualTracks(InvocationOnMock invocationOnMock) {
         Collection<Track> scrobbles = invocationOnMock.getArgument(SCROBBLE_TRACK_LIST_METHOD_ARGUMENT_INDEX);
         this.actualScrobbles.addAll(scrobbles);
-        return null;
+        return lastFmScrobbleResultHolder;
     }
 
     private void verifyGetLastFmClientOnce() {

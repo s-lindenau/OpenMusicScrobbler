@@ -2,9 +2,11 @@ package nl.slindenau.openmusicscrobbler.web.api;
 
 import com.codahale.metrics.annotation.Timed;
 import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
+import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResultHolder;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
+import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
 import nl.slindenau.openmusicscrobbler.service.search.SearchService;
 import nl.slindenau.openmusicscrobbler.util.OptionalString;
 import nl.slindenau.openmusicscrobbler.web.view.ReleaseCollectionView;
@@ -17,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.time.Instant;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -31,7 +34,8 @@ import java.util.Optional;
 public class CollectionResource {
 
     private final ApplicationProperties applicationProperties = new ApplicationProperties();
-    //todo: make thread safe
+    //todo: add dependency injection
+    private final ScrobbleService scrobbleService = new ScrobbleService();
     private final DiscogsService discogsService = new DiscogsService();
     private final SearchService searchService = new SearchService();
 
@@ -59,6 +63,7 @@ public class CollectionResource {
 
     @GET
     @Path("/release")
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     public ReleaseView getReleaseAsView(@QueryParam("id") Optional<Long> discogsId) {
         if (discogsId.isPresent()) {
             return new ReleaseView(findMusicRelease(discogsId.get()));
@@ -69,13 +74,22 @@ public class CollectionResource {
 
     @POST
     @Path("/scrobble")
-    public void scrobble(@QueryParam("id") Optional<Long> discogsId) {
-        discogsId.ifPresent(this::scrobbleRelease);
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    public ScrobbleResult scrobble(@QueryParam("id") Optional<Long> discogsId) {
+        if(discogsId.isPresent()) {
+            LastFmScrobbleResultHolder resultHolder = scrobbleRelease(discogsId.get());
+            return new ScrobbleResult(resultHolder.isSuccess(), resultHolder.getMessage());
+        } else {
+            throw new IllegalArgumentException("Query parameter 'id' is required!");
+        }
     }
 
-    private void scrobbleRelease(Long discogsId) {
-        // todo: implement
-        System.out.println("Scrobble: " + discogsId);
+    private LastFmScrobbleResultHolder scrobbleRelease(Long discogsId) {
+        MusicRelease releaseToScrobble = findMusicRelease(discogsId);
+        // todo: implement date/time selection from GUI
+        // todo: implement track selection from GUI
+        Instant firstTrackScrobbleAt = scrobbleService.getFirstTrackScrobbleDateRelativeTo(releaseToScrobble.getAllTracks(), Instant.now());
+        return scrobbleService.scrobbleTracks(releaseToScrobble, firstTrackScrobbleAt);
     }
 
     private ReleaseCollectionView getEmptyReleaseCollectionView() {

@@ -6,6 +6,7 @@ import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientSupplier;
 import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResult;
+import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResultHolder;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.Track;
 import org.slf4j.Logger;
@@ -43,7 +44,8 @@ public class LastFmService {
         return new LastFmClientSupplier(lastFmClientFactory::getClient);
     }
 
-    public void scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks, LastFmClientSupplier client) {
+    public LastFmScrobbleResultHolder scrobbleTracks(MusicRelease release, Instant firstTrackStartedAt, Collection<Track> tracks, LastFmClientSupplier client) {
+        LastFmScrobbleResultHolder resultHolder = new LastFmScrobbleResultHolder();
         String releaseTitle = release.basicInformation().title();
         long totalPlayTimeInSeconds = getTotalPlayTimeInSeconds(tracks);
         Instant scrobbleEnd = firstTrackStartedAt.plusSeconds(totalPlayTimeInSeconds);
@@ -56,9 +58,10 @@ public class LastFmService {
             secondsSinceFirstTrack += track.length().toSeconds();
             Instant trackScrobbleAt = getTrackScrobbleAt(firstTrackStartedAt, secondsSinceFirstTrack);
             LastFmScrobbleResult result = scrobbleTrack(trackArtist.trim(), releaseTitle.trim(), trackName.trim(), trackScrobbleAt, client);
-            // todo: handle result
+            resultHolder.addResult(result);
             logger.info(String.valueOf(result));
         }
+        return resultHolder;
     }
 
     private void checkTotalPlayTimePossible(Instant firstTrackStartedAt, Instant scrobbleEnd) {
