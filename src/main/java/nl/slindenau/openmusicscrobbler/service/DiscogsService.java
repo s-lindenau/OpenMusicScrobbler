@@ -49,7 +49,7 @@ public class DiscogsService {
         this.musicReleaseService = musicReleaseService;
     }
 
-    public ReleaseCollection getUserCollection(String discogsUsername) {
+    public synchronized ReleaseCollection getUserCollection(String discogsUsername) {
         return releaseCollectionCache.computeIfAbsent(discogsUsername, this::findUserCollection);
     }
 
@@ -122,7 +122,7 @@ public class DiscogsService {
         return musicReleaseService.createRelease(musicRelease, discogsRelease);
     }
 
-    private Release getDiscogsRelease(MusicReleaseBasicInformation release) {
+    private synchronized Release getDiscogsRelease(MusicReleaseBasicInformation release) {
         String releaseId = String.valueOf(release.discogsId());
         return releaseCache.computeIfAbsent(releaseId, this::createDiscogsRelease);
     }
