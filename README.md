@@ -24,7 +24,7 @@ This application is currently for desktop or self-hosted only. If you just want 
 - Requirements
   - Java 17
   - Maven 3 (for building only)
-  - Discogs collection (public)
+  - Discogs collection (public or with Personal Access Token)
   - Last.fm account
   - Last.fm api key
 - Downloading the application
