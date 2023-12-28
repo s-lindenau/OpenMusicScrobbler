@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * - Vinyl 1 in a 9 Vinyl box set<br/>
  * - Vinyl side A/B or one/two<br/>
  * <br/>
- * A release part can consist of multiple sub parts, and each part contains <code>1..*</code> {@link Track}s
+ * A release part can consist of multiple sub parts, and each part contains <code>1..*</code> {@link Track Tracks}
  *
  * @author slindenau
  * https://github.com/s-lindenau
