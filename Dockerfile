@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jre
 
 # Application files
 COPY target/dependency /oms/dependency
-COPY target/open-music-scrobbler-*.jar /oms/open-music-scrobbeler.jar
+COPY target/open-music-scrobbler-*.jar /oms/open-music-scrobbler.jar
 
 # Configuration file
 # NOTE: mount local configuration file if you want to persist settings: -v C:\my\config.properties:/oms/config.properties
@@ -16,4 +16,4 @@ EXPOSE 8081
 
 # Run application in `server` mode with configuration file /oms/config.properties
 WORKDIR /oms
-ENTRYPOINT ["java", "-jar", "-Doms.config=/oms/", "/oms/open-music-scrobbeler.jar", "server"]
+ENTRYPOINT ["java", "-jar", "-Doms.config=/oms/", "/oms/open-music-scrobbler.jar", "server"]
