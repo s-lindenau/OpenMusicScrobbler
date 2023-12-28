@@ -7,6 +7,8 @@ import io.dropwizard.views.ViewBundle;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.web.api.CollectionResource;
 import nl.slindenau.openmusicscrobbler.web.assets.WebApplicationAssets;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
 
 /**
  * @author slindenau
@@ -29,6 +31,7 @@ public class WebApplication extends Application<DropWizardConfiguration> {
 
     @Override
     public void run(DropWizardConfiguration configuration, Environment environment) {
+        environment.lifecycle().addServerLifecycleListener(this::printOnServerStarted);
         environment.jersey().setUrlPattern(JERSEY_APPLICATION_ROOT_URL_PATTERN);
         environment.jersey().register(new LoggingExceptionMapper());
         environment.jersey().register(new CollectionResource());
@@ -38,5 +41,13 @@ public class WebApplication extends Application<DropWizardConfiguration> {
     public void initialize(Bootstrap<DropWizardConfiguration> bootstrap) {
         bootstrap.addBundle(new ViewBundle<>());
         bootstrap.addBundle(new WebApplicationAssets().getAssetsBundle());
+    }
+
+    private void printOnServerStarted(Server server) {
+        System.out.println("Status: " + server);
+        for (Connector connector : server.getConnectors()) {
+            System.out.println("Connector: " + connector);
+        }
+        System.out.println("Server startup completed!");
     }
 }
