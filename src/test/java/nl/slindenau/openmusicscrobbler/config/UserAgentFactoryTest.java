@@ -1,8 +1,8 @@
 package nl.slindenau.openmusicscrobbler.config;
 
-import jdk.jfr.Description;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -30,21 +30,21 @@ class UserAgentFactoryTest {
     private ProjectPropertiesReader mockPropertiesReader;
 
     @Test
-    @Description("Test with the real class Package and Project Properties reader")
+    @DisplayName("Test with the real class Package and Project Properties reader")
     void getUserAgentDefault() {
         UserAgentFactory userAgentFactory = new UserAgentFactory();
         assertUserAgentMatches(userAgentFactory);
     }
 
     @Test
-    @Description("Test that when no values are available we get an Exception")
+    @DisplayName("Test that when no values are available we get an Exception")
     void getUserAgentMissingAllValues() {
         UserAgentFactory userAgentFactory = new UserAgentFactory(mockPackage, mockPropertiesReader);
         assertThrows(userAgentFactory::getUserAgent);
     }
 
     @Test
-    @Description("Test that when some values are unavailable we get an Exception")
+    @DisplayName("Test that when some values are unavailable we get an Exception")
     void getUserAgentMissingSomeValues() {
         setupPackage("", "Not missing", "");
         UserAgentFactory userAgentFactory = new UserAgentFactory(mockPackage, mockPropertiesReader);
@@ -52,7 +52,7 @@ class UserAgentFactoryTest {
     }
 
     @Test
-    @Description("Test that when values from the Package are available, we never try to read the properties file")
+    @DisplayName("Test that when values from the Package are available, we never try to read the properties file")
     void getUserAgentFromPackage() {
         setupPackage("Title", "Vendor", "Version");
         UserAgentFactory userAgentFactory = new UserAgentFactory(mockPackage, mockPropertiesReader);
@@ -69,7 +69,7 @@ class UserAgentFactoryTest {
     }
 
     @Test
-    @Description("Test that when values from the Package are not available, we read the properties file")
+    @DisplayName("Test that when values from the Package are not available, we read the properties file")
     void getUserAgentFromProjectProperties() {
         setupPropertiesReader();
         UserAgentFactory userAgentFactory = new UserAgentFactory(mockPackage, mockPropertiesReader);
