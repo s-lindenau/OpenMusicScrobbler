@@ -24,12 +24,12 @@ public class CombinedProperties {
     }
 
     public String getProperty(String key) {
-        return getOverrideProperty(key).orElse(baseProperties.getProperty(key));
+        return getOverrideProperty(key).orElseGet(() -> baseProperties.getProperty(key));
     }
 
     public String getProperty(String key, String defaultValue) {
         // no getProperty(key, default); blank values are seen as non-null and don't return the defaultValue
-        return getOverrideProperty(key).orElse(getBaseProperty(key).orElse(defaultValue));
+        return getOverrideProperty(key).orElseGet(() -> getBaseProperty(key).orElse(defaultValue));
     }
 
     private Optional<String> getBaseProperty(String key) {
