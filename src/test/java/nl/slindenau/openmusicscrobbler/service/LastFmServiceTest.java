@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.service;
 
 import de.umass.lastfm.scrobble.ScrobbleResult;
+import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientSupplier;
@@ -26,8 +27,10 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * @author slindenau
@@ -52,11 +55,20 @@ class LastFmServiceTest {
     @Mock
     private LastFmClientWrapper clientWrapper;
 
+    @Mock
+    private ApplicationProperties applicationProperties;
+
     @BeforeEach
     void setUp() {
         setupTracks();
         setupClient();
-        this.lastFmService = new LastFmService(clientFactory);
+        setupApplicationProperties();
+        this.lastFmService = new LastFmService(clientFactory, applicationProperties);
+    }
+
+    private void setupApplicationProperties() {
+        // lenient because these properties are not used in all cases
+        Mockito.lenient().when(applicationProperties.isDebugEnabled()).thenReturn(false);
     }
 
     private void setupClient() {
@@ -100,12 +112,25 @@ class LastFmServiceTest {
         scrobbleTracks(firstTrackStartedAt);
     }
 
+    @Test
+    void testScrobbleNoTracksOnDebug() {
+        when(applicationProperties.isDebugEnabled()).thenReturn(true);
+        Instant firstTrackStartedAt = Instant.now().minus(getExpectedTracksDuration());
+        doScrobbleTracks(firstTrackStartedAt);
+        verify(clientWrapper, never()).scrobbleTrack(any(), any(), any(), any());
+    }
+
     private void scrobbleTracks(Instant firstTrackStartedAt) {
+        List<Track> tracks = doScrobbleTracks(firstTrackStartedAt);
+        verify(clientWrapper, times(tracks.size())).scrobbleTrack(any(), any(), any(), any());
+    }
+
+    private List<Track> doScrobbleTracks(Instant firstTrackStartedAt) {
         MusicRelease release = setupMusicRelease();
         List<Track> tracks = getTracks();
+        Assertions.assertFalse(tracks.isEmpty(), "Test should scrobble at least one track!");
         lastFmService.scrobbleTracks(release, firstTrackStartedAt, tracks, getClientSupplier());
-        Assertions.assertFalse(tracks.isEmpty());
-        verify(clientWrapper, times(tracks.size())).scrobbleTrack(any(), any(), any(), any());
+        return tracks;
     }
 
     private MusicRelease setupMusicRelease() {

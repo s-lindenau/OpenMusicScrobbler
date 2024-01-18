@@ -29,15 +29,16 @@ public class LastFmService {
     private static final int DAYS_PER_WEEK = 7;
 
     private final Logger logger = LoggerFactory.getLogger(LastFmService.class);
-    private final ApplicationProperties applicationProperties = new ApplicationProperties();
+    private final ApplicationProperties applicationProperties;
     private final LastFmClientFactory lastFmClientFactory;
 
     public LastFmService() {
-        this(new LastFmClientFactory());
+        this(new LastFmClientFactory(), new ApplicationProperties());
     }
 
-    protected LastFmService(LastFmClientFactory lastFmClientFactory) {
+    protected LastFmService(LastFmClientFactory lastFmClientFactory, ApplicationProperties applicationProperties) {
         this.lastFmClientFactory = lastFmClientFactory;
+        this.applicationProperties = applicationProperties;
     }
 
     public LastFmClientSupplier getLastFmClient() {
