@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jre-alpine
 
 # Application files
 COPY target/dependency /oms/dependency
@@ -14,6 +14,10 @@ EXPOSE 8080
 EXPOSE 8081
 # NOTE: bind ports on host when running this container: -p 8080:8080 8081:8081
 
-# Run application in `server` mode with configuration file /oms/config.properties
+# Run application with configuration file /oms/config.properties
 WORKDIR /oms
-ENTRYPOINT ["java", "-jar", "-Doms.config=/oms/", "/oms/open-music-scrobbler.jar", "server"]
+ENTRYPOINT ["java", "-jar", "-Doms.config=/oms/", "/oms/open-music-scrobbler.jar"]
+
+# Run by default in `server` mode, override command to run different applications.
+# Use -i for interactive mode if the specific application requires console interaction.
+CMD ["server"]
