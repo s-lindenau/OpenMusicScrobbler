@@ -1,12 +1,34 @@
-FROM eclipse-temurin:17-jre-alpine
+# Build stage (1): maven package the project and its dependencies
+# Image is based on Alpine Linux, Package manager: apk
+FROM maven:3-eclipse-temurin-17-alpine AS maven-build
+
+# Install GIT
+RUN apk add --no-cache git
+
+# Build Discogs4j (fork)
+WORKDIR /discogs4j
+RUN git clone https://github.com/s-lindenau/discogs4j.git .
+RUN mvn clean install
+
+# Build Open Music Scrobbler
+WORKDIR /oms-build
+COPY pom.xml .
+COPY src src
+RUN mvn clean package
+
+ENTRYPOINT []
+CMD ["/bin/bash"]
+
+# Build stage (2): create the oms-application
+FROM eclipse-temurin:17-jre-alpine AS oms-application
 
 # Application files
-COPY target/dependency /oms/dependency
-COPY target/open-music-scrobbler-*.jar /oms/open-music-scrobbler.jar
+COPY --from=maven-build oms-build/target/dependency /oms/dependency
+COPY --from=maven-build oms-build/target/open-music-scrobbler-*.jar /oms/open-music-scrobbler.jar
 
 # Configuration file
 # NOTE: mount local configuration file if you want to persist settings: -v C:\my\config.properties:/oms/config.properties
-COPY target/config.properties /oms/config.properties
+COPY --from=maven-build oms-build/target/config.properties /oms/config.properties
 
 # Dropwizard application
 EXPOSE 8080
