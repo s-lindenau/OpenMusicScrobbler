@@ -6,6 +6,7 @@ import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.web.api.CollectionResource;
+import nl.slindenau.openmusicscrobbler.web.api.ConfigurationResource;
 import nl.slindenau.openmusicscrobbler.web.assets.WebApplicationAssets;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
@@ -35,6 +36,7 @@ public class WebApplication extends Application<DropWizardConfiguration> {
         environment.jersey().setUrlPattern(JERSEY_APPLICATION_ROOT_URL_PATTERN);
         environment.jersey().register(new LoggingExceptionMapper());
         environment.jersey().register(new CollectionResource());
+        environment.jersey().register(new ConfigurationResource());
     }
 
     @Override

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>${app.name}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Configure Application Settings</h1>
+<form method="post" action="/app/configuration">
+    {{#ApplicationPropertyValues}}
+        <div>
+            <label for="{{property.key}}">{{property.description}}</label>
+            {{#property.isSensitive}}
+                <input type="password" name="{{property.key}}" id="{{property.key}}" value="{{^currentValue.isEmpty}}{{SensitiveInputMarker}}{{/currentValue.isEmpty}}"/>
+            {{/property.isSensitive}}
+            {{^property.isSensitive}}
+                <input type="text" name="{{property.key}}" id="{{property.key}}" value="{{currentValue}}"/>
+            {{/property.isSensitive}}
+            <br><br>
+        </div>
+    {{/ApplicationPropertyValues}}
+    <div>
+        <input type="submit" value="Save settings"/>
+    </div>
+</form>
+</body>
+</html>

@@ -18,6 +18,10 @@ public class ApplicationProperties {
     private final PropertiesParser parser = new PropertiesParser();
     private final CombinedProperties properties;
 
+    public static ApplicationProperties fromSystemOnly() {
+        return new ApplicationProperties(System.getProperties(), null);
+    }
+
     public ApplicationProperties() {
         this(new ConfigurationProperties().readConfigurationProperties(), System.getProperties());
     }

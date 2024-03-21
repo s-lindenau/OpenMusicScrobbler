@@ -82,8 +82,12 @@ public class ConfigurationProperties {
      * @return the created file
      */
     public Path writeConfigurationProperties(Path directory) {
+        return writeConfigurationProperties(directory, new ApplicationProperties());
+    }
+
+    public Path writeConfigurationProperties(Path directory, ApplicationProperties applicationPropertiesProvider) {
         Path configurationPropertiesFile = getConfigurationPropertiesFile(directory);
-        Properties applicationProperties = new ApplicationProperties().getAsProperties();
+        Properties applicationProperties = applicationPropertiesProvider.getAsProperties();
         storeProperties(configurationPropertiesFile, applicationProperties);
         return configurationPropertiesFile;
     }

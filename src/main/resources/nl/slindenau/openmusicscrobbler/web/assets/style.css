@@ -1,7 +1,9 @@
+/* Shared variables */
 :root {
     --anchor-color: #0000EE;
 }
 
+/* Anchor (hyperlink) colors */
 a:link {
     color: var(--anchor-color);
 }
@@ -16,4 +18,19 @@ a:visited {
 
 a:hover {
     color: var(--anchor-color);
+}
+
+/* Form input fields */
+input, textarea {
+    padding: 2px;
+    margin: 2px;
+    text-align: left;
+}
+
+/* Form input labels */
+label {
+    display: block;
+    text-align: left;
+    margin: 2px;
+    padding: 2px;
 }
