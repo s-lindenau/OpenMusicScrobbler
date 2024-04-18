@@ -1,5 +1,6 @@
 # Build stage (1): maven package the project and its dependencies
 # Image is based on Alpine Linux, Package manager: apk
+# On updating the Java version, also update the pom.xml file
 FROM maven:3-eclipse-temurin-17-alpine AS maven-build
 
 # Install GIT
@@ -7,7 +8,8 @@ RUN apk add --no-cache git
 
 # Build Discogs4j (fork)
 WORKDIR /discogs4j
-RUN git clone https://github.com/s-lindenau/discogs4j.git .
+# On updating the version number of Discogs4j (fork), also update the pom.xml file
+RUN git clone --depth 1 --branch 1.3 https://github.com/s-lindenau/discogs4j.git .
 RUN mvn clean install
 
 # Build Open Music Scrobbler
@@ -20,6 +22,7 @@ ENTRYPOINT []
 CMD ["/bin/bash"]
 
 # Build stage (2): create the oms-application
+# On updating the Java version, also update the pom.xml file
 FROM eclipse-temurin:17-jre-alpine AS oms-application
 
 # Application files
