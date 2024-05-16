@@ -77,7 +77,7 @@ This application is currently for desktop or self-hosted only. If you just want 
         - Add `-i` to the `run` command, and `-a -i` when using `docker start`
       - The console applications are intended to be used 'once', it is recommended to always stop and (re)start these containers.
     - Bind ports to access the web application: add `-p 8080:8080 8081:8081` to the `run` command
-    - Optional: recommended to mount an external configuration file to persist settings outside the docker image 
+    - Optional: recommended to mount an external configuration file to persist settings outside the docker container 
       - add to the `run` command: `-v C:\my\config.properties:/oms/config.properties` 
       - create empty `config.properties` file and replace `C:\my\config.properties` in the `-v` argument with the location of this file
     - Note that you may add any name for this container as desired with `--name containerName`
