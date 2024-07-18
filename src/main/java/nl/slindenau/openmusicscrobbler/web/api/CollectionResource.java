@@ -5,13 +5,18 @@ import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResultHolder;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
 import nl.slindenau.openmusicscrobbler.model.ReleaseCollection;
+import nl.slindenau.openmusicscrobbler.model.Track;
 import nl.slindenau.openmusicscrobbler.service.DiscogsService;
 import nl.slindenau.openmusicscrobbler.service.ScrobbleService;
 import nl.slindenau.openmusicscrobbler.service.search.SearchService;
 import nl.slindenau.openmusicscrobbler.util.OptionalString;
+import nl.slindenau.openmusicscrobbler.web.model.ScrobbleRequest;
+import nl.slindenau.openmusicscrobbler.web.model.ScrobbleResult;
 import nl.slindenau.openmusicscrobbler.web.view.ReleaseCollectionView;
 import nl.slindenau.openmusicscrobbler.web.view.ReleaseView;
 
+import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,8 +25,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * @author davidvollmar
@@ -74,22 +81,28 @@ public class CollectionResource {
 
     @POST
     @Path("/scrobble")
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    public ScrobbleResult scrobble(@QueryParam("id") Optional<Long> discogsId) {
-        if(discogsId.isPresent()) {
-            LastFmScrobbleResultHolder resultHolder = scrobbleRelease(discogsId.get());
-            return new ScrobbleResult(resultHolder.isSuccess(), resultHolder.getMessage());
-        } else {
-            throw new IllegalArgumentException("Query parameter 'id' is required!");
-        }
+    public ScrobbleResult scrobble(@Valid @BeanParam ScrobbleRequest scrobbleRequest) {
+        LastFmScrobbleResultHolder resultHolder = scrobbleRelease(scrobbleRequest);
+        return new ScrobbleResult(resultHolder.isSuccess(), resultHolder.getMessage());
     }
 
-    private LastFmScrobbleResultHolder scrobbleRelease(Long discogsId) {
-        MusicRelease releaseToScrobble = findMusicRelease(discogsId);
+    private LastFmScrobbleResultHolder scrobbleRelease(ScrobbleRequest scrobbleRequest) {
+        MusicRelease releaseToScrobble = findMusicRelease(scrobbleRequest.discogsId);
         // todo: implement date/time selection from GUI
-        // todo: implement track selection from GUI
-        Instant firstTrackScrobbleAt = scrobbleService.getFirstTrackScrobbleDateRelativeTo(releaseToScrobble.getAllTracks(), Instant.now());
-        return scrobbleService.scrobbleTracks(releaseToScrobble, firstTrackScrobbleAt);
+        Collection<Track> tracksToScrobble = getTracksToScrobble(releaseToScrobble, scrobbleRequest);
+        Instant firstTrackScrobbleAt = scrobbleService.getFirstTrackScrobbleDateRelativeTo(tracksToScrobble, Instant.now());
+        return scrobbleService.scrobbleTracks(releaseToScrobble, firstTrackScrobbleAt, tracksToScrobble);
+    }
+
+    private Collection<Track> getTracksToScrobble(MusicRelease releaseToScrobble, ScrobbleRequest scrobbleRequest) {
+        Collection<Track> allTracks = releaseToScrobble.getAllTracks();
+        return allTracks.stream()
+                .filter(trackIsSelectedInRequest(scrobbleRequest))
+                .toList();
+    }
+
+    private Predicate<Track> trackIsSelectedInRequest(ScrobbleRequest scrobbleRequest) {
+        return track -> scrobbleRequest.selectedTracks.contains(track.position());
     }
 
     private ReleaseCollectionView getEmptyReleaseCollectionView() {

@@ -12,7 +12,7 @@
 <form method="post" action="/app/configuration">
     {{#ApplicationPropertyValues}}
         <div>
-            <label for="{{property.key}}">{{property.description}}</label>
+            <label class="configuration" for="{{property.key}}">{{property.description}}</label>
             {{#property.isSensitive}}
                 <input type="password" name="{{property.key}}" id="{{property.key}}" value="{{^currentValue.isEmpty}}{{SensitiveInputMarker}}{{/currentValue.isEmpty}}"/>
             {{/property.isSensitive}}

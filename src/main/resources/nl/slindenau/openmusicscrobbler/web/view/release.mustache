@@ -17,16 +17,20 @@
     {{/basicInformation}}
 
     <p>Select tracks to scrobble</p>
-    {{#releaseParts}}
-        <ul>
-            {{#allTracks}}
-                <li>
-                    {{position}}: {{artist}} - {{title}}{{#duration}} ({{duration}}){{/duration}}
-                </li>
-            {{/allTracks}}
-        </ul>
-    {{/releaseParts}}
-    <button id="scrobbleButton" onclick="scrobble({{basicInformation.discogsId}})">Scrobble selected tracks</button>
+    <form id="scrobbleRequestForm" method="post" action="/app/collection/scrobble">
+        <input type="hidden" name="discogsId" value="{{basicInformation.discogsId}}">
+        {{#releaseParts}}
+            <ul>
+                {{#allTracks}}
+                    <li>
+                        <input type="checkbox" name="selectedTrack" id="{{position}}" value="{{position}}">
+                        <label class="scrobble" for="{{position}}">{{position}}: {{artist}} - {{title}}{{#duration}} ({{duration}}){{/duration}}</label>
+                    </li>
+                {{/allTracks}}
+            </ul>
+        {{/releaseParts}}
+        <button id="scrobbleButton" onclick="scrobble()">Scrobble selected tracks</button>
+    </form>
     <br/><br/>
     <div id="scrobbleResultFeedback"><!-- scrobble.js updates this DIV with feedback --></div>
 {{/release}}

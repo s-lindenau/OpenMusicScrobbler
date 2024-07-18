@@ -1,29 +1,31 @@
 /**
  * Scrobble the selected release and update the document with feedback
- * @param id the discogs ID of the release to scrobble
  * @returns {Promise<void>} no data is returned when this Promise completes
  */
-async function scrobble(id) {
+async function scrobble() {
     const scrobbleButtonElementId = "scrobbleButton";
     const scrobbleResultElementId = "scrobbleResultFeedback";
+    const scrobbleFormElementId = "scrobbleRequestForm";
 
     document.getElementById(scrobbleButtonElementId).disabled = true;
     document.getElementById(scrobbleResultElementId).innerHTML = "Submitting scrobble...";
 
-    let result = await postScrobble(id);
-    document.getElementById(scrobbleResultElementId).innerHTML = result.message;
+    let scrobbleRequestForm = document.getElementById(scrobbleFormElementId);
+    let scrobbleResult = await postScrobble(scrobbleRequestForm);
+    document.getElementById(scrobbleResultElementId).innerHTML = scrobbleResult.message;
 
     document.getElementById(scrobbleButtonElementId).disabled = false;
 }
 
 /**
- * Call the API method to scrobble the given release
- * @param id the discogs ID of the release to scrobble
- * @returns {Promise<any>} the result of the POST scrobble call as JSON data
+ * Call the API endpoint to scrobble the given release by posting the provided form
+ * @param form the form element capturing the details of the release to scrobble
+ * @returns {Promise<any>} the result of the POST scrobble call as JSON data mapped from 'ScrobbleResult' object
  */
-async function postScrobble(id) {
-    const url = "/app/collection/scrobble?id=" + id;
-    const parameters = {method: "POST"};
+async function postScrobble(form) {
+    const url = form.action;
+    const urlEncodedFormData = new URLSearchParams(new FormData(form));
+    const parameters = {method: "POST", body: urlEncodedFormData};
     let response = await fetch(url, parameters);
     return await response.json();
 }

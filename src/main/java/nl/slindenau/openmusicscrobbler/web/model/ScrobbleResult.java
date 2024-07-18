@@ -1,4 +1,4 @@
-package nl.slindenau.openmusicscrobbler.web.api;
+package nl.slindenau.openmusicscrobbler.web.model;
 
 /**
  * @author slindenau

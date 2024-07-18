@@ -85,7 +85,7 @@ public class LastFmService {
         if (applicationProperties.isDebugEnabled()) {
             String message = String.format("Scrobble track: [%s - %s] from Album: [%s] (on %s)", artist, trackName, album, Date.from(scrobbleAtTime));
             logger.info(message);
-            return new LastFmScrobbleResult("Debug mode: scrobble not sent to API");
+            return new LastFmScrobbleResult("Debug mode: scrobble not sent to Last.fm");
         }
         ScrobbleResult scrobbleResult = clientSupplier.getClient().scrobbleTrack(artist, album, trackName, scrobbleAtTime);
         return new LastFmScrobbleResult(scrobbleResult);

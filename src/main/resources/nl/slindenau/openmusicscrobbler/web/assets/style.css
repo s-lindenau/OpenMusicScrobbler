@@ -29,8 +29,15 @@ input, textarea {
 
 /* Form input labels */
 label {
-    display: block;
-    text-align: left;
-    margin: 2px;
     padding: 2px;
+    margin: 2px;
+    text-align: left;
+}
+
+label.configuration {
+    display: block;
+}
+
+label.scrobble {
+    display: inline;
 }
