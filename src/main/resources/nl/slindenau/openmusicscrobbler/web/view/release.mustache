@@ -29,6 +29,9 @@
                 {{/allTracks}}
             </ul>
         {{/releaseParts}}
+        <label for="scrobbleDate">When was the <b>last track</b> played (end time)?</label>
+        <input type="datetime-local" name="lastTrackEndedAt" id="scrobbleDate" value="{{currentLocalDateTime}}" max="{{currentLocalDateTime}}" required />
+        <br/>
         <button id="scrobbleButton" onclick="scrobble()">Scrobble selected tracks</button>
     </form>
     <br/><br/>

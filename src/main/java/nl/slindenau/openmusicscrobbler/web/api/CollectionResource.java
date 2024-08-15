@@ -88,9 +88,8 @@ public class CollectionResource {
 
     private LastFmScrobbleResultHolder scrobbleRelease(ScrobbleRequest scrobbleRequest) {
         MusicRelease releaseToScrobble = findMusicRelease(scrobbleRequest.discogsId);
-        // todo: implement date/time selection from GUI
         Collection<Track> tracksToScrobble = getTracksToScrobble(releaseToScrobble, scrobbleRequest);
-        Instant firstTrackScrobbleAt = scrobbleService.getFirstTrackScrobbleDateRelativeTo(tracksToScrobble, Instant.now());
+        Instant firstTrackScrobbleAt = scrobbleService.getFirstTrackScrobbleDateRelativeTo(tracksToScrobble, scrobbleRequest.lastTrackEndedAt);
         return scrobbleService.scrobbleTracks(releaseToScrobble, firstTrackScrobbleAt, tracksToScrobble);
     }
 

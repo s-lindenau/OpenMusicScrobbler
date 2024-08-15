@@ -35,6 +35,7 @@ public class WebApplication extends Application<DropWizardConfiguration> {
         environment.lifecycle().addServerLifecycleListener(this::printOnServerStarted);
         environment.jersey().setUrlPattern(JERSEY_APPLICATION_ROOT_URL_PATTERN);
         environment.jersey().register(new LoggingExceptionMapper());
+        environment.jersey().register(new ParameterConverterProvider());
         environment.jersey().register(new CollectionResource());
         environment.jersey().register(new ConfigurationResource());
     }

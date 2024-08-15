@@ -5,6 +5,7 @@ import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientFactory;
 import nl.slindenau.openmusicscrobbler.lastfm.client.LastFmClientSupplier;
+import nl.slindenau.openmusicscrobbler.lastfm.validation.LastFmScrobbleDateConstraint;
 import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResult;
 import nl.slindenau.openmusicscrobbler.lastfm.model.LastFmScrobbleResultHolder;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
@@ -14,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Date;
 
@@ -25,8 +25,7 @@ import java.util.Date;
  */
 public class LastFmService {
 
-    private static final int LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS = 2;
-    private static final int DAYS_PER_WEEK = 7;
+    private static final Duration LAST_FM_MAX_HISTORIC_SCROBBLE = LastFmScrobbleDateConstraint.MAX_HISTORIC_SCROBBLE;
 
     private final Logger logger = LoggerFactory.getLogger(LastFmService.class);
     private final ApplicationProperties applicationProperties;
@@ -70,10 +69,10 @@ public class LastFmService {
             String message = "Can't scrobble tracks at start date: %s, end date would be in the future: %s";
             throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), Date.from(scrobbleEnd)));
         }
-        Instant maximumHistoricScrobble = Instant.now().minus(LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS * DAYS_PER_WEEK, ChronoUnit.DAYS);
+        Instant maximumHistoricScrobble = Instant.now().minus(LAST_FM_MAX_HISTORIC_SCROBBLE);
         if (firstTrackStartedAt.isBefore(maximumHistoricScrobble)) {
-            String message = "Can't scrobble tracks at start date: %s, Last.fm only processes historic scrobbles from the past %s weeks";
-            throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), LAST_FM_MAX_HISTORIC_SCROBBLE_WEEKS));
+            String message = "Can't scrobble tracks at start date: %s, Last.fm only processes historic scrobbles from the past %s days";
+            throw new OpenMusicScrobblerException(String.format(message, Date.from(firstTrackStartedAt), LAST_FM_MAX_HISTORIC_SCROBBLE.toDays()));
         }
     }
 
