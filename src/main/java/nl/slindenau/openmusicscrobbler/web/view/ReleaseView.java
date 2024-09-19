@@ -2,10 +2,6 @@ package nl.slindenau.openmusicscrobbler.web.view;
 
 import io.dropwizard.views.View;
 import nl.slindenau.openmusicscrobbler.model.MusicRelease;
-import nl.slindenau.openmusicscrobbler.web.ParameterConverterProvider;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author slindenau
@@ -15,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 public class ReleaseView extends View {
 
     private static final String RELEASE_VIEW_TEMPLATE = "release.mustache";
-    private static final String FORM_INPUT_DATE_TIME_FORMAT = ParameterConverterProvider.FORM_INPUT_FIELD_LOCAL_DATE_TIME_FORMAT;
 
     private final MusicRelease release;
 
@@ -29,8 +24,4 @@ public class ReleaseView extends View {
         return release;
     }
 
-    @SuppressWarnings("unused")
-    public String currentLocalDateTime() {
-        return DateTimeFormatter.ofPattern(FORM_INPUT_DATE_TIME_FORMAT).format(LocalDateTime.now());
-    }
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
     <script type="text/javascript" src="/scrobble.js"></script>
 </head>
-<body>
+<body onload="setScrobbleDateInputValueAndMax()">
 <h1>Scrobble release</h1>
 {{#release}}
     {{#basicInformation}}
@@ -30,7 +30,7 @@
             </ul>
         {{/releaseParts}}
         <label for="scrobbleDate">When was the <b>last track</b> played (end time)?</label>
-        <input type="datetime-local" name="lastTrackEndedAt" id="scrobbleDate" value="{{currentLocalDateTime}}" max="{{currentLocalDateTime}}" required />
+        <input type="datetime-local" name="lastTrackEndedAt" id="scrobbleDate" required />
         <br/>
         <button id="scrobbleButton" onclick="scrobble()">Scrobble selected tracks</button>
     </form>

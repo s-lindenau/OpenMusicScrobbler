@@ -7,8 +7,6 @@ import javax.ws.rs.ext.ParamConverterProvider;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -22,14 +20,10 @@ import java.util.Arrays;
  */
 public class ParameterConverterProvider implements ParamConverterProvider {
 
-    @SuppressWarnings("SpellCheckingInspection")
-    public static final String FORM_INPUT_FIELD_LOCAL_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm";
-
     @Override
     public <T> ParamConverter<T> getConverter(Class<T> parameterType, Type genericType, Annotation[] annotations) {
         if (isOfType(parameterType, Instant.class) && isAnnotatedWith(annotations, LastFmScrobbleDateConstraint.class)) {
-            //noinspection unchecked
-            return (ParamConverter<T>)new LastFmScrobbleDateParameterConverter();
+            return getLastFmScrobbleDateParameterConverter();
         }
         return null;
     }
@@ -46,17 +40,21 @@ public class ParameterConverterProvider implements ParamConverterProvider {
                 .anyMatch(annotationType -> annotationType.isAssignableFrom(targetAnnotation));
     }
 
+    @SuppressWarnings("unchecked")
+    private <T> ParamConverter<T> getLastFmScrobbleDateParameterConverter() {
+        return (ParamConverter<T>)new LastFmScrobbleDateParameterConverter();
+    }
+
     private static class LastFmScrobbleDateParameterConverter implements ParamConverter<Instant> {
 
-        private static final DateTimeFormatter FORM_INPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern(FORM_INPUT_FIELD_LOCAL_DATE_TIME_FORMAT);
+        private static final DateTimeFormatter SCROBBLE_INPUT_DATE_TIME_FORMAT = DateTimeFormatter.ISO_DATE_TIME;
 
         @Override
         public Instant fromString(String value) {
             if (value == null || value.isBlank()) {
                 return null;
             }
-            LocalDateTime localDateTime = LocalDateTime.parse(value, FORM_INPUT_DATE_TIME_FORMAT);
-            ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+            ZonedDateTime zonedDateTime = ZonedDateTime.parse(value, SCROBBLE_INPUT_DATE_TIME_FORMAT);
             return zonedDateTime.toInstant();
         }
 
@@ -65,7 +63,7 @@ public class ParameterConverterProvider implements ParamConverterProvider {
             if (value == null) {
                 return null;
             }
-            return FORM_INPUT_DATE_TIME_FORMAT.format(value);
+            return SCROBBLE_INPUT_DATE_TIME_FORMAT.format(value);
         }
     }
 }
