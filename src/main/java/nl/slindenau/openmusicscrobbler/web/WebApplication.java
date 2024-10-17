@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.web;
 
 import io.dropwizard.Application;
+import io.dropwizard.bundles.webjars.WebJarBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
@@ -44,6 +45,7 @@ public class WebApplication extends Application<DropWizardConfiguration> {
     public void initialize(Bootstrap<DropWizardConfiguration> bootstrap) {
         bootstrap.addBundle(new ViewBundle<>());
         bootstrap.addBundle(new WebApplicationAssets().getAssetsBundle());
+        bootstrap.addBundle(new WebJarBundle());
     }
 
     private void printOnServerStarted(Server server) {

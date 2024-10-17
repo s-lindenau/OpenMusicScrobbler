@@ -6,9 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <script type="text/javascript" src="/scrobble.js"></script>
+    <script type="module" src="/scrobble.js"></script>
 </head>
-<body onload="setScrobbleDateInputValueAndMax()">
+<body>
 <h1>Scrobble release</h1>
 {{#release}}
     {{#basicInformation}}
@@ -30,9 +30,11 @@
             </ul>
         {{/releaseParts}}
         <label for="scrobbleDate">When was the <b>last track</b> played (end time)?</label>
+        <!-- scrobble.js sets the limits for this input on-DOM-load -->
         <input type="datetime-local" name="lastTrackEndedAt" id="scrobbleDate" required />
         <br/>
-        <button id="scrobbleButton" onclick="scrobble()">Scrobble selected tracks</button>
+        <!-- scrobble.js adds onClick handler to this button -->
+        <button id="scrobbleButton">Scrobble selected tracks</button>
     </form>
     <br/><br/>
     <div id="scrobbleResultFeedback"><!-- scrobble.js updates this DIV with feedback --></div>

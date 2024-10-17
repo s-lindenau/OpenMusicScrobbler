@@ -1,4 +1,10 @@
 /**
+ * Import modules.
+ * WebJars are used on the server side in DropWizard to load common js libraries
+ */
+import moment from "./webjars/momentjs/moment.js";
+
+/**
  * Constants for identifiers of elements in our DOM
  */
 const scrobbleButtonElementId = "scrobbleButton";
@@ -6,6 +12,12 @@ const scrobbleResultElementId = "scrobbleResultFeedback";
 const scrobbleFormElementId = "scrobbleRequestForm";
 const scrobbleDateElementId = "scrobbleDate";
 const scrobbleDateElementName = "lastTrackEndedAt";
+
+/**
+ * Execute on script load
+ */
+document.addEventListener("DOMContentLoaded", setScrobbleDateInputValueAndMax);
+document.getElementById(scrobbleButtonElementId).addEventListener("click", scrobble);
 
 /**
  * Scrobble the selected release and update the document with feedback
@@ -47,7 +59,7 @@ function asFormDataWithScrobbleDateInISOFormat(form) {
 
     if (scrobbleDateLocalString !== null && scrobbleDateLocalString.length > 0) {
         const scrobbleDate = new Date(scrobbleDateLocalString);
-        const scrobbleDateISOString = scrobbleDate.toISOString();
+        const scrobbleDateISOString = moment(scrobbleDate).format("YYYY-MM-DDTHH:mm:ssZ");
         formData.set(scrobbleDateElementName, scrobbleDateISOString);
     }
 
@@ -59,26 +71,9 @@ function asFormDataWithScrobbleDateInISOFormat(form) {
  * @returns {void}
  */
 function setScrobbleDateInputValueAndMax() {
-    const locale = 'en-US';
     const currentDateTime = new Date();
-    const year = new Intl.DateTimeFormat(locale, {year: 'numeric'}).format(currentDateTime);
-    const month = new Intl.DateTimeFormat(locale, {month: '2-digit'}).format(currentDateTime);
-    const day = new Intl.DateTimeFormat(locale, {day: '2-digit'}).format(currentDateTime);
-    const hour = new Intl.DateTimeFormat(locale, {hour: '2-digit', hour12: false}).format(currentDateTime);
-    // 2-digit doesn't work for minutes...
-    const minute = asTwoDigits(currentDateTime.getMinutes());
-    const currentDateTimeFormInputFormatted = `${year}-${month}-${day}T${hour}:${minute}`;
+    const currentDateTimeFormInputFormatted = moment(currentDateTime).format("YYYY-MM-DDTHH:mm")
 
     document.getElementById(scrobbleDateElementId).setAttribute("value", currentDateTimeFormInputFormatted);
     document.getElementById(scrobbleDateElementId).setAttribute("max", currentDateTimeFormInputFormatted);
-}
-
-/**
- * Format the input number as two digits if needed (1 -> 01, 15 -> 15)
- * @param inputNumber any positive number [0, N]
- * @returns {string} the number as String with a leading zero added in case of < 10
- */
-function asTwoDigits(inputNumber) {
-    console.assert(inputNumber >= 0, "Negative numbers not supported! Input: " + inputNumber);
-    return "" + (inputNumber < 10 ? "0" + inputNumber : inputNumber);
 }
