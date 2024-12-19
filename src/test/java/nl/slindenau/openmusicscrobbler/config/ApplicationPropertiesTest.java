@@ -1,6 +1,7 @@
 package nl.slindenau.openmusicscrobbler.config;
 
 import nl.slindenau.openmusicscrobbler.exception.OpenMusicScrobblerException;
+import nl.slindenau.openmusicscrobbler.util.OptionalString;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,7 +58,7 @@ class ApplicationPropertiesTest {
     }
 
     @Test
-    void testOverrideProperties () {
+    void testOverrideProperties() {
         setupProperty(ApplicationProperty.LOG_LEVEL, "debug");
         setupOverrideProperty(ApplicationProperty.LOG_LEVEL, "warn");
         setupOverrideProperty(ApplicationProperty.LAST_FM_API_SECRET, "secret");
@@ -89,6 +90,17 @@ class ApplicationPropertiesTest {
     }
 
     @Test
+    void testSensitiveValues() {
+        assertShouldBeSensitiveProperty(ApplicationProperty.DISCOGS_TOKEN);
+        assertShouldBeSensitiveProperty(ApplicationProperty.LAST_FM_PASSWORD);
+        assertShouldBeSensitiveProperty(ApplicationProperty.LAST_FM_API_SECRET);
+    }
+
+    private void assertShouldBeSensitiveProperty(ApplicationProperty applicationProperty) {
+        Assertions.assertTrue(applicationProperty.isSensitive(), "Application property should be marked as sensitive, but is not: " + applicationProperty.getKey());
+    }
+
+    @Test
     void testGetAsProperties() {
         Properties asProperties = applicationProperties.getAsProperties();
         Stream.of(ApplicationProperty.values()).forEach(applicationProperty -> assertPropertyExists(applicationProperty, asProperties));
@@ -97,6 +109,17 @@ class ApplicationPropertiesTest {
     private void assertPropertyExists(ApplicationProperty applicationProperty, Properties asProperties) {
         String applicationPropertyKey = applicationProperty.getKey();
         Assertions.assertTrue(asProperties.containsKey(applicationPropertyKey), "ApplicationProperty not found in properties: " + applicationPropertyKey);
+    }
+
+    @Test
+    void testRequiredFields() {
+        Stream.of(ApplicationProperty.values()).forEach(applicationProperty -> assertStringFieldNotEmpty(applicationProperty, applicationProperty.getKey(), "Key"));
+        Stream.of(ApplicationProperty.values()).forEach(applicationProperty -> assertStringFieldNotEmpty(applicationProperty, applicationProperty.getDescription(), "Description"));
+    }
+
+    private void assertStringFieldNotEmpty(ApplicationProperty applicationProperty, String fieldValue, String fieldName) {
+        Optional<String> fieldValueOptional = OptionalString.ofNullableOrBlank(fieldValue);
+        Assertions.assertFalse(fieldValueOptional.isEmpty(), fieldName + " should be present for all application properties. Missing for: " + applicationProperty.getKey());
     }
 
     private void testEmptyOptionalValue(Supplier<Optional<?>> getter, String message) {
