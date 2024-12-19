@@ -1,3 +1,8 @@
+**Note:** this branch is the latest version in which the command line interface (CLI) prototype was available.  
+This branch is no longer maintained, and is kept for historical reference.
+
+------------------------
+
 ## Open Music Scrobbler
 [Last.fm](https://www.last.fm) scrobbler by [slindenau](https://github.com/s-lindenau)
 
@@ -14,9 +19,7 @@ This application is currently for desktop or self-hosted only. If you just want 
 
 ### Roadmap
 - [x] Initial Prototype (CLI)
-- [x] Web GUI
-- [ ] Scheduling/offline scrobble with database
-- [ ] Barcode/Cover scanner for quick scrobble
+- [x] Web GUI Prototype
 
 ### Getting started
 - Requirements
