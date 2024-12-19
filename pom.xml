@@ -32,7 +32,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- To override a Beta version on Text-IO -->
+            <!-- SLF4j logging framework -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -60,12 +60,6 @@
             <groupId>de.u-mass</groupId>
             <artifactId>lastfm-java</artifactId>
             <version>0.1.2</version>
-        </dependency>
-        <!-- Text-IO for Command Line Interface -->
-        <dependency>
-            <groupId>org.beryx</groupId>
-            <artifactId>text-io</artifactId>
-            <version>3.4.1</version>
         </dependency>
         <!-- DropWizard Web Framework -->
         <dependency>

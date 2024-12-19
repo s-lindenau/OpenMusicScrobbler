@@ -17,24 +17,4 @@
     <root level="${rootLevel}">
         <appender-ref ref="FILE"/>
     </root>
-
-    <!-- Warning-only loggers -->
-    <logger name="javax.swing.SortingFocusTraversalPolicy" level="WARN"/>
-    <logger name="java.awt.focus.DefaultKeyboardFocusManager" level="WARN"/>
-    <logger name="java.awt.event.EventDispatchThread" level="WARN"/>
-    <logger name="java.awt.focus.KeyboardFocusManager" level="WARN"/>
-    <logger name="java.awt.event.Component" level="WARN"/>
-    <logger name="java.awt.mixing.Container" level="WARN"/>
-    <logger name="java.awt.Window" level="WARN"/>
-    <logger name="java.awt.mixing.Component" level="WARN"/>
-    <logger name="java.awt.focus.Component" level="WARN"/>
-    <logger name="sun.awt.focus.KeyboardFocusManagerPeerImpl" level="WARN"/>
-    <logger name="sun.awt.multiscreen.SunDisplayChanger" level="WARN"/>
-    <logger name="sun.awt.windows.focus.WComponentPeer" level="WARN"/>
-    <logger name="sun.awt.windows.WDesktopProperties" level="WARN"/>
-    <logger name="sun.awt.windows.WComponentPeer" level="WARN"/>
-    <logger name="sun.awt.SunGraphicsCallback" level="WARN"/>
-    <logger name="sun.awt.windows.WWindowPeer" level="WARN"/>
-    <logger name="sun.awt.windows.WToolkit" level="WARN"/>
-    <logger name="sun.awt.im.InputContext" level="WARN"/>
 </configuration>
