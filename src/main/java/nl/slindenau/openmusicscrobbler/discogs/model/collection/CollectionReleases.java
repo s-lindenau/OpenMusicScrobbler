@@ -10,6 +10,7 @@ import java.util.List;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class CollectionReleases extends DiscogsApiResponse {
     public Pagination pagination;
     public List<CollectionRelease> releases;

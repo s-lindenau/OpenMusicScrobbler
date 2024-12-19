@@ -5,6 +5,7 @@ package nl.slindenau.openmusicscrobbler.discogs.model.release;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class Image {
     public String type;
     public String uri;

@@ -9,6 +9,7 @@ import java.util.List;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class UserCollection extends DiscogsApiResponse {
 
     private List<CollectionFolder> folders;

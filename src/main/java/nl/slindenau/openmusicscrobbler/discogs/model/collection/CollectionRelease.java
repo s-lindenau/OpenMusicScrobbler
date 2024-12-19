@@ -10,6 +10,7 @@ import java.util.Date;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class CollectionRelease extends DiscogsApiResponse {
     public int id;
     @JsonProperty("instance_id")

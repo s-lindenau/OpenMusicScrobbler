@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class Pagination extends DiscogsApiResponse {
 
     public int page;

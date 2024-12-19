@@ -8,6 +8,7 @@ import nl.slindenau.openmusicscrobbler.discogs.model.DiscogsApiResponse;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class CollectionFolder extends DiscogsApiResponse {
 
     private int id;

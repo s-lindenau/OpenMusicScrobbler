@@ -16,6 +16,7 @@ public class DiscogsApiResponse {
         return errorMessage;
     }
 
+    @SuppressWarnings("unused")
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }

@@ -12,6 +12,7 @@ import java.util.List;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class BasicInformation extends DiscogsApiResponse {
 
     public int id;

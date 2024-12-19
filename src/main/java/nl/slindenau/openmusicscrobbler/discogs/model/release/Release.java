@@ -10,6 +10,7 @@ import java.util.List;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
+@SuppressWarnings("unused")
 public class Release extends DiscogsApiResponse {
     public int id;
     public String status;
