@@ -1,4 +1,4 @@
-package nl.slindenau.openmusicscrobbler.web.api;
+package nl.slindenau.openmusicscrobbler.web.controller;
 
 import com.codahale.metrics.annotation.Timed;
 import nl.slindenau.openmusicscrobbler.config.ApplicationProperties;
