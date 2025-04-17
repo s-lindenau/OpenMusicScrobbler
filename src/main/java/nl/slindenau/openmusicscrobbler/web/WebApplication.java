@@ -35,7 +35,9 @@ public class WebApplication extends Application<DropWizardConfiguration> {
     public void run(DropWizardConfiguration configuration, Environment environment) {
         environment.lifecycle().addServerLifecycleListener(this::printOnServerStarted);
         environment.jersey().setUrlPattern(JERSEY_APPLICATION_ROOT_URL_PATTERN);
-        environment.jersey().register(new LoggingExceptionMapper());
+        environment.jersey().register(new LoggingExceptionMapper.ThrowableExceptionMapper());
+        environment.jersey().register(new LoggingExceptionMapper.WebApplicationExceptionMapper());
+        environment.jersey().register(new LoggingExceptionMapper.ConstraintViolationExceptionMapper());
         environment.jersey().register(new ParameterConverterProvider());
         environment.jersey().register(new CollectionResource());
         environment.jersey().register(new ConfigurationResource());

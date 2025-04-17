@@ -18,7 +18,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.Optional;
 
 /**
@@ -49,6 +51,7 @@ public class CollectionResource {
     }
 
     @GET
+    @Timed
     @Path("/search")
     public ReleaseCollectionView getSearchView(@QueryParam("query") String searchQueryParameter) {
         return OptionalString.ofNullableOrBlank(searchQueryParameter)
@@ -57,17 +60,19 @@ public class CollectionResource {
     }
 
     @GET
+    @Timed
     @Path("/release")
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     public ReleaseView getReleaseAsView(@QueryParam("id") Optional<Long> discogsId) {
         if (discogsId.isPresent()) {
             return new ReleaseView(collectionService.findMusicRelease(discogsId.get()));
         } else {
-            throw new IllegalArgumentException("Missing ID query parameter");
+            throw new WebApplicationException("Missing ID query parameter", Response.Status.BAD_REQUEST);
         }
     }
 
     @POST
+    @Timed
     @Path("/scrobble")
     public ScrobbleResult scrobble(@Valid @BeanParam ScrobbleRequest scrobbleRequest) {
         LastFmScrobbleResultHolder resultHolder = collectionService.scrobbleRelease(scrobbleRequest);

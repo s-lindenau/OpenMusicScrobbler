@@ -5,6 +5,9 @@ package nl.slindenau.openmusicscrobbler.web.model;
  * https://github.com/s-lindenau
  * Licence: GPLv3
  */
-public record ScrobbleResult(boolean success, String message) {
- 
+public class ScrobbleResult extends WebApplicationResponse.DetailResponse {
+
+    public ScrobbleResult(boolean success, String message) {
+        super(success, message);
+    }
 }
