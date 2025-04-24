@@ -44,8 +44,7 @@ async function postScrobble(form) {
     const formData = asFormDataWithScrobbleDateInISOFormat(form);
     const urlEncodedFormData = new URLSearchParams(formData);
     const parameters = {method: "POST", body: urlEncodedFormData};
-    let response = await fetch(url, parameters);
-    return await response.json();
+    return await fetchResponseAsJson(url, parameters);
 }
 
 /**
@@ -76,4 +75,31 @@ function setScrobbleDateInputValueAndMax() {
 
     document.getElementById(scrobbleDateElementId).setAttribute("value", currentDateTimeFormInputFormatted);
     document.getElementById(scrobbleDateElementId).setAttribute("max", currentDateTimeFormInputFormatted);
+}
+
+/**
+ * Fetch the provided endpoint and return the result as JSON
+ * @param url the endpoint URL
+ * @param parameters the parameters for the fetch operation
+ * @returns {Promise<any>}
+ */
+async function fetchResponseAsJson(url, parameters) {
+    try {
+        let response = await fetch(url, parameters);
+        return await response.json();
+    } catch (error) {
+        return getErrorMessage(error);
+    }
+}
+
+/**
+ * Process any errors and return as error message JSON in 'WebApplicationResponse' format
+ * @param error the caught error
+ * @returns {{success: boolean, message: string}} the error object
+ */
+function getErrorMessage(error) {
+    return {
+        success: false,
+        message: "The application failed to process the request! Error message: " + error.message
+    };
 }
