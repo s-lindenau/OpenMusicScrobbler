@@ -19,6 +19,7 @@
     <p>Select tracks to scrobble</p>
     <form id="scrobbleRequestForm" method="post" action="/app/collection/scrobble">
         <input type="hidden" name="discogsId" value="{{basicInformation.discogsId}}">
+        <div id="selectedTracks">
         {{#releaseParts}}
             <ul>
                 {{#allTracks}}
@@ -29,9 +30,14 @@
                 {{/allTracks}}
             </ul>
         {{/releaseParts}}
-        <label for="scrobbleDate">When was the <b>last track</b> played (end time)?</label>
-        <!-- scrobble.js sets the limits for this input on-DOM-load -->
-        <input type="datetime-local" name="lastTrackEndedAt" id="scrobbleDate" required />
+        </div>
+        <div>
+        <div id="lastTrackEndedAt" class="scrobbleDate">
+            <label for="scrobbleDate">When was the <b>last track</b> played (end time)?</label>
+            <!-- scrobble.js sets the limits for this input on-DOM-load -->
+            <input type="datetime-local" name="lastTrackEndedAt" id="scrobbleDate" required/>
+        </div>
+        </div>
         <br/>
         <!-- scrobble.js adds onClick handler to this button -->
         <button id="scrobbleButton">Scrobble selected tracks</button>

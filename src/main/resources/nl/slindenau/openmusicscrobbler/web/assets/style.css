@@ -41,3 +41,16 @@ label.configuration {
 label.scrobble {
     display: inline;
 }
+
+/* Feedback divs */
+div.scrobbleDate {
+    display: inline-block;
+}
+
+div.requestError {
+    background: #fff0f4 !important;
+    box-shadow: 1px 1px 1px black !important;
+    border: grey solid 1px !important;
+    display: inline-block !important;
+    margin-bottom: 10px !important;
+}

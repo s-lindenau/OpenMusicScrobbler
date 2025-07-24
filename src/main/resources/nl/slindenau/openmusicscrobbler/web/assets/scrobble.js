@@ -2,6 +2,7 @@
  * Import modules.
  * WebJars are used on the server side in DropWizard to load common js libraries
  */
+// noinspection JSFileReferences
 import moment from "./webjars/momentjs/moment.js";
 
 /**
@@ -12,6 +13,8 @@ const scrobbleResultElementId = "scrobbleResultFeedback";
 const scrobbleFormElementId = "scrobbleRequestForm";
 const scrobbleDateElementId = "scrobbleDate";
 const scrobbleDateElementName = "lastTrackEndedAt";
+const requestErrorClass = "requestError";
+const newLine = "<br/>";
 
 /**
  * Execute on script load
@@ -24,12 +27,13 @@ document.getElementById(scrobbleButtonElementId).addEventListener("click", scrob
  * @returns {Promise<void>} no data is returned when this Promise completes
  */
 async function scrobble() {
+    clearErrors();
     document.getElementById(scrobbleButtonElementId).disabled = true;
     document.getElementById(scrobbleResultElementId).innerHTML = "Submitting scrobble...";
 
     let scrobbleRequestForm = document.getElementById(scrobbleFormElementId);
     let scrobbleResult = await postScrobble(scrobbleRequestForm);
-    document.getElementById(scrobbleResultElementId).innerHTML = scrobbleResult.message;
+    handleScrobbleResult(scrobbleResult);
 
     document.getElementById(scrobbleButtonElementId).disabled = false;
 }
@@ -102,4 +106,48 @@ function getErrorMessage(error) {
         success: false,
         message: "The application failed to process the request! Error message: " + error.message
     };
+}
+
+/**
+ * Clears any elements of the error class
+ */
+function clearErrors() {
+    let elementsWithErrorClass = document.getElementsByClassName(requestErrorClass);
+
+    while (elementsWithErrorClass.length > 0) {
+        elementsWithErrorClass[0].classList.remove(requestErrorClass);
+    }
+}
+
+/**
+ * Handle the scrobble result JSON (either success or error)
+ * @param scrobbleResult 'ScrobbleResult' object
+ */
+function handleScrobbleResult(scrobbleResult) {
+    let details = scrobbleResult.details;
+
+    if (details !== undefined && details !== null && details.length > 0) {
+        for (const key in details) {
+            handleScrobbleResultDetail(details[key]);
+        }
+    } else {
+        document.getElementById(scrobbleResultElementId).innerHTML = scrobbleResult.message;
+    }
+}
+
+/**
+ * Handle any detail message; mark the corresponding element with the error class when not successful
+ * @param detail 'WebApplicationResponse.DetailResponse.DetailMessage' object
+ */
+function handleScrobbleResultDetail(detail) {
+    let element = detail.element;
+    let detailMessage = detail.detailMessage;
+    let isSuccess = detail.success;
+    if (!isSuccess) {
+        let elementById = document.getElementById(element);
+        if (elementById !== null) {
+            elementById.classList.add(requestErrorClass);
+        }
+    }
+    document.getElementById(scrobbleResultElementId).innerHTML += newLine + detailMessage;
 }
