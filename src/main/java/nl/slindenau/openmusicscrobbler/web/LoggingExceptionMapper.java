@@ -26,11 +26,29 @@ public abstract class LoggingExceptionMapper<T extends Throwable> implements Exc
         return buildResponse(throwable);
     }
 
+    protected boolean shouldLogFullStackTrace() {
+        return true;
+    }
+
+    protected boolean shouldPrintFullStackTrace() {
+        return true;
+    }
+
     protected abstract Response buildResponse(T throwable);
 
     private void logException(Throwable exception) {
-        logger.error(exception.getMessage(), exception);
-        exception.printStackTrace(System.err);
+        if (shouldLogFullStackTrace()) {
+            logger.error(exception.getMessage(), exception);
+        } else {
+            logger.error(exception.getMessage());
+        }
+
+        if (shouldPrintFullStackTrace()) {
+            exception.printStackTrace(System.err);
+        } else {
+            //noinspection ThrowablePrintedToSystemOut
+            System.err.println(exception);
+        }
     }
 
     protected WebApplicationResponse toWebApplicationResponse(String message) {
@@ -87,6 +105,12 @@ public abstract class LoggingExceptionMapper<T extends Throwable> implements Exc
             String element = Iterables.getLast(constraintViolation.getPropertyPath()).getName();
             String message = constraintViolation.getMessage();
             return toDetailMessage(element, message);
+        }
+
+        @Override
+        protected boolean shouldPrintFullStackTrace() {
+            // Constraint violations are handled completely in library code, stacktrace to printstream has no added value
+            return false;
         }
     }
 }
